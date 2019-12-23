@@ -20,6 +20,10 @@
 		85ABF8651134ABD4922B08BF /* libPods-faMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A677CDF7CC6C67F830209 /* libPods-faMobileTests.a */; };
 		EA155FA503B059780BD13A1D /* libPods-faMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D04D24FB67C02053ADA99AA2 /* libPods-faMobile-tvOS.a */; };
 		85C47FB2CE8A4199A5CCEF8C /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */; };
+		154787BAD7C84C59A14F924E /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */; };
+		B6EF86214E33491386A6B93F /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */; };
+		58DC0F71A4A64781967A4127 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */; };
+		F09B9BF277624E7ABEB061F6 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; name = "Pacifico-Regular.ttf"; path = "../assets/fonts/Pacifico-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Bold.ttf"; path = "../assets/fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Light.ttf"; path = "../assets/fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Regular.ttf"; path = "../assets/fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-SemiBold.ttf"; path = "../assets/fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +212,10 @@
 			isa = "PBXGroup";
 			children = (
 				21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */,
+				815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */,
+				50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */,
+				9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */,
+				1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -350,6 +362,10 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				85C47FB2CE8A4199A5CCEF8C /* Pacifico-Regular.ttf in Resources */,
+				154787BAD7C84C59A14F924E /* SourceSansPro-Bold.ttf in Resources */,
+				B6EF86214E33491386A6B93F /* SourceSansPro-Light.ttf in Resources */,
+				58DC0F71A4A64781967A4127 /* SourceSansPro-Regular.ttf in Resources */,
+				F09B9BF277624E7ABEB061F6 /* SourceSansPro-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

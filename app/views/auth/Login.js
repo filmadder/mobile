@@ -5,13 +5,20 @@ import Input from '../../components/Input';
 import FaButton from '../../components/FaButton';
 import AuthContainer from '../../components/AuthContainer';
 import AuthForm from '../../components/AuthForm';
+import Error from '../../components/Error';
 
 const Login = props => {
     const lowercase = text => (text.toLowerCase());
+    const [hasError, setHasError] = React.useState(true)
+
+    const errorMessage = <Error
+            errorText='something went wrong on the backend'
+            onDismiss={() => setHasError(false)}/>
     
     return (
         <AuthContainer style={styles.login}>
-            <View style={{ height: 150, width: 150 }}></View>
+            {errorMessage}
+            <View style={{ height: 250, width: 250 }}></View>
             <AuthForm>
                 <Input
                     label='email'

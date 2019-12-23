@@ -5,14 +5,19 @@ import Input from '../../components/Input';
 import FaButton from '../../components/FaButton';
 import AuthContainer from '../../components/AuthContainer';
 import AuthForm from '../../components/AuthForm';
+import Error from '../../components/Error'
 
 const Register = props => {
-    const lowercase = text => {
-        return text.toLowerCase()
-    };
+    const lowercase = text => (text.toLowerCase());
+    const [hasError, setHasError] = React.useState(true)
+
+    const errorMessage = <Error
+            errorText='passwords dont match'
+            onDismiss={() => setHasError(false)}/>
 
     return (
         <AuthContainer style={styles.register}>
+            {errorMessage}
             <View style={{ height: 250, width: 250 }}></View>
             <AuthForm>
                 <Input label='username' textContentType='none' />

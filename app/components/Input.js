@@ -24,20 +24,21 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     label: {
+        fontFamily: 'SourceSansPro-Bold',
         color: colours.blue0,
         textTransform: 'uppercase',
-        fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 15,
     },  
     labelFocused: {
         color: 'white',
     },
     input: {
         borderBottomWidth: 2,
+        fontFamily: 'SourceSansPro-Regular',
         borderBottomColor: colours.blue0,
         paddingVertical: 10,
         fontSize: 20,
-        marginTop: 5,
+        marginVertical: 5,
         color: 'white'
     },
     inputFocused: {

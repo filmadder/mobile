@@ -4,7 +4,6 @@ import Svg, { Circle, Line } from 'react-native-svg';
 import { colours } from '../colours';
 
 const Error = props => {
-    const [visible, setVisible] = React.useState(true);
     const aniVal = new Animated.Value(0);
 
     const animate = () => Animated.spring(
@@ -23,26 +22,22 @@ const Error = props => {
         outputRange: [-260, 0]
     })
 
-    const error = visible
-        ? <View style={{ alignItems: 'center' }}>
+    const error = <View style={{ alignItems: 'center' }}>
             <TouchableWithoutFeedback
-                onPress={() => setVisible(false)}>
-                <View>
+                style={{backgroundColor: 'red', height: 120, width: 120}}>
                     <Svg height="120" width="120">
                         <Circle cx="60" cy="60" r="59" stroke={colours.blue4} strokeWidth='1.5' fill="none" />
                         <Line x1="88.11" y1="88.11" x2="31.89" y2="31.89" stroke={colours.blue4} strokeWidth='1.5' fill="none" />
                         <Line x1="31.89" y1="88.11" x2="88.11" y2="31.89" stroke={colours.blue4} strokeWidth='1.5' fill="none" />
                     </Svg>
-                </View>
             </TouchableWithoutFeedback>
             <Text style={styles.oops}>Oops!</Text>
             <Text style={styles.errorText}>{props.errorText}</Text>
-        </View>
-        : <View></View>
+        </View>;
 
     return (
         <Animated.View style={{top, position: 'absolute'}}>
-            <View style={visible ? styles.error : ''}>
+            <View style={styles.error}>
                 {error}
             </View>
         </Animated.View>
@@ -65,6 +60,7 @@ const styles = StyleSheet.create({
         shadowColor: colours.black,
         shadowRadius: 2,
         shadowOpacity: 0.3,
+        minWidth: 280,
     },
     closeBtn: {
         height: 120,
@@ -81,6 +77,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
     },
     errorText: {
+        fontFamily: 'SourceSansPro-Bold',
         textAlign: 'center',
         paddingVertical: 10,
         fontSize: 16,

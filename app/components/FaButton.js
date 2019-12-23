@@ -17,7 +17,7 @@ const FaButton = props => {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: colours.blue3,
+        backgroundColor: colours.blue2,
         borderRadius: 30,
         paddingVertical: 8,
         paddingHorizontal: 36,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     buttonTitle: {
         fontSize: 20,
-        fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',
+        fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico-Regular',
         color: 'white',
     }
 });
