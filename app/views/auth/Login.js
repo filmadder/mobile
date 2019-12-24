@@ -1,24 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 
 import Input from '../../components/Input';
 import FaButton from '../../components/FaButton';
-import AuthContainer from '../../components/AuthContainer';
-import AuthForm from '../../components/AuthForm';
+import AuthContainer from '../../components/auth/AuthContainer';
+import AuthForm from '../../components/auth/AuthForm';
+import AuthHeader from '../../components/auth/AuthHeader';
 import Error from '../../components/Error';
 
 const Login = props => {
     const lowercase = text => (text.toLowerCase());
-    const [hasError, setHasError] = React.useState(true)
+    const [hasError, setHasError] = React.useState(false)
 
-    const errorMessage = <Error
+    const errorMessage = hasError ? <Error
             errorText='something went wrong on the backend'
-            onDismiss={() => setHasError(false)}/>
+            onDismiss={() => setHasError(false)}/> : <></>
     
     return (
         <AuthContainer style={styles.login}>
             {errorMessage}
-            <View style={{ height: 250, width: 250 }}></View>
+            <AuthHeader />
             <AuthForm>
                 <Input
                     label='email'
@@ -37,7 +38,7 @@ const Login = props => {
 
 const styles = StyleSheet.create({
     login: {
-    }
+    },
 })
 
 export default Login;

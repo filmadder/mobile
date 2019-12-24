@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
-import ProfileFilmCard from '../../components/ProfileFilmCard';
+import FilmCard from '../FilmCard';
 
 import { colours } from '../../colours';
 
@@ -12,7 +12,7 @@ const Film = props => {
                 <Text style={styles.username}>stelaseldano</Text>
                 <Text style={styles.actionText}> added to watching</Text>
             </View>
-            <ProfileFilmCard />
+            <FilmCard />
         </View>
     )
 };

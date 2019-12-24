@@ -10,28 +10,15 @@ import {
 import Login from './app/views/auth/Login';
 import Register from './app/views/auth/Register';
 import User from './app/views/User';
-import FeedFilmCard from './app/components/FeedFilmCard'
-import Film from './app/components/feedItems/Film';
-import Friendship from './app/components/feedItems/Friendship';
-import Comment from './app/components/feedItems/Comment';
-import ProfileHeader from './app/components/ProfileHeader'
+import Feed from './app/views/Feed';
 
 const Fa: () => React$Node = () => {
   return (
     <>
-      <View style={styles.view}>
-        <ScrollView>
-          <FeedFilmCard>
-            <Film />
-          </FeedFilmCard>
-          <FeedFilmCard>
-            <Friendship />
-          </FeedFilmCard>
-          <FeedFilmCard>
-            <Comment />
-          </FeedFilmCard>
-        </ScrollView>
-      </View>
+      {/* <View style={styles.view}>
+        <Feed />
+      </View> */}
+      <Register />
     </>
   );
 };
@@ -40,7 +27,8 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20,
   }
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, FlatList, View, ScrollView } from 'react-native';
 
-import ProfileFilmCard from './ProfileFilmCard';
+import FilmCard from './FilmCard';
 import ListFilterDropdown from './ListFilterDropdown';
 
 import { colours } from '../colours';
@@ -15,14 +15,14 @@ const ProfileFilmList = props => {
             onScroll={(ev) => {console.log(ev.nativeEvent.contentOffset)}}
             scrollEventThrottle='500'>
             <ListFilterDropdown />
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
-            <ProfileFilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
+            <FilmCard style={styles.card}/>
         </ScrollView>
     )
 };

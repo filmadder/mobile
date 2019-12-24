@@ -3,22 +3,23 @@ import { View, StyleSheet, Text, ScrollView } from 'react-native';
 
 import Input from '../../components/Input';
 import FaButton from '../../components/FaButton';
-import AuthContainer from '../../components/AuthContainer';
-import AuthForm from '../../components/AuthForm';
-import Error from '../../components/Error'
+import AuthContainer from '../../components/auth/AuthContainer';
+import AuthForm from '../../components/auth/AuthForm';
+import Error from '../../components/Error';
+import AuthHeader from '../../components/auth/AuthHeader';
 
 const Register = props => {
     const lowercase = text => (text.toLowerCase());
-    const [hasError, setHasError] = React.useState(true)
+    const [hasError, setHasError] = React.useState(false)
 
-    const errorMessage = <Error
+    const errorMessage = hasError ? <Error
             errorText='passwords dont match'
-            onDismiss={() => setHasError(false)}/>
+            onDismiss={() => setHasError(false)}/> : <></>
 
     return (
         <AuthContainer style={styles.register}>
             {errorMessage}
-            <View style={{ height: 250, width: 250 }}></View>
+            <AuthHeader />
             <AuthForm>
                 <Input label='username' textContentType='none' />
                 <Input label='email'
