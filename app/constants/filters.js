@@ -1,4 +1,4 @@
-export const filters = [
+export const films = [
     {
         id: '0',
         filter: 'watchlist'
@@ -19,4 +19,23 @@ export const filters = [
         id: '4',
         filter: 'tags'
     }
-]
+];
+
+export const searches = [
+    {
+        id: '4',
+        filter: 'films'
+    },
+    {
+        id: '1',
+        filter: 'users'
+    },
+    {
+        id: '2',
+        filter: 'tags'
+    },
+    {
+        id: '3',
+        filter: 'director'
+    },
+];
