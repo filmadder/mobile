@@ -6,6 +6,7 @@ import { colours } from '../../colours';
 const FaButton = props => {
     return (
         <TouchableOpacity
+            style={{ alignItems: 'center' }}
             activeOpacity={.6}
             onPress={props.onPress}>
             <View style={styles.button}>

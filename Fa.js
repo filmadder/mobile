@@ -12,6 +12,7 @@ import Register from './app/views/auth/Register';
 import User from './app/views/User';
 import Feed from './app/views/Feed';
 import Search from './app/views/Search';
+import Notifications from './app/views/Notifications';
 import Settings from './app/views/Settings';
 
 const Fa: () => React$Node = () => {
@@ -22,7 +23,7 @@ const Fa: () => React$Node = () => {
       </View> */}
       {/* <Login /> */}
       {/* <Search /> */}
-      <Settings />
+      <Notifications />
     </>
   );
 };

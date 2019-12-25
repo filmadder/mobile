@@ -1,15 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+
+import FaSmallButton from '../components/dom/FaSmallButton';
+import FaButton from '../components/dom/FaButton';
+import SettingsEditMode from '../components/SettingsEditMode';
 
 import { colours } from '../colours';
 
 const SettingsSection = props => {
+    const [editting, setEditting] = React.useState(false);
+
     const button = props.btnText
-        ? <Button title={props.btnText} />
+        ? <FaSmallButton
+            title={props.btnText}
+            onPress={() => setEditting(true)} />
         : null;
 
     return (
         <View style={[s.container, props.style]}>
+            <SettingsEditMode
+                visible={editting}
+                transparent={false}>
+                <View>
+                    {props.children}
+                    <FaButton
+                        title='done'
+                        onPress={() => setEditting(false)} />
+                </View>
+            </SettingsEditMode>
+
             <View style={s.header}>
                 <Text style={s.title}>{props.title}</Text>
                 {button}
@@ -32,7 +51,7 @@ const s = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 5,
+        paddingTop: 10,
         borderTopWidth: 1,
         borderTopColor: colours.blue4
     },

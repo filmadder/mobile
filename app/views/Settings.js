@@ -5,6 +5,7 @@ import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import CheckboxField from '../components/CheckboxField';
+import ViewTitle from '../components/ViewTitle';
 
 const Settings = props => {
 
@@ -16,6 +17,7 @@ const Settings = props => {
     return (
         <View style={{paddingTop: 50 }}>
             <ScrollView>
+                <ViewTitle title='Settings' />
                 <SettingsSection
                     title='Avatar'
                     btnText='upload new'>
