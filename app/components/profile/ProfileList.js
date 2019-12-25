@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-import FilmCard from './FilmCard';
-import UserResult from './search/resultItems/UserResult';
-import ListFilterDropdown from './ListFilterDropdown';
-import TagItem from './TagItem';
+import FilmCard from '../FilmCard';
+import UserResult from '../search/resultItems/UserResult';
+import ListFilterDropdown from '../ListFilterDropdown';
+import TagItem from '../TagItem';
 
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
 const ProfileFilmList = props => {
     let content = null;
@@ -65,8 +65,6 @@ const ProfileFilmList = props => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: 100,
-        paddingHorizontal: 20,
         alignItems: 'center',
         borderTopWidth: 1,
         borderTopColor: colours.blue4

@@ -13,27 +13,35 @@ const UserRow = props => {
             avatar = {
                 height: 60,
                 width: 60,
+                marginRight: 10,
             };
             break;
         case 'medium':
-            break;
-        case 'small':
             avatar = {
                 height: 30,
                 width: 30,
+                marginRight: 10,
+            };
+            break;
+        case 'small':
+            avatar = {
+                height: 20,
+                width: 20,
+                marginRight: 10,
             };
             break;
         default:
             avatar = {
                 height: 30,
                 width: 30,
+                marginRight: 10,
             };
     };
 
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <Avatar
-                size={avatar}/>
+                size={avatar} />
             <Username
                 username={props.username}
                 size={props.size} />
@@ -47,9 +55,6 @@ const s = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 10,
     },
-    username: {
-        color: colours.black,
-    }
 })
 
 export default UserRow;

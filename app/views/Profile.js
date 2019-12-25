@@ -2,9 +2,9 @@ import React from 'react';
 import { View, SafeAreaView, Text, ScrollView } from 'react-native';
 import { colours } from '../colours';
 
-import ProfileHeader from '../components/ProfileHeader';
-import ProfileList from '../components/ProfileList';
-import ProfileFooter from '../components/ProfileFooter';
+import ProfileHeader from '../components/profile/ProfileHeader';
+import ProfileList from '../components/profile/ProfileList';
+import ProfileFooter from '../components/profile/ProfileFooter';
 import ViewWrapper from './ViewWrapper';
 
 const User = props => {

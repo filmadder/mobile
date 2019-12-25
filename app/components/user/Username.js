@@ -9,15 +9,14 @@ const Username = props => {
         case 'large': {
             styles = {
                 fontFamily: 'Pacifico-Regular',
-                marginLeft: 20,
                 fontSize: 22,
+                color: colours.black
             }
         }
         break;
         case 'small': {
             styles = {
                 fontFamily: 'SourceSansPro-Bold',
-                marginLeft: 10,
                 fontSize: 14,
                 textTransform: 'uppercase',
             }
@@ -25,22 +24,23 @@ const Username = props => {
         break;
         default:
             styles = {
-                fontFamily: 'Pacifico-Regular',
-                marginLeft: 20,
-                fontSize: 22,
+                fontFamily: 'SourceSansPro-Bold',
+                fontSize: 14,
+                textTransform: 'uppercase',
+                color: colours.black
             }
     }
 
     return (
-        <View>
-            <Text style={[s.username, styles]}>{props.username}</Text>
-        </View>
+        <Text style={[s.username, styles, props.style]}>{props.username}</Text>
     )
 };
 
 const s = StyleSheet.create({
     username: {
-        color: colours.black
+        textAlign: 'center',
+        color: colours.black,
+        padding: 3,
     }
 });
 

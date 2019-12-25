@@ -9,20 +9,20 @@ const ViewWrapper = props => {
         : null;
     
     return (
-        <View style={s.view}>
-            <ScrollView
-                style={{paddingHorizontal: 30, paddingVertical: 50}}>
-                {viewTitle}
-                {props.children}
-            </ScrollView>
-        </View>
+        <ScrollView
+            {...props}
+            style={[s.container, props.style]}>
+            {viewTitle}
+            {props.children}
+        </ScrollView>
     )
 };
 
 const s = StyleSheet.create({
-    view: {
-        flex: 1,
-    },
+    container: {
+        paddingHorizontal: 30,
+        paddingVertical: 50
+    }
 });
 
 export default ViewWrapper;

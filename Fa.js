@@ -9,11 +9,12 @@ import {
 
 import Login from './app/views/auth/Login';
 import Register from './app/views/auth/Register';
-import User from './app/views/User';
+import Profile from './app/views/Profile';
 import Feed from './app/views/Feed';
 import Search from './app/views/Search';
 import Notifications from './app/views/Notifications';
 import Settings from './app/views/Settings';
+import Film from './app/views/Film';
 
 const Fa: () => React$Node = () => {
   return (
@@ -22,7 +23,7 @@ const Fa: () => React$Node = () => {
         <Feed />
       </View> */}
       {/* <Login /> */}
-      <User />
+      <Film />
       {/* <Feed /> */}
     </>
   );

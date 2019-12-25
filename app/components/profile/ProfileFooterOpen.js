@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { colours } from '../colours'
+import { colours } from '../../colours'
 
-const ProfileFooterClosed = props => {
+const ProfileFooterOpen = props => {
     return (
         <View style={s.container}>
             <View>
@@ -34,6 +35,7 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 30,
         paddingVertical: 15,
+        height: 300,
         elevation: 0.5,
         shadowOffset: {
             height: -4,
@@ -53,4 +55,4 @@ const s = StyleSheet.create({
     }
 });
 
-export default ProfileFooterClosed;
+export default ProfileFooterOpen;

@@ -1,15 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
-import Avatar from './user/Avatar'
+import Avatar from '../user/Avatar'
+import Username from '../user/Username'
 
 const ProfileHeader = props => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <View style={styles.containerInner}>
                 <Avatar />
-                <Text style={styles.username}>stelaseldano</Text>
+                <Username
+                    style={styles.username}
+                    username='stelaseldano' />
             </View>
         </View>
     )
@@ -17,7 +20,6 @@ const ProfileHeader = props => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20,
         backgroundColor: 'transparent',
     },
     containerInner: {
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Pacifico-Regular',
         fontSize: 22,
         color: colours.black,
-        marginTop: 10,
+        marginTop: 20,
     }
 });
 

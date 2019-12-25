@@ -7,7 +7,7 @@ const Avatar = props => {
         <View style={[styles.avatarContainer, props.style]} >
             <Image
                 source={{uri: 'http://fakewalls.com/storage/Grimes%20Claire%20Boucher.jpg?__SQUARESPACE_CACHEVERSION=1331323085328'}}
-                style={[styles.avatar, props.size]} />
+                style={[styles.avatar, props.size, props.style]} />
         </View>
     )
 };

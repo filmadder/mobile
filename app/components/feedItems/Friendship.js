@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
-import ProfileHeader from '../../components/ProfileHeader';
+import ProfileHeader from '../../components/profile/ProfileHeader';
 
 import { colours } from '../../colours';
 
@@ -12,7 +12,8 @@ const Friendship = props => {
                 <Text style={styles.username}>stelaseldano</Text>
                 <Text style={styles.actionText}> befriended someone</Text>
             </View>
-            <ProfileHeader />
+            <ProfileHeader
+                style={{ backgroundColor: 'white' }} />
         </View>
     )
 };

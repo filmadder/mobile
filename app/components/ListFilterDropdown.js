@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, FlatList, Easing } from 'react-native';
 import { colours } from '../colours';
 import { films } from '../constants/filters';
 
@@ -14,8 +14,10 @@ const ListFilterDropdown = props => {
             aniVal,
             {
                 toValue: 1,
+                duration: 2000,
+                easing: Easing.linear
             }
-        )
+        ).start()
     };
 
     const height = aniVal.interpolate({
@@ -25,19 +27,24 @@ const ListFilterDropdown = props => {
 
     const width = aniVal.interpolate({
         inputRange: [0, 1],
-        outputRange: [100, 400]
+        outputRange: ['30%', '100%']
     });
 
-    const handleDropdown = item => {
+    const closeDropdown = item => {
         props.onTypeSelected(item);
         setCurrentTab(item);
         setIsOpen(false);
     };
 
+    const openDropdown = () => {
+        animate();
+        setIsOpen(true);
+    }
+
     const Item = props => {
         return (
             <TouchableOpacity
-                onPress={() => handleDropdown(props.item.filter)}>
+                onPress={() => closeDropdown(props.item.filter)}>
                 <Text style={styles.item}>{props.item.filter}</Text>
             </TouchableOpacity>
         )
@@ -51,7 +58,7 @@ const ListFilterDropdown = props => {
             {items}
         </View>
     } else {
-        dropdown = <Animated.View style={{height, width}}>
+        dropdown = <Animated.View style={[height, width]}>
             <Text style={styles.item}>{currentTab}</Text>
         </Animated.View>
     }
@@ -60,7 +67,7 @@ const ListFilterDropdown = props => {
         <TouchableOpacity
             style={[styles.container, props.style]}
             activeOpacity={.6}
-            onPress={() => setIsOpen(!isOpen)}>
+            onPress={() => openDropdown()}>
             {dropdown}
         </TouchableOpacity>
     )
