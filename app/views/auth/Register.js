@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import Input from '../../components/Input';
-import FaButton from '../../components/FaButton';
+import Input from '../../components/dom/Input';
+import FaButton from '../../components/dom/FaButton';
 import AuthContainer from '../../components/auth/AuthContainer';
 import AuthForm from '../../components/auth/AuthForm';
 import Error from '../../components/Error';
 import AuthHeader from '../../components/auth/AuthHeader';
-import Test from './Test';
 
 const Register = props => {
     const lowercase = text => (text.toLowerCase());

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { colours } from '../colours';
 
-import Avatar from './Avatar'
+import Avatar from './user/Avatar'
 
 const ProfileHeader = props => {
     return (

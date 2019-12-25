@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
 const Avatar = props => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
 const Input = React.forwardRef((props, ref) => {
     const [focused, setFocused] = React.useState(false);

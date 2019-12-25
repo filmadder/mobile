@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
-import Input from '../../components/Input';
-import FaButton from '../../components/FaButton';
+import Input from '../../components/dom/Input';
+import FaButton from '../../components/dom/FaButton';
 import AuthContainer from '../../components/auth/AuthContainer';
 import AuthForm from '../../components/auth/AuthForm';
 import AuthHeader from '../../components/auth/AuthHeader';

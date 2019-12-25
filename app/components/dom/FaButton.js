@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
 const FaButton = props => {
     return (

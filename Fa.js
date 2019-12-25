@@ -12,15 +12,17 @@ import Register from './app/views/auth/Register';
 import User from './app/views/User';
 import Feed from './app/views/Feed';
 import Search from './app/views/Search';
+import Settings from './app/views/Settings';
 
 const Fa: () => React$Node = () => {
   return (
     <>
-      <View style={styles.view}>
+      {/* <View style={styles.view}>
         <Feed />
-      </View>
+      </View> */}
       {/* <Login /> */}
       {/* <Search /> */}
+      <Settings />
     </>
   );
 };

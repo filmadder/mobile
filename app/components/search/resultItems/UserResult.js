@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 // import Avatar from '../../Avatar';
-import UserRow from '../../UserRow';
+import UserRow from '../../user/UserRow';
 import { colours } from '../../../colours';
 
 const UserResult = props => {

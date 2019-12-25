@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, FlatList, View, ScrollView, Text } from 'react-native';
-import Avatar from './Avatar';
+import Avatar from './user/Avatar';
 import { colours } from '../colours';
 
 const FeedCard = props => {
