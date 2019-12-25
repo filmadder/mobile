@@ -16,11 +16,11 @@ import Search from './app/views/Search';
 const Fa: () => React$Node = () => {
   return (
     <>
-      {/* <View style={styles.view}>
+      <View style={styles.view}>
         <Feed />
-      </View> */}
-      {/* <Register /> */}
-      <Search />
+      </View>
+      {/* <Login /> */}
+      {/* <Search /> */}
     </>
   );
 };

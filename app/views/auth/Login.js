@@ -10,7 +10,9 @@ import Error from '../../components/Error';
 
 const Login = props => {
     const lowercase = text => (text.toLowerCase());
-    const [hasError, setHasError] = React.useState(false)
+    const [hasError, setHasError] = React.useState(false);
+
+    const password = React.createRef();
 
     const errorMessage = hasError ? <Error
             errorText='something went wrong on the backend'
@@ -24,8 +26,12 @@ const Login = props => {
                 <Input
                     label='email'
                     onChangeText={text => lowercase(text)}
-                    textContentType='emailAddress' />
-                <Input label='password' textContentType='password' />
+                    textContentType='emailAddress'
+                    onSubmitEditing={() => password.current.focus()} />
+                <Input
+                    ref={password}
+                    label='password'
+                    textContentType='password' />
                 <FaButton title='login' onPress={() => {}} />
             </AuthForm>
             <View>

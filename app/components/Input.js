@@ -2,26 +2,27 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { colours } from '../colours';
 
-const Input = props => {
+const Input = React.forwardRef((props, ref) => {
     const [focused, setFocused] = React.useState(false);
 
     return (
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, props.style]}>
             <Text style={[styles.label, focused ? styles.labelFocused : '']}>{props.label}</Text>
             <TextInput
                 {...props}
+                ref={ref}
                 style={styles.input}
                 secureTextEntry={props.textContentType === 'password' ? true : false}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}></TextInput>
         </View>
     )
-};
+});
 
 const styles = StyleSheet.create({
     inputContainer: {
         width: '100%',
-        marginVertical: 10,
+        paddingVertical: 10,
     },
     label: {
         fontFamily: 'SourceSansPro-Bold',

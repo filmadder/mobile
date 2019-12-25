@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import Input from '../../components/Input';
 import FaButton from '../../components/FaButton';
@@ -7,26 +7,45 @@ import AuthContainer from '../../components/auth/AuthContainer';
 import AuthForm from '../../components/auth/AuthForm';
 import Error from '../../components/Error';
 import AuthHeader from '../../components/auth/AuthHeader';
+import Test from './Test';
 
 const Register = props => {
     const lowercase = text => (text.toLowerCase());
-    const [hasError, setHasError] = React.useState(false)
+    const [hasError, setHasError] = React.useState(false);
+
+    const email = React.createRef();
+    const password1 = React.createRef();
+    const password2 = React.createRef();
 
     const errorMessage = hasError ? <Error
             errorText='passwords dont match'
-            onDismiss={() => setHasError(false)}/> : <></>
+            onDismiss={() => setHasError(false)}/> : null
 
     return (
         <AuthContainer style={styles.register}>
             {errorMessage}
             <AuthHeader />
             <AuthForm>
-                <Input label='username' textContentType='none' />
-                <Input label='email'
+                <Input
+                    label='username'
+                    textContentType='none'
+                    onSubmitEditing={() => email.current.focus()} />
+                <Input
+                    ref={email}
+                    label='email'
                     onChangeText={text => lowercase(text)}
-                    textContentType='emailAddress' />
-                <Input label='password' textContentType='password' />
-                <Input label='repeat password' textContentType='password' />
+                    textContentType='emailAddress'
+                    onSubmitEditing={() => password1.current.focus()} />
+                <Input
+                    ref={password1}
+                    label='password'
+                    textContentType='password'
+                    onSubmitEditing={() => password2.current.focus()} />
+                <Input
+                    ref={password2}
+                    label='repeat password'
+                    textContentType='password'
+                    onSubmitEditing={() => (console.log('on submit editing'))} />
                 <FaButton title='register' onPress={() => {}} />
             </AuthForm>
             <View>

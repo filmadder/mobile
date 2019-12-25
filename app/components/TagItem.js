@@ -3,14 +3,26 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colours } from '../colours';
 
 const TagItem = props => {
+    
+    let total = props.tagTotal
+        ? <View style={styles.total}>
+            <Text style={styles.tagTotal}>{props.tagTotal}</Text>
+          </View>
+        : null
+    
+    let rightRadius = !props.tagTotal
+        ? {
+            borderTopRightRadius: 3,
+            borderBottomRightRadius: 3,
+        }
+        : null
+
     return (
         <View style={[styles.container, props.style]}>
-            <View style={styles.tag}>
+            <View style={[styles.tag, rightRadius]}>
                 <Text style={styles.tagName}>{props.tagName}</Text>
             </View>
-            <View style={styles.total}>
-                <Text style={styles.tagTotal}>{props.tagTotal}</Text>
-            </View>
+            {total}
         </View>
     )
 };

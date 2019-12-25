@@ -6,7 +6,7 @@ import SearchDropdownItem from './SearchDropdownItem'
 import { colours } from '../../colours';
 import { searches } from '../../constants/filters';
 
-const SearchForm = () => {
+const SearchForm = props => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [query, setQuery] = React.useState('');
     const [current, setCurrent] = React.useState('films');
@@ -28,9 +28,9 @@ const SearchForm = () => {
         setIsOpen(!isOpen);
     };
 
-    const onSearch = () => {
+    const onButtonClick = () => {
         if (query.trim().length > 0) {
-            search();
+            props.onSearch(current, query)
         } else {
             showDropdown();
         }
@@ -44,26 +44,23 @@ const SearchForm = () => {
         }
     };
 
-    const search = () => {
-        console.log('searching ' + query + ' in ' + current)
-    };
-
     const showDropdown = () => {
         setIsOpen(!isOpen);
         setQuery('');
     };
 
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <View style={s.searchForm}>
                 <TextInput
-                    style={s.field}
+                    style={s.textField}
                     placeholder='type here'
                     value={query}
+                    onSubmitEditing={() => onButtonClick()}
                     onChangeText={text => handleTyping(text)}></TextInput>
                 <TouchableOpacity
                     style={s.button}
-                    onPress={() => onSearch()}>
+                    onPress={() => onButtonClick()}>
                     <Text style={s.type}>{current}</Text>
                 </TouchableOpacity>
             </View>
@@ -89,9 +86,9 @@ const s = StyleSheet.create({
         paddingRight: 30,
         paddingVertical: 10,
     },
-    field: {
+    textField: {
         flex: 5,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'SourceSansPro-SemiBold',
         color: colours.blue4,
         paddingVertical: 15,
