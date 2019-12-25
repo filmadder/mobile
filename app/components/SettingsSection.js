@@ -45,7 +45,6 @@ const s = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         marginBottom: 45,
-        marginHorizontal: 30
     },
     header: {
         width: '100%',

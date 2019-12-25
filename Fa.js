@@ -22,8 +22,8 @@ const Fa: () => React$Node = () => {
         <Feed />
       </View> */}
       {/* <Login /> */}
-      {/* <Search /> */}
-      <Notifications />
+      <User />
+      {/* <Feed /> */}
     </>
   );
 };

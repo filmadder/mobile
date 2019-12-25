@@ -5,7 +5,7 @@ import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import CheckboxField from '../components/CheckboxField';
-import ViewTitle from '../components/ViewTitle';
+import ViewWrapper from './ViewWrapper';
 
 const Settings = props => {
 
@@ -15,37 +15,35 @@ const Settings = props => {
     }
 
     return (
-        <View style={{paddingTop: 50 }}>
-            <ScrollView>
-                <ViewTitle title='Settings' />
-                <SettingsSection
-                    title='Avatar'
-                    btnText='upload new'>
-                    <Avatar />
-                </SettingsSection>
-                <SettingsSection
-                    title='Username'
-                    btnText='change'>
-                    <Username
-                        username='innapyrina'
-                        size='large' />
-                </SettingsSection>
-                <SettingsSection
-                    title='Password'
-                    btnText='change'>
-                    <Text>🔑🔑🔑🔑🔑🔑</Text>
-                </SettingsSection>
-                <SettingsSection
-                    title='Privacy'>
-                        <CheckboxField
-                            text='hide me from the search resultshide me from the search results'
-                            onCheckboxChange={onCheckboxChange}></CheckboxField>
-                        <CheckboxField
-                            text='show my avatar to befriended users only'
-                            onCheckboxChange={onCheckboxChange}></CheckboxField>
-                </SettingsSection>
-            </ScrollView>
-        </View>
+        <ViewWrapper
+            title='Settings'>
+            <SettingsSection
+                title='Avatar'
+                btnText='upload new'>
+                <Avatar />
+            </SettingsSection>
+            <SettingsSection
+                title='Username'
+                btnText='change'>
+                <Username
+                    username='innapyrina'
+                    size='large' />
+            </SettingsSection>
+            <SettingsSection
+                title='Password'
+                btnText='change'>
+                <Text>🔑🔑🔑🔑🔑🔑</Text>
+            </SettingsSection>
+            <SettingsSection
+                title='Privacy'>
+                    <CheckboxField
+                        text='hide me from the search resultshide me from the search results'
+                        onCheckboxChange={onCheckboxChange}></CheckboxField>
+                    <CheckboxField
+                        text='show my avatar to befriended users only'
+                        onCheckboxChange={onCheckboxChange}></CheckboxField>
+            </SettingsSection>
+        </ViewWrapper>
     )
 };
 

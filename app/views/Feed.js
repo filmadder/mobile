@@ -6,10 +6,12 @@ import Film from '../components/feedItems/Film';
 import Friendship from '../components/feedItems/Friendship';
 import Thought from '../components/feedItems/Thought';
 import Tag from '../components/feedItems/Tag';
+import ViewWrapper from './ViewWrapper';
 
 const Feed = props => {
     return (
-        <ScrollView>
+        <ViewWrapper
+            title='Feed'>
             <FeedCard>
                 <Film />
             </FeedCard>
@@ -22,7 +24,7 @@ const Feed = props => {
             <FeedCard>
                 <Tag />
             </FeedCard>
-      </ScrollView>
+      </ViewWrapper>
     )
 };
 

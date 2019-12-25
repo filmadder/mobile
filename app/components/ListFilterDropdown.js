@@ -29,8 +29,9 @@ const ListFilterDropdown = props => {
     });
 
     const handleDropdown = item => {
+        props.onTypeSelected(item);
         setCurrentTab(item);
-        setIsOpen(false)
+        setIsOpen(false);
     };
 
     const Item = props => {
@@ -43,7 +44,7 @@ const ListFilterDropdown = props => {
     }
 
     let dropdown = null;
-    let items = films.map(item => <Item key={item.id}  item={item} />)
+    let items = films.map(item => <Item key={item.id} item={item} />)
 
     if (isOpen) {
         dropdown = <View>
@@ -57,7 +58,7 @@ const ListFilterDropdown = props => {
 
     return (
         <TouchableOpacity
-            style={styles.container}
+            style={[styles.container, props.style]}
             activeOpacity={.6}
             onPress={() => setIsOpen(!isOpen)}>
             {dropdown}

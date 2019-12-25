@@ -14,7 +14,9 @@ const ProfileFilmList = props => {
             stickyHeaderIndices={[0]}
             onScroll={(ev) => {console.log(ev.nativeEvent.contentOffset)}}
             scrollEventThrottle='500'>
-            <ListFilterDropdown />
+            <ListFilterDropdown
+                style={styles.dropdown}
+                onTypeSelected={props.onTypeSelected} />
             <FilmCard style={styles.card}/>
             <FilmCard style={styles.card}/>
             <FilmCard style={styles.card}/>
@@ -29,11 +31,15 @@ const ProfileFilmList = props => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: 200,
+        paddingBottom: 100,
         paddingHorizontal: 20,
         alignItems: 'center',
         borderTopWidth: 1,
         borderTopColor: colours.blue4
+    },
+    dropdown: {
+        position: 'absolute',
+        top: 0,
     },
     card: {
         marginVertical: 10,
