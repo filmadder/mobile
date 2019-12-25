@@ -10,7 +10,7 @@ const UserResult = props => {
         <View style={s.container}>
             <UserRow
                 size={'large'}
-                username='Stela' />
+                username={props.username} />
         </View>
     )
 };
@@ -19,7 +19,7 @@ const s = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 30,
+        marginVertical: 10,
     },
 })
 

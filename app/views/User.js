@@ -29,6 +29,7 @@ const User = props => {
             <ViewWrapper>
                 <ProfileHeader></ProfileHeader>
                 <ProfileList
+                    type={type}
                     onTypeSelected={onTypeSelected}></ProfileList>
             </ViewWrapper>
             {footer}

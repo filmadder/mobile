@@ -22,7 +22,7 @@ const Results = props => {
             break;
         case 'tags':
             results = <View>
-                 <TagResult
+                <TagResult
                     tag={{name: 'outstanding'}}
                     users={[{username: 'stela'}, {username: 'aurora'}]} />
                 <TagResult
