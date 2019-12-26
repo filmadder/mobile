@@ -5,7 +5,7 @@ import InfoSection from './InfoSection';
 
 const Info = props => {
     return (
-        <View style={s.container}>
+        <View style={[props.style]}>
             <InfoSection
                 title={'Director'}
                 text={'Greta Gerwig'} />
@@ -22,11 +22,5 @@ const Info = props => {
         </View>
     )
 };
-
-const s = StyleSheet.create({
-    container: {
-        padding: 30
-    }
-})
 
 export default Info;

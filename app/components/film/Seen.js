@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
+
 import { colours } from '../../colours';
 
 const Seen = props => {
@@ -11,16 +12,14 @@ const Seen = props => {
         : null
 
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <View style={s.header}>
                 <Text style={s.title}>Seen</Text>
             </View>
             <View style={s.userContainer}>
                 <UserRow
                     username={'ivan'} />
-                <View style={s.tagsContainer}>
-                    {tags}
-                </View>
+                    {props.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
             <View style={s.userContainer}>
                 <UserRow
@@ -31,9 +30,6 @@ const Seen = props => {
 };
 
 const s = StyleSheet.create({
-    container: {
-        padding: 30,
-    },
     title: {
         paddingBottom: 5,
         fontFamily: 'Pacifico-Regular',
@@ -57,6 +53,6 @@ const s = StyleSheet.create({
         marginRight: 16,
         marginVertical: 8,
     }
-})
+});
 
 export default Seen;

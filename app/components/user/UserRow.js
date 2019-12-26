@@ -3,7 +3,6 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import Avatar from './Avatar';
 import Username from './Username';
-import { colours } from '../../colours';
 
 const UserRow = props => {
     let avatar = null;

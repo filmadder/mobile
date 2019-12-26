@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, Dimensions, TextInput, StyleSheet } from 'react-native';
 
-import { colours } from '../../colours';
 import FaButton from '../dom/FaButton';
+
+import { colours } from '../../colours';
 
 const ThoughtTextArea = props => {
     const [thought, setThought] = React.useState('');
 
     return (
-        <View style={s.container}>
-            <View style={s.inputContainer}>
+        <View style={[s.container, props.style]}>
+            <View style={s.textareaContainer}>
                 <TextInput
                     style={s.textarea}
                     value={thought}
@@ -27,10 +28,9 @@ const ThoughtTextArea = props => {
 
 const s = StyleSheet.create({
     container: {
-        margin: 20,
-        marginBottom: 45,
+        marginVertical: 30,
     },
-    inputContainer: {
+    textareaContainer: {
         backgroundColor: 'white',
         borderColor: colours.blue4,
         borderWidth: 1,
@@ -43,6 +43,6 @@ const s = StyleSheet.create({
         fontSize: 15,
         lineHeight: 15,
     }
-})
+});
 
 export default ThoughtTextArea;

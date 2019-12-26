@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Avatar from '../../components/user/Avatar';
 import Username from '../../components/user/Username';
 import FaSmallButton from '../../components/dom/FaSmallButton';
+
 import { colours } from '../../colours';
 
 const Thought = props => {
@@ -70,6 +71,6 @@ const s = StyleSheet.create({
         bottom: -10,
         right: 10
     }
-})
+});
 
 export default Thought;

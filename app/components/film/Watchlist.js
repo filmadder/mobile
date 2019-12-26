@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import UserRow from '../user/UserRow';
-import TagItem from '../../components/TagItem';
+
 import { colours } from '../../colours';
 
 const Watchlist = props => {
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <View style={s.header}>
                 <Text style={s.title}>Watchlist</Text>
             </View>
@@ -27,9 +27,6 @@ const Watchlist = props => {
 };
 
 const s = StyleSheet.create({
-    container: {
-        padding: 30,
-    },
     title: {
         paddingBottom: 5,
         fontFamily: 'Pacifico-Regular',
@@ -45,6 +42,6 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap'
     }
-})
+});
 
 export default Watchlist;

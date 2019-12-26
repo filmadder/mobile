@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { colours } from '../../colours';
 import CheckboxField from '../../components/CheckboxField';
 import Thought from './Thought';
 import FaSmallButton from '../dom/FaSmallButton';
 
+import { colours } from '../../colours';
+
 const Thoughts = props => {
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <View style={s.header}>
                 <Text style={s.title}>Thoughts</Text>
             </View>
@@ -32,11 +33,6 @@ const Thoughts = props => {
 };
 
 const s = StyleSheet.create({
-    container: {
-        paddingTop: 30,
-        paddingBottom: 30,
-        paddingHorizontal: 30,
-    },
     header: {
         borderBottomWidth: 1,
         borderBottomColor: colours.blue3,
@@ -48,6 +44,6 @@ const s = StyleSheet.create({
         fontSize: 20,
         color: colours.blue3,
     },
-})
+});
 
 export default Thoughts;

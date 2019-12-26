@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
@@ -9,7 +9,13 @@ import Watchlist from '../components/film/Watchlist';
 import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
 
+import { screen } from '../constants/device'; 
+
 const Film = props => {
+    const padding = screen.width < 400
+        ? { padding: 20 }
+        : { padding: 30 };
+
     return (
         <ViewWrapper
             style={s.view}>
@@ -21,8 +27,9 @@ const Film = props => {
                 country={'USA'}
                 duration={'94 min'}
                 status={'seen'} />
-            <Info />
+            <Info style={padding} />
             <Seen
+                style={padding}
                 tags={[
                     {
                         tagName: 'stunning',
@@ -32,10 +39,10 @@ const Film = props => {
                         tagName: '5 hamsters!!',
                         tagTotal: '7'
                     }
-                ]}/>
-            <Watchlist />
-            <Thoughts />
-            <ThoughtTextArea />
+                ]} />
+            <Watchlist style={padding} />
+            <Thoughts style={padding} />
+            <ThoughtTextArea style={{paddingHorizontal: 20}} />
         </ViewWrapper>
     )
 };

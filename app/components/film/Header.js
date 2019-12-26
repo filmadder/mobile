@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground, Text } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
 import { colours } from '../../colours';
 
@@ -78,6 +79,6 @@ const s = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: 20,
     }
-})
+});
 
 export default Header;

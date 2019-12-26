@@ -17,18 +17,13 @@ const Fa: () => React$Node = () => {
     <>
       {/* <Register /> */}
       {/* <Login /> */}
-      <Profile />
+      <Film />
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  }
+
 });
 
 export default Fa;
