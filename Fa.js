@@ -17,7 +17,7 @@ const Fa: () => React$Node = () => {
     <>
       {/* <Register /> */}
       {/* <Login /> */}
-      <Film />
+      <Profile />
     </>
   );
 };

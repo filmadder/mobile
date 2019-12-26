@@ -18,7 +18,8 @@ const Seen = props => {
             </View>
             <View style={s.userContainer}>
                 <UserRow
-                    username={'ivan'} />
+                    username={'ivan'}
+                    size='medium' />
                     {props.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
             <View style={s.userContainer}>

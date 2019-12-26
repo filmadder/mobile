@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { colours } from '../../colours';
 
-import Avatar from '../user/Avatar'
-import Username from '../user/Username'
+import Avatar from './Avatar'
+import Username from './Username'
 
-const ProfileHeader = props => {
+const UserCard = props => {
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.containerInner}>
@@ -20,7 +20,7 @@ const ProfileHeader = props => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
     },
     containerInner: {
         alignItems: 'center',
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ProfileHeader;
+export default UserCard;

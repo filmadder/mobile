@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
+
 import { colours } from '../../colours';
 
 const Checkbox = props => {
-    const [checked, setChecked] = React.useState(false)
+    const [checked, setChecked] = React.useState(false);
     
     const handleCheckobox = () => {
         props.onCheckboxChange(!checked);

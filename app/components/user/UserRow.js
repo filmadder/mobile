@@ -12,7 +12,7 @@ const UserRow = props => {
             avatar = {
                 height: 60,
                 width: 60,
-                marginRight: 10,
+                marginRight: 20,
             };
             break;
         case 'medium':

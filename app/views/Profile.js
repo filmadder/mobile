@@ -2,7 +2,7 @@ import React from 'react';
 import { View, SafeAreaView, Text, ScrollView } from 'react-native';
 import { colours } from '../colours';
 
-import ProfileHeader from '../components/profile/ProfileHeader';
+import UserCard from '../components/user/UserCard';
 import ProfileList from '../components/profile/ProfileList';
 import ProfileFooter from '../components/profile/ProfileFooter';
 import ViewWrapper from './ViewWrapper';
@@ -25,7 +25,7 @@ const User = props => {
     return (
         <View style={{ flex: 1 }}>
             <ViewWrapper>
-                <ProfileHeader></ProfileHeader>
+                <UserCard />
                 <ProfileList
                     type={type}
                     onTypeSelected={onTypeSelected}></ProfileList>
