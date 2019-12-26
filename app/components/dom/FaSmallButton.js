@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, TouchableOpacity,Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colours } from '../../colours';
 
 const FaSmallButton = props => {
     return (
         <TouchableOpacity
-            style={{ alignItems: 'center' }}
-            activeOpacity={.6}
+            style={[{ alignItems: 'center' }, props.style]}
+            activeOpacity={.8}
             onPress={props.onPress}>
             <View style={s.button}>
                 <Text style={s.buttonTitle}>{props.title}</Text>

@@ -12,21 +12,18 @@ const Search = () => {
     const onSearch = (type, query) => {
         setType(type);
         setQuery(query);
-        console.log('searching ' + query + ' in ' + type)
     };
 
-    const results = query
-        ? <Results
+    const results = <Results
             type={type}
             query={query} />
-        : null
 
     return (
         <ViewWrapper>
             <SearchForm
                 style={s.searchForm}
                 onSearch={onSearch} />
-            {results}
+            {query && results}
         </ViewWrapper>
     )
 };

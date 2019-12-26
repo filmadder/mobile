@@ -7,7 +7,7 @@ const Input = React.forwardRef((props, ref) => {
 
     return (
         <View style={[styles.inputContainer, props.style]}>
-            <Text style={[styles.label, focused ? styles.labelFocused : '']}>{props.label}</Text>
+            <Text style={[styles.label, focused && styles.labelFocused]}>{props.label}</Text>
             <TextInput
                 {...props}
                 ref={ref}

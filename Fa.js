@@ -1,10 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  StatusBar,
-  View,
-  ScrollView,
-  Text,
 } from 'react-native';
 
 import Login from './app/views/auth/Login';
@@ -19,12 +15,9 @@ import Film from './app/views/Film';
 const Fa: () => React$Node = () => {
   return (
     <>
-      {/* <View style={styles.view}>
-        <Feed />
-      </View> */}
+      {/* <Register /> */}
       {/* <Login /> */}
-      <Film />
-      {/* <Feed /> */}
+      <Profile />
     </>
   );
 };

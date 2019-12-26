@@ -8,7 +8,6 @@ import TagResult from './resultItems/TagResult';
 
 const Results = props => {
     let results = null;
-    console.log(props.type)
 
     switch (props.type) {
         case 'films':

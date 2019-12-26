@@ -18,10 +18,7 @@ const SearchForm = props => {
             item={item} />
     );
 
-    const dropdown = isOpen
-        ? <View
-            style={s.dropdown}>{dropdownItems}</View>
-        : null;
+    const dropdown = <View style={s.dropdown}>{dropdownItems}</View>
     
     const onDropdownSelected = item => {
         setCurrent(item)
@@ -64,7 +61,7 @@ const SearchForm = props => {
                     <Text style={s.type}>{current}</Text>
                 </TouchableOpacity>
             </View>
-            {dropdown}
+            {isOpen && dropdown}
         </View>
     )
 };

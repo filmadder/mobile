@@ -14,11 +14,9 @@ const User = props => {
         ? true
         : false
 
-    const footer = film
-        ? <ProfileFooter
+    const footer = <ProfileFooter
             current='watchlist'
             total='25' />
-        : null
 
     const onTypeSelected = type => {
         setType(type)
@@ -32,7 +30,7 @@ const User = props => {
                     type={type}
                     onTypeSelected={onTypeSelected}></ProfileList>
             </ViewWrapper>
-            {footer}
+            {film && footer}
         </View>
     )
 };

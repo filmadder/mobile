@@ -4,12 +4,6 @@ import { colours } from '../../colours';
 
 const Checkbox = props => {
     const [checked, setChecked] = React.useState(false)
-
-    const styles = checked
-        ? {
-            backgroundColor: colours.blue4
-        }
-        : null
     
     const handleCheckobox = () => {
         props.onCheckboxChange(!checked);
@@ -20,8 +14,7 @@ const Checkbox = props => {
         <View>
             <TouchableOpacity
                 onPress={() => handleCheckobox()}
-                style={[s.checkbox, styles]}>
-
+                style={[s.checkbox, checked && s.checked]}>
             </TouchableOpacity>
         </View>
     )
@@ -34,6 +27,9 @@ const s = StyleSheet.create({
         borderRadius: 30,
         borderWidth: 5,
         borderColor: colours.blue4
+    },
+    checked: {        
+        backgroundColor: colours.blue4
     }
 });
 

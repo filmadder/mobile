@@ -10,11 +10,9 @@ import { colours } from '../colours';
 const SettingsSection = props => {
     const [editting, setEditting] = React.useState(false);
 
-    const button = props.btnText
-        ? <FaSmallButton
-            title={props.btnText}
-            onPress={() => setEditting(true)} />
-        : null;
+    const button = <FaSmallButton
+        title={props.btnText}
+        onPress={() => setEditting(true)} />
 
     return (
         <View style={[s.container, props.style]}>
@@ -31,7 +29,7 @@ const SettingsSection = props => {
 
             <View style={s.header}>
                 <Text style={s.title}>{props.title}</Text>
-                {button}
+                {props.btnText && button}
             </View>
             <View style={s.content}>
                 {props.children}

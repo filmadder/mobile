@@ -14,13 +14,13 @@ const Login = props => {
 
     const password = React.createRef();
 
-    const errorMessage = hasError ? <Error
+    const errorMessage = <Error
             errorText='something went wrong on the backend'
-            onDismiss={() => setHasError(false)}/> : <></>
+            onDismiss={() => setHasError(false)} />
     
     return (
         <AuthContainer style={styles.login}>
-            {errorMessage}
+            {hasError && errorMessage}
             <AuthHeader />
             <AuthForm>
                 <Input

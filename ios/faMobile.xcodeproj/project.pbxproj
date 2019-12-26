@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* faMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* faMobileTests.m */; };
 		095B07E324C779B6B2F86C30 /* libPods-faMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CB7AD645522CE3323056C7 /* libPods-faMobile-tvOSTests.a */; };
@@ -12,17 +13,17 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		154787BAD7C84C59A14F924E /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* faMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* faMobileTests.m */; };
+		58DC0F71A4A64781967A4127 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */; };
 		666F1522E83BB3567F394366 /* libPods-faMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB30D83BC5309DAA4C1F82 /* libPods-faMobile.a */; };
 		85ABF8651134ABD4922B08BF /* libPods-faMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A677CDF7CC6C67F830209 /* libPods-faMobileTests.a */; };
-		EA155FA503B059780BD13A1D /* libPods-faMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D04D24FB67C02053ADA99AA2 /* libPods-faMobile-tvOS.a */; };
 		85C47FB2CE8A4199A5CCEF8C /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */; };
-		154787BAD7C84C59A14F924E /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */; };
 		B6EF86214E33491386A6B93F /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */; };
-		58DC0F71A4A64781967A4127 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */; };
+		EA155FA503B059780BD13A1D /* libPods-faMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D04D24FB67C02053ADA99AA2 /* libPods-faMobile-tvOS.a */; };
 		F09B9BF277624E7ABEB061F6 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -56,26 +57,26 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = faMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = faMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = faMobile/main.m; sourceTree = "<group>"; };
+		1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-SemiBold.ttf"; path = "../assets/fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		21577F055DFDB19B689AE9A1 /* Pods-faMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-faMobile-tvOSTests/Pods-faMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pacifico-Regular.ttf"; path = "../assets/fonts/Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		24E04B7E57BCE085CB99CB9D /* Pods-faMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile.debug.xcconfig"; path = "Target Support Files/Pods-faMobile/Pods-faMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* faMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "faMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* faMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "faMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D3A677CDF7CC6C67F830209 /* libPods-faMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-faMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-Light.ttf"; path = "../assets/fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
 		5A4B758F2612844BBF63A52B /* Pods-faMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-faMobile-tvOSTests/Pods-faMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		76CBEEF1898BC77863E9ADDB /* Pods-faMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-faMobile-tvOS/Pods-faMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		78CB7AD645522CE3323056C7 /* libPods-faMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-faMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-Bold.ttf"; path = "../assets/fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		8DF135BB00A8797B493A0D8D /* Pods-faMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-faMobileTests/Pods-faMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-Regular.ttf"; path = "../assets/fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		B6A1DB1E5457647DEE3B21DF /* Pods-faMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile.release.xcconfig"; path = "Target Support Files/Pods-faMobile/Pods-faMobile.release.xcconfig"; sourceTree = "<group>"; };
 		BBCB16B5CBF0E48F74C38E83 /* Pods-faMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-faMobile-tvOS/Pods-faMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		D04D24FB67C02053ADA99AA2 /* libPods-faMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-faMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7BB777EE12CF55899AC249 /* Pods-faMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faMobileTests.release.xcconfig"; path = "Target Support Files/Pods-faMobileTests/Pods-faMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; name = "Pacifico-Regular.ttf"; path = "../assets/fonts/Pacifico-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Bold.ttf"; path = "../assets/fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Light.ttf"; path = "../assets/fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Regular.ttf"; path = "../assets/fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-SemiBold.ttf"; path = "../assets/fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +146,18 @@
 			name = faMobile;
 			sourceTree = "<group>";
 		};
+		1936DB6BF3904C999B511EEC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */,
+				815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */,
+				50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */,
+				9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */,
+				1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +183,6 @@
 				8DF135BB00A8797B493A0D8D /* Pods-faMobileTests.debug.xcconfig */,
 				EC7BB777EE12CF55899AC249 /* Pods-faMobileTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,19 +219,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		1936DB6BF3904C999B511EEC /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				21744D3C4CC74FCB9E430A85 /* Pacifico-Regular.ttf */,
-				815060A2C8114712B8BE287C /* SourceSansPro-Bold.ttf */,
-				50C9814301404D9B9EDCB2BC /* SourceSansPro-Light.ttf */,
-				9A70D18E442B4B0EAFBD061A /* SourceSansPro-Regular.ttf */,
-				1F3514A51E304F34A36AB599 /* SourceSansPro-SemiBold.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -315,6 +314,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = PYKK8NZWFG;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -331,6 +333,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -656,6 +659,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = PYKK8NZWFG;
 				INFOPLIST_FILE = faMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -663,7 +667,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = faMobile;
 				PRODUCT_NAME = faMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -675,6 +679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PYKK8NZWFG;
 				INFOPLIST_FILE = faMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -682,7 +687,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = faMobile;
 				PRODUCT_NAME = faMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

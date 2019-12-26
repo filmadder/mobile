@@ -7,7 +7,7 @@ import { colours } from '../colours'
 
 const NotificationItem = props => {
     return (
-        <View style={s.container}>
+        <View style={[s.container, props.style]}>
             <View style={s.action}>
                 <UserRow
                     username={props.username}

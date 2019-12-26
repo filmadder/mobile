@@ -27,9 +27,6 @@ const Notifications = props => {
 };
 
 const s = StyleSheet.create({
-    view: {
-        flex: 1,
-    },
     buttonGroup: {
         marginTop: 20,
         flexDirection: 'row',

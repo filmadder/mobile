@@ -5,7 +5,7 @@ import { colours } from '../colours';
 
 const FeedCard = props => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
                 <Avatar style={styles.avatar}/>
                 {props.children}
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         paddingTop: 20,
         paddingBottom: 10,
-        elevation: 3,
+        elevation: 5,
         shadowOffset: {
             height: 4,
             width: 0,

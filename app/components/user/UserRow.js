@@ -41,7 +41,7 @@ const UserRow = props => {
     return (
         <View style={[s.container, props.style]}>
             <Avatar
-                size={avatar} />
+                style={avatar} />
             <Username
                 username={props.username}
                 size={props.size} />

@@ -16,13 +16,13 @@ const Register = props => {
     const password1 = React.createRef();
     const password2 = React.createRef();
 
-    const errorMessage = hasError ? <Error
+    const errorMessage = <Error
             errorText='passwords dont match'
-            onDismiss={() => setHasError(false)}/> : null
+            onDismiss={() => setHasError(false)}/>
 
     return (
         <AuthContainer style={styles.register}>
-            {errorMessage}
+            {hasError && errorMessage}
             <AuthHeader />
             <AuthForm>
                 <Input

@@ -17,16 +17,14 @@ const Username = props => {
         case 'small': {
             styles = {
                 fontFamily: 'SourceSansPro-Bold',
-                fontSize: 14,
-                textTransform: 'uppercase',
+                fontSize: 16,
             }
         }
         break;
         default:
             styles = {
                 fontFamily: 'SourceSansPro-Bold',
-                fontSize: 14,
-                textTransform: 'uppercase',
+                fontSize: 16,
                 color: colours.black
             }
     }

@@ -1,18 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { Dimensions, StyleSheet, ScrollView } from 'react-native';
 
 import ViewTitle from '../components/ViewTitle';
 
 const ViewWrapper = props => {
-    const viewTitle = props.title
-        ? <ViewTitle title={props.title} />
-        : null;
+    const viewTitle = <ViewTitle title={props.title} />
     
     return (
         <ScrollView
-            {...props}
-            style={[s.container, props.style]}>
-            {viewTitle}
+            style={[s.container, props.style]}
+            bounces='false'
+            {...props}>
+            {props.title && viewTitle}
             {props.children}
         </ScrollView>
     )
@@ -20,7 +19,7 @@ const ViewWrapper = props => {
 
 const s = StyleSheet.create({
     container: {
-        paddingHorizontal: 30,
+        paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
         paddingVertical: 50
     }
 });
