@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import Input from '../../components/dom/Input';
 import FaButton from '../../components/dom/FaButton';
@@ -48,7 +48,10 @@ const Register = props => {
                 <FaButton title='register' onPress={() => {}} />
             </AuthForm>
             <View>
-                <Text>Already have an account?</Text>
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('Login')}>
+                    <Text>Already have an account?</Text>
+                </TouchableOpacity>
             </View>
         </AuthContainer>
     )

@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
+
 import { colours } from '../colours';
 
 const FilmCard = props => {
     return (
-        <View style={[styles.card, props.style]}>
+        <TouchableOpacity
+            style={[styles.card, props.style]}
+            onPress={() => props.navigation.navigate('Film')}>
             <Image
                 source={{uri: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg'}}
                 style={styles.poster}/>
@@ -13,7 +17,7 @@ const FilmCard = props => {
                 <Text style={styles.director}>Radley Scott</Text>
                 <Text style={styles.genre}>film | 2015</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 };
 
@@ -49,4 +53,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FilmCard;
+export default withNavigation(FilmCard);

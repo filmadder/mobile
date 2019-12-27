@@ -9,7 +9,6 @@ const ViewWrapper = props => {
     return (
         <ScrollView
             style={[s.container, props.style]}
-            bounces='false'
             {...props}>
             {props.title && viewTitle}
             {props.children}
@@ -20,7 +19,8 @@ const ViewWrapper = props => {
 const s = StyleSheet.create({
     container: {
         paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
-        paddingVertical: 50
+        paddingTop: 20,
+        paddingBottom: 50
     }
 });
 

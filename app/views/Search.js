@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
 
-const Search = () => {
+const Search = props => {
     const [type, setType] = React.useState('films');
-    const [query, setQuery] = React.useState('');
+    const [query, setQuery] = React.useState(null);
 
     const onSearch = (type, query) => {
         setType(type);
@@ -29,12 +29,6 @@ const Search = () => {
 };
 
 const s = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     paddingHorizontal: 30,
-    //     paddingTop: 100,
-    //     paddingBottom: 45,
-    // },
     searchForm: {
         paddingBottom: 30,
     }

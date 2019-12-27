@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, Text, ScrollView } from 'react-native';
-import { colours } from '../colours';
+import { View } from 'react-native';
 
 import UserCard from '../components/user/UserCard';
 import ProfileList from '../components/profile/ProfileList';

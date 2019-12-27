@@ -38,14 +38,14 @@ const ProfileFilmList = props => {
             break;
         default:
             content = <View style={[styles.content]}>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
-                <FilmCard style={styles.card}/>
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
+                <FilmCard style={styles.card} />
             </View>
     }
 

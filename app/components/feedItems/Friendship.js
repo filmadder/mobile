@@ -12,7 +12,9 @@ const Friendship = props => {
                 <Text style={styles.username}>stelaseldano</Text>
                 <Text style={styles.actionText}> befriended someone</Text>
             </View>
-            <UserCard style={{ backgroundColor: 'transparent' }} />
+            <UserCard
+                style={{ backgroundColor: 'transparent' }}
+                onPress={() => props.navigation.navigate('Profile')} />
         </View>
     )
 };

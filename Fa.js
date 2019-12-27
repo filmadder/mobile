@@ -1,29 +1,18 @@
 import React from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
 
-import Login from './app/views/auth/Login';
-import Register from './app/views/auth/Register';
-import Profile from './app/views/Profile';
-import Feed from './app/views/Feed';
-import Search from './app/views/Search';
-import Notifications from './app/views/Notifications';
-import Settings from './app/views/Settings';
-import Film from './app/views/Film';
+import FaNavigatorOuter from './app/components/navigation/NavigatorOuter';
+import FaNavigatorInner from './app/components/navigation/NavigatorInner';
 
 const Fa: () => React$Node = () => {
+  const [authorised, setAuthorised] = React.useState(true);
+
+  const content = authorised ? <FaNavigatorInner /> : <FaNavigatorOuter />
+
   return (
     <>
-      {/* <Register /> */}
-      {/* <Login /> */}
-      <Profile />
+      {content}
     </>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default Fa;

@@ -7,7 +7,8 @@ const FeedCard = props => {
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
-                <Avatar style={styles.avatar}/>
+                <Avatar
+                    style={styles.avatar} />
                 {props.children}
             </View>
         </View>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import Avatar from './Avatar';
 import Username from './Username';
@@ -38,13 +39,15 @@ const UserRow = props => {
     };
 
     return (
-        <View style={[s.container, props.style]}>
+        <TouchableOpacity
+            style={[s.container, props.style]}
+            onPress={() => props.navigation.navigate('Profile')}>
             <Avatar
                 style={avatar} />
             <Username
                 username={props.username}
                 size={props.size} />
-        </View>
+        </TouchableOpacity>
     )
 };
 
@@ -56,4 +59,4 @@ const s = StyleSheet.create({
     },
 })
 
-export default UserRow;
+export default withNavigation(UserRow);

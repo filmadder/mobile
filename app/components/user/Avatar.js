@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
+
 import { colours } from '../../colours';
 
 const Avatar = props => {
     return (
-        <View style={[styles.avatarContainer, props.style]} >
+        <TouchableOpacity
+            style={[styles.avatarContainer, props.style]}
+            onPress={() => props.navigation.navigate('Profile')}>
             <Image
                 source={{uri: 'http://fakewalls.com/storage/Grimes%20Claire%20Boucher.jpg?__SQUARESPACE_CACHEVERSION=1331323085328'}}
                 style={styles.avatar} />
-        </View>
+        </TouchableOpacity>
     )
 };
 
@@ -32,4 +36,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Avatar;
+export default withNavigation(Avatar);

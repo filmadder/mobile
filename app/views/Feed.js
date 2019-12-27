@@ -12,16 +12,16 @@ const Feed = props => {
     return (
         <ViewWrapper
             title='Feed'>
-            <FeedCard>
-                <Film />
+            <FeedCard navigation={props.navigation}>
+                <Film navigation={props.navigation} />
             </FeedCard>
-            <FeedCard>
-                <Friendship />
+            <FeedCard navigation={props.navigation}>
+                <Friendship navigation={props.navigation} />
             </FeedCard>
-            <FeedCard>
+            <FeedCard navigation={props.navigation}>
                 <Thought />
             </FeedCard>
-            <FeedCard>
+            <FeedCard navigation={props.navigation}>
                 <Tag />
             </FeedCard>
       </ViewWrapper>

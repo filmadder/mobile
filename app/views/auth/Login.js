@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import Input from '../../components/dom/Input';
 import FaButton from '../../components/dom/FaButton';
@@ -35,8 +35,17 @@ const Login = props => {
                 <FaButton title='login' onPress={() => {}} />
             </AuthForm>
             <View>
-                <Text>Don't have an account?</Text>
-                <Text>Forgot your password?</Text>
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('Register')}>
+                    <Text>
+                        Don't have an account?
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>
+                        Forgot your password?
+                    </Text>
+                </TouchableOpacity>
             </View>
         </AuthContainer>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { colours } from '../../colours';
 
 import Avatar from './Avatar'
@@ -7,14 +7,16 @@ import Username from './Username'
 
 const UserCard = props => {
     return (
-        <View style={[styles.container, props.style]}>
+        <TouchableOpacity
+            style={[styles.container, props.style]}
+            onPress={props.onPress}>
             <View style={styles.containerInner}>
                 <Avatar />
                 <Username
                     style={styles.username}
                     username='stelaseldano' />
             </View>
-        </View>
+        </TouchableOpacity>
     )
 };
 
