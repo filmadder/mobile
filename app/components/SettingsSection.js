@@ -15,7 +15,7 @@ const SettingsSection = props => {
         onPress={() => setEditting(true)} />
 
     return (
-        <View style={[s.container, props.style]}>
+        <View style={s.container}>
             <SettingsEditMode
                 visible={editting}
                 transparent={false}>
@@ -31,7 +31,7 @@ const SettingsSection = props => {
                 <Text style={s.title}>{props.title}</Text>
                 {props.btnText && button}
             </View>
-            <View style={s.content}>
+            <View style={[s.content, props.style]}>
                 {props.children}
             </View>
         </View>
@@ -58,7 +58,9 @@ const s = StyleSheet.create({
         color: colours.blue4
     },
     content: {
-        paddingVertical: 30,
+        padding: 30,
+        width: '100%',
+        alignItems: 'center'
     }
 });
 

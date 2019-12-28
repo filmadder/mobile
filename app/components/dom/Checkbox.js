@@ -15,7 +15,7 @@ const Checkbox = props => {
         <View>
             <TouchableOpacity
                 onPress={() => handleCheckobox()}
-                style={[s.checkbox, checked && s.checked]}>
+                style={[s.checkbox, props.style, checked && s.checked]}>
             </TouchableOpacity>
         </View>
     )

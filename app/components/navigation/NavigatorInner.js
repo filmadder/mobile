@@ -15,15 +15,24 @@ import Film from '../../views/Film';
 import DrawerBtn from './DrawerBtn';
 import Hidden from './Hidden';
 import Avatar from '../user/Avatar';
+import { colours } from '../../colours';
 
 const createNavOptions = (navigation) => ({
     title: 'filmadder',
     headerLeft: () => <DrawerBtn navigation={navigation} />,
-    headerRight: () => <Button title='search' onPress={() => navigation.navigate('Search')} /> 
+    headerRight: () => <Button title='search' onPress={() => navigation.navigate('Search')} />,
+    headerStyle: {
+        backgroundColor: colours.blue3,
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+        fontFamily: 'Pacifico-Regular',
+        fontSize: 20,
+    },
 })
   
 const FeedView = createStackNavigator({
-    view: {
+    Feed: {
         screen: Feed,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
@@ -69,14 +78,11 @@ const FaNavigatorDrawer  = createDrawerNavigator(
         Profile: {
             screen: ProfileView,
             navigationOptions: {
-                drawerLabel: <Avatar />
+                drawerLabel: <Avatar />,
             }
         },
         Feed: {
             screen: FeedView,
-            contentOptions: {
-                activeTintColor: 'green',
-            }
         },
         Notifications: {
             screen: NotificationsView
@@ -87,7 +93,7 @@ const FaNavigatorDrawer  = createDrawerNavigator(
         Search: {
             screen: SearchView,
             navigationOptions: {
-                drawerLabel: <Hidden />
+                drawerLabel: <Hidden />,
             }
         },
         Film: {
@@ -105,7 +111,8 @@ const FaNavigatorDrawer  = createDrawerNavigator(
                 justifyContent: 'center',
                 paddingVertical: 50,
             }
-        }
+        },
+        drawerType: 'slide',
     }
 );
 

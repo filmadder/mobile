@@ -20,6 +20,7 @@ const Film = props => {
         <ViewWrapper
             style={s.view}>
             <Header
+                style={padding}
                 poster={'https://m.media-amazon.com/images/M/MV5BODhkZGE0NDQtZDc0Zi00YmQ4LWJiNmUtYTY1OGM1ODRmNGVkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg'}
                 title={'Lady Bird'}
                 type={'film'}

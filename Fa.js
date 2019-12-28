@@ -2,6 +2,7 @@ import React from 'react';
 
 import FaNavigatorOuter from './app/components/navigation/NavigatorOuter';
 import FaNavigatorInner from './app/components/navigation/NavigatorInner';
+import { StatusBar } from 'react-native';
 
 const Fa: () => React$Node = () => {
   const [authorised, setAuthorised] = React.useState(true);
@@ -10,6 +11,7 @@ const Fa: () => React$Node = () => {
 
   return (
     <>
+      <StatusBar barStyle='light-content'></StatusBar>
       {content}
     </>
   );

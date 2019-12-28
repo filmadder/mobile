@@ -35,12 +35,13 @@ const Settings = props => {
                 <Text>🔑🔑🔑🔑🔑🔑</Text>
             </SettingsSection>
             <SettingsSection
+                style={{ alignItems: 'flex-start' }}
                 title='Privacy'>
                     <CheckboxField
-                        text='hide me from the search resultshide me from the search results'
+                        text='hide om from the search results'
                         onCheckboxChange={onCheckboxChange}></CheckboxField>
                     <CheckboxField
-                        text='show my avatar to befriended users only'
+                        text='show my avatar to befriended users only  befriended users only'
                         onCheckboxChange={onCheckboxChange}></CheckboxField>
             </SettingsSection>
         </ViewWrapper>
@@ -48,7 +49,6 @@ const Settings = props => {
 };
 
 const s = StyleSheet.create({
-
 });
 
 export default Settings;

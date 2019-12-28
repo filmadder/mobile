@@ -12,29 +12,29 @@ const CheckboxField = props => {
 
     return (
         <View style={[s.container, props.style]}>
-            <Text style={s.text}>{props.text}</Text>
+            <View style={s.textContainer}>
+                <Text style={s.text}>{props.text}</Text>
+            </View>
             <Checkbox onCheckboxChange={onCheckboxChange} />
         </View>
     )
 };
 
-
-
-
-
 const s = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         marginVertical: 15,
+        // backgroundColor: 'red
+    },
+    textContainer: {
+        marginRight: 20,
+        marginTop: 5,
     },
     text: {
-        marginRight: 20,
         color: colours.black,
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: 15,
-    }
+    },
 });
 
 export default CheckboxField;
