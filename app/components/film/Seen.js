@@ -5,6 +5,7 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 
 import { colours } from '../../colours';
+import { users } from '../../../data';
 
 const Seen = props => {
     const tags = props.tags
@@ -18,13 +19,13 @@ const Seen = props => {
             </View>
             <View style={s.userContainer}>
                 <UserRow
-                    username={'ivan'}
+                    user={users['1']}
                     size='medium' />
                     {props.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
             <View style={s.userContainer}>
                 <UserRow
-                    username={'kostadin'} />
+                    user={users['3']} />
             </View>
         </View>
     )

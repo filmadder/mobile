@@ -6,15 +6,18 @@ import Avatar from './Avatar'
 import Username from './Username'
 
 const UserCard = props => {
+
     return (
         <TouchableOpacity
             style={[styles.container, props.style]}
-            onPress={props.onPress}>
+            onPress={() => {}}>
             <View style={styles.containerInner}>
-                <Avatar />
+                <Avatar
+                    user={props.user} />
                 <Username
                     style={styles.username}
-                    username='stelaseldano' />
+                    user={props.user}
+                    navigation={props.navigation} />
             </View>
         </TouchableOpacity>
     )

@@ -10,7 +10,7 @@ const NotificationItem = props => {
         <View style={[s.container, props.style]}>
             <View style={s.action}>
                 <UserRow
-                    username={props.username}
+                    user={props.user}
                     size='large' />
                 <Text style={s.text}>{props.text}</Text>
             </View>

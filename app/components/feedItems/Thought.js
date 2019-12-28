@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
 import FilmCard from '../FilmCard';
+import Username from '../../components/user/Username';
 
 import { colours } from '../../colours';
 
@@ -9,7 +10,8 @@ const Thought = props => {
     return (
         <View>
             <View style={styles.action}>
-                <Text style={styles.username}>stelaseldano</Text>
+                <Username
+                    user={props.user} />
                 <Text style={styles.actionText}> shared some thoughts</Text>
             </View>
             <View style={styles.comment}>

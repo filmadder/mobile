@@ -2,19 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
 import UserCard from '../../components/user/UserCard';
+import Username from '../../components/user/Username';
 
 import { colours } from '../../colours';
+
+import { users } from '../../../data'; 
 
 const Friendship = props => {
     return (
         <View>
             <View style={styles.action}>
-                <Text style={styles.username}>stelaseldano</Text>
+                <Username
+                    user={props.user} />
                 <Text style={styles.actionText}> befriended someone</Text>
             </View>
             <UserCard
                 style={{ backgroundColor: 'transparent' }}
-                onPress={() => props.navigation.navigate('Profile')} />
+                user={users['3']} />
         </View>
     )
 };

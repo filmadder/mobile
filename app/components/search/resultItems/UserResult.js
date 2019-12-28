@@ -1,16 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-// import Avatar from '../../Avatar';
 import UserRow from '../../user/UserRow';
-import { colours } from '../../../colours';
 
 const UserResult = props => {
     return (
         <View style={s.container}>
             <UserRow
                 size={'large'}
-                username={props.username} />
+                user={props.user} />
         </View>
     )
 };

@@ -6,15 +6,18 @@ import Username from '../../components/user/Username';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 
 import { colours } from '../../colours';
+import { users } from '../../../data';
 
 const Thought = props => {
     return (
         <View style={s.container}>
-            <Avatar style={s.avatar} />
+            <Avatar
+                style={s.avatar}
+                user={users['3']} />
             <View style={s.header}>
                 <Username
                     size='small'
-                    username={props.username} />
+                    user={users['3']} />
                 <Text style={s.date}>{props.date}</Text>
             </View>
             <View style={s.textContainer}>

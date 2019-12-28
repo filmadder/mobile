@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import CheckboxField from '../components/CheckboxField';
 import ViewWrapper from './ViewWrapper';
+import { users } from '../../data';
 
 const Settings = props => {
 
@@ -20,13 +21,14 @@ const Settings = props => {
             <SettingsSection
                 title='Avatar'
                 btnText='upload new'>
-                <Avatar />
+                <Avatar
+                    user={users['1']}/>
             </SettingsSection>
             <SettingsSection
                 title='Username'
                 btnText='change'>
                 <Username
-                    username='innapyrina'
+                    user={users['1']}
                     size='large' />
             </SettingsSection>
             <SettingsSection

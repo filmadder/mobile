@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colours } from '../../colours';
+import { withNavigation } from 'react-navigation';
 
 const Username = props => {
     let styles = null;
@@ -30,7 +31,9 @@ const Username = props => {
     }
 
     return (
-        <Text style={[s.username, styles, props.style]}>{props.username}</Text>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: props.user })}>
+            <Text style={[s.username, styles, props.style]}>{props.user.name}</Text>
+        </TouchableOpacity>
     )
 };
 
@@ -42,4 +45,4 @@ const s = StyleSheet.create({
     }
 });
 
-export default Username;
+export default withNavigation(Username);

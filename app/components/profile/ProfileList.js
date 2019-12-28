@@ -7,6 +7,7 @@ import ListFilterDropdown from '../ListFilterDropdown';
 import TagItem from '../TagItem';
 
 import { colours } from '../../colours';
+import { users } from '../../../data';
 
 const ProfileFilmList = props => {
     let content = null;
@@ -14,10 +15,8 @@ const ProfileFilmList = props => {
     switch (props.type) {
         case 'friends':
             content = <View style={[styles.content]}>
-                <UserResult username='stela' />
-                <UserResult username='pavelsof' />
-                <UserResult username='стефан' />
-                <UserResult username='userewithareallylongusername' />
+                <UserResult user={users['3']} />
+                <UserResult user={users['3']} />
             </View>
             break;
         case 'tags':

@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import UserRow from '../user/UserRow';
 
 import { colours } from '../../colours';
+import { users } from '../../../data';
 
 const Watchlist = props => {
     return (
@@ -14,13 +15,13 @@ const Watchlist = props => {
             <View style={s.usersContainer}>
                 <UserRow
                     style={{ paddingRight: 10 }}
-                    username={'ivan'} />
+                    user={users['2']} />
                 <UserRow
                     style={{ paddingRight: 10 }}
-                    username={'blagoi'} />
+                    user={users['3']} />
                 <UserRow
                     style={{ paddingRight: 10 }}
-                    username={'stefan'} />
+                    user={users['1']} />
             </View>
         </View>
     )

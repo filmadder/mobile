@@ -5,13 +5,14 @@ import ViewTitle from '../components/ViewTitle';
 import NotificationItem from '../components/NotificationItem';
 import FaButton from '../components/dom/FaButton';
 import ViewWrapper from './ViewWrapper';
+import { users } from '../../data';
 
 const Notifications = props => {
     return (
         <ViewWrapper
             title='Notifications'>
             <NotificationItem
-                username='pavelsofroniev'
+                user={users['2']}
                 text='send you a friend request'>
                 <View style={s.buttonGroup}>
                     <FaButton title='accept' />
@@ -19,7 +20,7 @@ const Notifications = props => {
                 </View>
             </NotificationItem>
             <NotificationItem
-                username='stelailieva'
+                user={users['3']}
                 text='accepted your friend request'>
             </NotificationItem>
         </ViewWrapper>

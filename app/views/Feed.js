@@ -1,5 +1,4 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
 
 import FeedCard from '../components/FeedCard'
 import Film from '../components/feedItems/Film';
@@ -8,20 +7,30 @@ import Thought from '../components/feedItems/Thought';
 import Tag from '../components/feedItems/Tag';
 import ViewWrapper from './ViewWrapper';
 
-const Feed = props => {
+import { users } from '../../data';
+
+const Feed = () => {
     return (
         <ViewWrapper
             title='Feed'>
-            <FeedCard navigation={props.navigation}>
-                <Film navigation={props.navigation} />
+            <FeedCard
+                user={users['1']}>
+                <Film />
             </FeedCard>
-            <FeedCard navigation={props.navigation}>
-                <Friendship navigation={props.navigation} />
+            <FeedCard
+                user={users['2']}>
+                <Friendship />
             </FeedCard>
-            <FeedCard navigation={props.navigation}>
+            <FeedCard
+                user={users['1']}>
+                <Friendship />
+            </FeedCard>
+            <FeedCard
+                user={users['3']}>
                 <Thought />
             </FeedCard>
-            <FeedCard navigation={props.navigation}>
+            <FeedCard
+                user={users['1']}>
                 <Tag />
             </FeedCard>
       </ViewWrapper>

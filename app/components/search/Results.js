@@ -5,6 +5,7 @@ import UserResult from './resultItems/UserResult';
 import FilmResult from './resultItems/FilmResult';
 import DirectorResult from './resultItems/DirectorResult';
 import TagResult from './resultItems/TagResult';
+import { users } from '../../../data';
 
 const Results = props => {
     let results = null;
@@ -37,8 +38,8 @@ const Results = props => {
             break;
         case 'users':
             results = <View>
-                <UserResult username='stelaseldano' />
-                <UserResult username='inna pyrina' />
+                <UserResult user={users['1']} />
+                <UserResult user={users['3']} />
             </View>
             break;
         default:

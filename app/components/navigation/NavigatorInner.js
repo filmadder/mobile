@@ -16,6 +16,7 @@ import DrawerBtn from './DrawerBtn';
 import Hidden from './Hidden';
 import Avatar from '../user/Avatar';
 import { colours } from '../../colours';
+import { users } from '../../../data';
 
 const createNavOptions = (navigation) => ({
     title: 'filmadder',
@@ -35,40 +36,72 @@ const FeedView = createStackNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Profile: {
+        screen: Profile,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
 });
 
 const SettingsView = createStackNavigator({
-    view: {
+    Settings: {
         screen: Settings,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Profile: {
+        screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
 });
 
 const SearchView = createStackNavigator({
-    view: {
+    Search: {
         screen: Search,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
-});
-
-const NotificationsView = createStackNavigator({
-    view: {
-        screen: Notifications,
+    },
+    Profile: {
+        screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
-});
-
-const FilmView = createStackNavigator({
-    view: {
+    },
+    Film: {
         screen: Film,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
 });
 
-const ProfileView = createStackNavigator({
-    view: {
+const NotificationsView = createStackNavigator({
+    Notifications: {
+        screen: Notifications,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Profile: {
         screen: Profile,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Film: {
+        screen: Film,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    }
+});
+
+const FilmView = createStackNavigator({
+    Film: {
+        screen: Film,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Profile: {
+        screen: Profile,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+});
+
+const ProfileView = createStackNavigator({
+    Profile: {
+        screen: Profile,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Film: {
+        screen: Film,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
 });
@@ -78,7 +111,7 @@ const FaNavigatorDrawer  = createDrawerNavigator(
         Profile: {
             screen: ProfileView,
             navigationOptions: {
-                drawerLabel: <Avatar />,
+                drawerLabel: <Avatar user={users['1']} />,
             }
         },
         Feed: {
