@@ -10,7 +10,7 @@ const Avatar = props => {
     return (
         <TouchableOpacity
             style={[styles.avatarContainer, props.style]}
-            onPress={() => (props.navigation.navigate('Profile', { user: props.user }))}>
+            onPress={() => (props.navigation.push('Profile', { user: props.user }))}>
             <Image
                 source={{uri: avatar}}
                 style={styles.avatar} />

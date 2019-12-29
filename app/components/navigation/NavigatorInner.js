@@ -40,6 +40,10 @@ const FeedView = createStackNavigator({
     Profile: {
         screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Film: {
+        screen: Film,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
     }
 });
 
@@ -146,6 +150,8 @@ const FaNavigatorDrawer  = createDrawerNavigator(
             }
         },
         drawerType: 'slide',
+        unmountInactiveRoutes: true,
+        edgeWidth: 0
     }
 );
 

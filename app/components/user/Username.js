@@ -31,7 +31,7 @@ const Username = props => {
     }
 
     return (
-        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: props.user })}>
+        <TouchableOpacity onPress={() => props.navigation.push('Profile', { user: props.user })}>
             <Text style={[s.username, styles, props.style]}>{props.user.name}</Text>
         </TouchableOpacity>
     )
