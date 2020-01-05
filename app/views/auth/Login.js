@@ -8,15 +8,42 @@ import AuthForm from '../../components/auth/AuthForm';
 import AuthHeader from '../../components/auth/AuthHeader';
 import Error from '../../components/Error';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 const Login = props => {
     const lowercase = text => (text.toLowerCase());
     const [hasError, setHasError] = React.useState(false);
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
 
-    const password = React.createRef();
+    const passwordRef = React.createRef();
 
     const errorMessage = <Error
             errorText='something went wrong on the backend'
             onDismiss={() => setHasError(false)} />
+    
+    const login = () => {
+        fetch('http:localhost:8000/auth/', {
+            method: 'POST',
+            body: JSON.stringify({
+                email,
+                password
+            })
+        })
+        .then(response => {
+            return Promise.all([
+                Promise.resolve(response.status),
+                response.json()
+            ]);
+        })
+        .then(data => {
+            if (data[0] === 200) {
+                console.log(data[1].token)
+                AsyncStorage.setItem('token', data[1].token)
+            }
+        })
+        .catch(err => console.warn(err))
+    }
     
     return (
         <AuthContainer style={styles.login}>
@@ -25,14 +52,18 @@ const Login = props => {
             <AuthForm>
                 <Input
                     label='email'
+                    value={email}
                     onChangeText={text => lowercase(text)}
                     textContentType='emailAddress'
-                    onSubmitEditing={() => password.current.focus()} />
+                    onChangeText={text => setEmail(text.toLowerCase())}
+                    onSubmitEditing={() => passwordRef.current.focus()} />
                 <Input
-                    ref={password}
                     label='password'
-                    textContentType='password' />
-                <FaButton title='login' onPress={() => {}} />
+                    value={password}
+                    ref={passwordRef}
+                    textContentType='password'
+                    onChangeText={text => setPassword(text)} />
+                <FaButton title='login' onPress={login} />
             </AuthForm>
             <View>
                 <TouchableOpacity

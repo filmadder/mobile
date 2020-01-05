@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text, Button } from 'react-native';
 
 import FeedCard from '../components/FeedCard'
 import Film from '../components/feedItems/Film';
@@ -9,7 +10,16 @@ import ViewWrapper from './ViewWrapper';
 
 import { users } from '../../data';
 
-const Feed = () => {
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { getFeed } from '../redux/actions';
+
+const Feed = ({ feed, userId }) => {
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(getFeed(userId))
+    }, [getFeed])
+
     return (
         <ViewWrapper
             title='Feed'>
@@ -37,4 +47,11 @@ const Feed = () => {
     )
 };
 
-export default Feed;
+const mapStateToProps = state => ({
+    feed: state.page.feed,
+    userId: state.page.user.id
+});
+
+export default connect(
+    mapStateToProps,
+)(Feed);
