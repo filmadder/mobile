@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 
 import FaNavigatorOuter from './app/components/navigation/NavigatorOuter';
 import FaNavigatorInner from './app/components/navigation/NavigatorInner';
-import Storage from './app/Storage'
 import { StatusBar } from 'react-native';
 import reducers from './app/redux/reducers';
 
@@ -19,7 +18,6 @@ const Fa: () => React$Node = () => {
     <>
       <StatusBar barStyle='light-content'></StatusBar>
       <Provider store={store}>
-        {/* <Storage /> */}
         {content}
       </Provider>
     </>

@@ -2,40 +2,30 @@ import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
 import FilmCard from '../FilmCard';
-import Username from '../../components/user/Username';
+import FeedCardHeader from '../FeedCardHeader';
 
 import { colours } from '../../colours';
 
 const Thought = props => {
+
     return (
         <View>
-            <View style={styles.action}>
-                <Username
-                    user={props.user} />
-                <Text style={styles.actionText}> shared some thoughts</Text>
-            </View>
+            <FeedCardHeader 
+                user={props.user}
+                navigation={props.navigation}
+                action={' shared some thoughts'} />
+
             <View style={styles.comment}>
-                <Text>Thought, thought, thought ...</Text>
+                <Text>comment id because this is what we have for now {props.comment.pk}</Text>
             </View>
-            <FilmCard />
+
+            <FilmCard
+                film={props.film} />
         </View>
     )
 };
 
 const styles = StyleSheet.create({
-    action: {
-        flexDirection: 'row',
-        marginVertical: 10,
-    },
-    username: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: 17,
-        color: colours.black
-    },
-    actionText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: 17,
-    },
     comment: {
         backgroundColor: 'white',
         borderRadius: 10,
