@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
+import { Text, Button, View } from 'react-native';
 
 import FeedCard from '../components/FeedCard'
 import Film from '../components/feedItems/Film';
@@ -10,47 +10,59 @@ import ViewWrapper from './ViewWrapper';
 
 import { users } from '../../data';
 
-import { useSelector, useDispatch, connect } from 'react-redux';
-import { getFeed } from '../redux/actions';
+import { send } from '../ws';
 
-const Feed = ({ feed, userId }) => {
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { get } from '../redux/actions';
+
+const Feed = ({ feed }) => {
     const dispatch = useDispatch();
+    let content = null;
 
     React.useEffect(() => {
-        dispatch(getFeed(userId))
-    }, [getFeed])
+        dispatch(get({
+            type: "get_feed",
+            per_page: 1,
+            page: 1,
+            id: 0
+        }))
+    }, [get])
 
-    return (
-        <ViewWrapper
-            title='Feed'>
-            <FeedCard
-                user={users['1']}>
-                <Film />
-            </FeedCard>
-            <FeedCard
-                user={users['2']}>
-                <Friendship />
-            </FeedCard>
-            <FeedCard
-                user={users['1']}>
-                <Friendship />
-            </FeedCard>
-            <FeedCard
-                user={users['3']}>
-                <Thought />
-            </FeedCard>
-            <FeedCard
-                user={users['1']}>
-                <Tag />
-            </FeedCard>
-      </ViewWrapper>
-    )
+    
+    if (Object.entries(feed).length === 0) {
+        return (<ViewWrapper>
+                    <Text>loader</Text>
+                </ViewWrapper>)
+    } else {
+        const items = feed.map(item => {
+
+            console.log(item)
+
+            return (
+                <FeedCard
+                    key={item['film']['pk']}
+                    user={item['user']}>
+                    <Film
+                        action={item['type']}
+                        user={item['user']}
+                        film={item['film']} />
+                </FeedCard>
+            )
+        });
+
+        return (
+            <ViewWrapper>
+                {items}
+            </ViewWrapper>
+        )
+    }
 };
 
-const mapStateToProps = state => ({
-    feed: state.page.feed,
-    userId: state.page.user.id
-});
+const mapStateToProps = state => {
+    return {
+        feed: state.downstreamData,
+    }
+};
 
 export default connect(
     mapStateToProps,

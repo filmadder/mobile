@@ -7,15 +7,32 @@ import Username from '../../components/user/Username';
 import { colours } from '../../colours';
 
 const Film = props => {
+    let action = null;
+
+    console.log(props)
+
+    if (props.action === 'a') {
+        action = 'added to seen'
+    } else if (props.action === 'u') {
+        action = 'added to watchlist' 
+    } else if (props.action === 'o') {
+        action = 'moved from watchlist to seen'
+    } else if (props.action === 'i') {
+        action = 'is currently watching'
+    } else {
+        action = 'no such action'
+    }
+
     return (
         <View>
             <View style={styles.action}>
                 <Username
                     user={props.user}
                     navigation={props.navigation} />
-                <Text style={styles.actionText}> added to watching</Text>
+                <Text style={styles.actionText}>{action}</Text>
             </View>
-            <FilmCard />
+            <FilmCard
+                film={props.film} />
         </View>
     )
 };

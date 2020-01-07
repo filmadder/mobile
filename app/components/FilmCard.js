@@ -5,17 +5,18 @@ import { withNavigation } from 'react-navigation';
 import { colours } from '../colours';
 
 const FilmCard = props => {
+
     return (
         <TouchableOpacity
             style={[styles.card, props.style]}
             onPress={() => props.navigation.navigate('Film')}>
             <Image
-                source={{uri: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg'}}
+                source={{uri: props.film.poster_url}}
                 style={styles.poster}/>
             <View>
-                <Text style={styles.title}>The Martian</Text>
-                <Text style={styles.director}>Radley Scott</Text>
-                <Text style={styles.genre}>film | 2015</Text>
+                <Text style={styles.title}>{props.film.title}</Text>
+                {/* <Text style={styles.director}>Radley Scott</Text>
+                <Text style={styles.genre}>film | 2015</Text> */}
             </View>
         </TouchableOpacity>
     )
@@ -23,7 +24,7 @@ const FilmCard = props => {
 
 const styles = StyleSheet.create({
     card: {
-        flexDirection: 'row',
+        flexDirection: 'row',   
         width: '100%',
         paddingVertical: 15,
     },
