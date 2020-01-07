@@ -1,29 +1,20 @@
 import React from 'react';
-import { Text, Button, View } from 'react-native';
+import { Text } from 'react-native';
 
 import FeedCard from '../components/FeedCard'
-import Film from '../components/feedItems/Film';
-import Friendship from '../components/feedItems/Friendship';
-import Thought from '../components/feedItems/Thought';
-import Tag from '../components/feedItems/Tag';
 import ViewWrapper from './ViewWrapper';
 
-import { users } from '../../data';
-
-import { send } from '../ws';
-
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { get } from '../redux/actions';
 
 const Feed = ({ feed }) => {
     const dispatch = useDispatch();
-    let content = null;
 
     React.useEffect(() => {
         dispatch(get({
             type: "get_feed",
-            per_page: 1,
-            page: 1,
+            per_page: 3,
+            page: 0,
             id: 0
         }))
     }, [get])
@@ -34,24 +25,15 @@ const Feed = ({ feed }) => {
                     <Text>loader</Text>
                 </ViewWrapper>)
     } else {
-        const items = feed.map(item => {
-
-            console.log(item)
-
-            return (
+        const items = feed.map(item => 
                 <FeedCard
                     key={item['film']['pk']}
-                    user={item['user']}>
-                    <Film
-                        action={item['type']}
-                        user={item['user']}
-                        film={item['film']} />
-                </FeedCard>
-            )
-        });
+                    item={item} />
+            );
 
         return (
-            <ViewWrapper>
+            <ViewWrapper
+                title='Feed'>
                 {items}
             </ViewWrapper>
         )

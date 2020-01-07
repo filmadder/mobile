@@ -1,17 +1,55 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
+
 import Avatar from './user/Avatar';
+import Film from '../components/feedItems/Film';
+import Friendship from '../components/feedItems/Friendship';
+import Thought from '../components/feedItems/Thought';
+import Tag from '../components/feedItems/Tag';
+
 import { colours } from '../colours';
 
 const FeedCard = props => {
+    const type = props.item.type;
+    let content = null
+
+    switch (type) {
+        case 't': 
+            content = <Tag 
+                    user={props.item['user']}
+                    film={props.item['film']}
+                    tags={props.item['tags']} />
+            break;
+        case 'f':
+            content = <Friendship />
+            break;
+        case 'c':
+            console.log(props.item)
+            content = <Thought
+                    comment={props.item.comment}
+                    user={props.item['user']}
+                    film={props.item['film']} />
+            break;
+        case 'a':
+        case 'i':
+        case 'o':
+        case 'u':
+            content = <Film
+                    action={props.item['type']}
+                    user={props.item['user']}
+                    film={props.item['film']} />
+            break;
+        default:
+            content = <View><Text>no such type of feed item</Text></View>
+    }
 
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
                 <Avatar
-                    user={props.user}
+                    user={props.item.user}
                     style={styles.avatar} />
-                {React.cloneElement(props.children, { user: props.user || null })}
+                    {content}
             </View>
         </View>
     )

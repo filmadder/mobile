@@ -3,30 +3,33 @@ import { View, Text, StyleSheet }  from 'react-native';
 
 import FilmCard from '../FilmCard';
 import TagItem from '../../components/TagItem';
-import Username from '../../components/user/Username';
+import FeedCardHeader from '../FeedCardHeader';
 
 import { colours } from '../../colours';
 
 const Tag = props => {
+    const tags = props.tags.map(tag =>
+        <TagItem
+            // hacky unique key
+            key={props.film.key + 'tag'}
+            style={styles.tag}
+            tagName={tag}
+            tagTotal='4' />
+    );
+
     return (
         <View>
-            <View style={styles.action}>
-                <Username
-                    user={props.user}
-                    navigation={props.navigation} />
-                <Text style={styles.actionText}> added tags</Text>
-            </View>
+            <FeedCardHeader 
+                user={props.user}
+                navigation={props.navigation}
+                action={action} />
+
             <View style={styles.tags}>
-                <TagItem
-                    style={styles.tag}
-                    tagName='very bad'
-                    tagTotal='4' />
-                <TagItem
-                    style={styles.tag}
-                    tagName='favourite'
-                    tagTotal='35' />
+                {tags}
             </View>
-            <FilmCard />
+
+            <FilmCard 
+                film={props.film} />
         </View>
     )
 };
