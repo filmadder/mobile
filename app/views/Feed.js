@@ -13,7 +13,7 @@ const Feed = ({ feed }) => {
     React.useEffect(() => {
         dispatch(get({
             type: "get_feed",
-            per_page: 3,
+            per_page: 4,
             page: 0,
             id: null
         }))
@@ -24,12 +24,9 @@ const Feed = ({ feed }) => {
                     <Text>loader</Text>
                 </ViewWrapper>)
     } else {
-        const items = feed.map(item =>
-            {   
-                return <FeedCard
+        const items = feed.map(item => <FeedCard
                             key={item['film']['pk']}
-                            item={item} />
-            });
+                            item={item} />);
 
         return (
             <ViewWrapper

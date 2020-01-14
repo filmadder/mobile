@@ -4,11 +4,11 @@ import { loginUser } from '../../auth';
 export function get(payload) {
     return function(dispatch) {
         return send(payload)
-        .then(data => {
-            const type = payload.type.toUpperCase();
-            dispatch({type, data})
-        })
-        .catch(err => console.warn(err))
+            .then(data => {
+                const type = payload.type.toUpperCase();
+                dispatch({type, data})
+            })
+            .catch(err => console.warn(err))
     }
 }
 
@@ -19,13 +19,6 @@ export function login(email, password) {
             .catch(err => console.warn(err))
     }
 }
-
-// const getFeed2 = feed => {
-//     return {
-//         type: 'GET_FEED',
-//         feed
-//     }
-// }
 
 export const getProfile = userId => {
     return {

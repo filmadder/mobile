@@ -46,12 +46,12 @@ const s = StyleSheet.create({
         padding: 30,
     },
     infoLeft: {
-
+        paddingRight: 30,
     },
     title: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: 30,
+        fontSize: 32,
     },
     type: {
         color: 'white',
@@ -63,13 +63,13 @@ const s = StyleSheet.create({
     country: {
         color: 'white',
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: 16,
+        fontSize: 18,
         marginTop: 15,
     },
     duration: {
         color: 'white',
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: 16,
+        fontSize: 18,
     },
     infoRight: {
 
@@ -77,7 +77,7 @@ const s = StyleSheet.create({
     status: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: 20,
+        fontSize: 22,
     }
 });
 

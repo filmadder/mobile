@@ -8,6 +8,33 @@ import FaSmallButton from '../dom/FaSmallButton';
 import { colours } from '../../colours';
 
 const Thoughts = props => {
+    const [showAll, setShowAll] = React.useState(false);
+
+    let thoughts = props.thoughts.map(thought => {
+        let user = {
+            avatar: thought.author.avatar_url,
+            name: thought.author.name
+        }
+
+        if (showAll) {
+            return (
+                <Thought
+                    key={thought.pk}
+                    user={user}
+                    text={thought.text}
+                    date={thought.posted} />
+        )} else {
+            if (!thought.has_spoilers) {
+                return (
+                    <Thought
+                        key={thought.pk}
+                        user={user}
+                        text={thought.text}
+                        date={thought.posted} />
+                )}
+        }
+    })
+
     return (
         <View style={[s.container, props.style]}>
             <View style={s.header}>
@@ -15,16 +42,9 @@ const Thoughts = props => {
             </View>
             <View>
                 <CheckboxField
-                    text='include thoughts with spoilers'
-                    onCheckboxChange={() => {}} />
-                <Thought
-                    username='penguin'
-                    date='25 dec 2019'
-                    text='Veritatis officia omnis qui officiis tenetur eum. Neque inventore dicta ipsum. Rerum veritatis alias sed vero in Laborum inventore optio repudiandae. Vel velit est autem quia. Quo at et autem iste. Sit consequuntur accusamus rerum nam maxime commodi consequatur illum laboriosam.' />
-                <Thought
-                    username='userwithareallylongusername'
-                    date='13 mai 2019'
-                    text='Vel velit est autem quia. Quo at et autem iste. Sit consequuntur accusamus rerum nam maxime commodi consequatur illum laboriosam.' />
+                    text='show thoughts with spoilers'
+                    onCheckboxChange={() => setShowAll(!showAll)} />
+                {thoughts.length > 0 ? thoughts : <Text>no thoughts yet</Text>}
             </View>
             <FaSmallButton
                 title='load more' />

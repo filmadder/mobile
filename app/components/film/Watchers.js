@@ -5,30 +5,42 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 
 import { colours } from '../../colours';
-import { users } from '../../../data';
 
-const Seen = props => {
-    const tags = props.tags
-        ?  props.tags.map((tag, index) => <TagItem style={s.tag} key={index} tagName={tag.tagName} tagTotal={tag.tagTotal} />)
-        : null
+const Watchers = props => {
+
+    let watchers = props.watchers.map(watcher => {
+        let user = {
+            name: watcher.name,
+            avatar: watcher.avatar
+        }
+        
+        let tags = watcher.tags && watcher.tags.map((tag, index) => (
+            <TagItem
+                key={index}
+                style={{margin: 5}}
+                tagName={tag} />
+        ))
+
+        return (
+            <View style={s.userContainer}>
+                <UserRow
+                    key={watcher.pk}
+                    user={user}
+                    size='medium' />
+                    {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
+            </View>
+        )
+    })
 
     return (
         <View style={[s.container, props.style]}>
             <View style={s.header}>
-                <Text style={s.title}>Seen</Text>
+                <Text style={s.title}>{props.type}</Text>
             </View>
-            <View style={s.userContainer}>
-                <UserRow
-                    user={users['1']}
-                    size='medium' />
-                    {props.tags && <View style={s.tagsContainer}>{tags}</View>}
-            </View>
-            <View style={s.userContainer}>
-                <UserRow
-                    user={users['3']} />
-            </View>
+            {watchers.length > 0 ? watchers : <Text>none of your friends</Text>}
         </View>
     )
+
 };
 
 const s = StyleSheet.create({
@@ -57,4 +69,4 @@ const s = StyleSheet.create({
     }
 });
 
-export default Seen;
+export default Watchers;

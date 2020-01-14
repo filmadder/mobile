@@ -4,21 +4,30 @@ import { View, StyleSheet } from 'react-native';
 import InfoSection from './InfoSection';
 
 const Info = props => {
+
     return (
         <View style={[props.style]}>
+            {props.directors.length > 0 &&
             <InfoSection
-                title={'Director'}
-                text={'Greta Gerwig'} />
+                title={'Directors'}
+                text={props.directors} />
+            }
+            {props.writers.length > 0 &&
             <InfoSection
-                title={'Writer'}
-                text={'Greta Gerwig'} />
+                title={'Writers'}
+                text={props.writers} />
+            }
+            {props.actors.length > 0 &&
             <InfoSection
                 title={'Actors'}
-                text={'Saoirse Ronan, Laurie Metcalf, Tracy Letts, Lucas Hedges'} />
+                text={props.actors} />
+            }
+            {props.synopsis.length > 0&& 
             <InfoSection
                 title={'Synopsis'}
                 synopsis={true}
-                text={'In 2002, an artistically inclined seventeen-year-old girl comes of age in Sacramento, California.'} />
+                text={props.synopsis} />
+            }
         </View>
     )
 };

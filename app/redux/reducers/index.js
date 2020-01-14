@@ -1,38 +1,26 @@
 import { combineReducers } from 'redux';
 
-// const initialState = {
-//     page: {
-//         film: null,
-//         profile: null,
-//         feed: [],
-//         user: {
-//             id: 1,
-//         },
-//         me: null
-//     }
-// }
+const initialState = {
+    filmId: 0,
+    profileId: 0,
+    film: [],
+    feed: [],
+    me: {},
+    profile: {}
+}
 
-// const page = (state = {}, action) => {
-//     switch(action.type) {
-//         case 'GET_FILM':
-//             return {...state, film: action.film};
-//         case 'GET_FEED':
-//             return {...state, film: action.feed};
-//         case 'GET_PROFILE':
-//             return {...state, profile: action.profile};
-//         case 'GET_ME':
-//             return {...state, me: action.me};
-//         default:
-//             return state.feed
-//     }
-// }
-
-const downstreamData = (state = {}, action) => {
+const downstreamData = (state = initialState, action) => {
     switch(action.type) {
         case 'GET_FEED':
-            return action.data.items;
+            const feed = action.data.items;
+            return { ...state, feed }
         case 'GET_FILM':
-            return state
+            const film = action.data;
+            console.log(action.data)
+            return { ...state, film }
+        case 'GET_PROFILE':
+            const profile = action.data;
+            return { ...state, profile }
         default:
             return state;
     }

@@ -9,15 +9,16 @@ import { colours } from '../../colours';
 import { users } from '../../../data';
 
 const Thought = props => {
+    console.log(props.user)
     return (
         <View style={s.container}>
             <Avatar
                 style={s.avatar}
-                user={users['3']} />
+                user={props.user} />
             <View style={s.header}>
                 <Username
                     size='small'
-                    user={users['3']} />
+                    user={props.user} />
                 <Text style={s.date}>{props.date}</Text>
             </View>
             <View style={s.textContainer}>

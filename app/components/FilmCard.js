@@ -5,6 +5,9 @@ import { withNavigation } from 'react-navigation';
 import { colours } from '../colours';
 
 const FilmCard = props => {
+    const handleCardPress = () => {
+        props.navigation.navigate('Film', { filmId: props.film.pk });
+    }
     
     if (Object.entries(films).length === 0) {
         return <Text>loader</Text>;
@@ -13,7 +16,7 @@ const FilmCard = props => {
     return (
         <TouchableOpacity
             style={[s.card, props.style]}
-            onPress={() => props.navigation.navigate('Film')}>
+            onPress={handleCardPress}>
             <Image
                 source={{uri: props.film.poster_url}}
                 style={s.poster}/>

@@ -1,48 +1,72 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
 import Info from '../components/film/Info';
-import Seen from '../components/film/Seen';
-import Watchlist from '../components/film/Watchlist';
+import Watchers from '../components/film/Watchers';
 import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
 
-import { screen } from '../constants/device'; 
+import { screen } from '../constants/device';
+import { useDispatch, useSelector } from 'react-redux';
+import { get } from '../redux/actions';
 
 const Film = props => {
+    const filmId = props.navigation.getParam('filmId');
+    const dispatch = useDispatch();
     const padding = screen.width < 400
         ? { padding: 20 }
         : { padding: 30 };
+    let film = useSelector(state => state.downstreamData.film);
+
+    React.useEffect(() => {
+        dispatch(get({
+            type: "get_film",
+            film: filmId,
+            id: null
+        }))
+    }, [get]);
+
+    if (Object.entries(film).length === 0) {
+        return (<ViewWrapper>
+                    <Text>loader</Text>
+                </ViewWrapper>)
+    }
 
     return (
         <ViewWrapper
             style={s.view}>
             <Header
                 style={padding}
-                poster={'https://m.media-amazon.com/images/M/MV5BODhkZGE0NDQtZDc0Zi00YmQ4LWJiNmUtYTY1OGM1ODRmNGVkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg'}
-                title={'Lady Bird'}
-                type={'film'}
-                year={'2017'}
-                country={'USA'}
-                duration={'94 min'}
+                poster={film.film.poster_url}
+                title={film.film.title}
+                type={film.film.omdb_type}
+                year={film.film.year}
+                country={film.film.countries}
+                duration={film.film.runtime}
                 status={'seen'} />
-            <Info style={padding} />
-            <Seen
+            <Info
                 style={padding}
-                tags={[
-                    {
-                        tagName: 'stunning',
-                        tagTotal: '23'
-                    },
-                    {
-                        tagName: '5 hamsters!!',
-                        tagTotal: '7'
-                    }
-                ]} />
-            <Watchlist style={padding} />
-            <Thoughts style={padding} />
+                directors={film.film.directors}
+                writers={film.film.writers}
+                actors={film.film.actors}
+                synopsis={film.film.plot} />
+            <Watchers
+                style={padding}
+                type={'Seen'}
+                watchers={film.watchers_past} />
+            <Watchers
+                style={padding}
+                type={'Currently Watching'}
+                watchers={film.watchers_present} />
+            <Watchers
+                style={padding}
+                type={'Watchlist'}
+                watchers={film.watchers_future} />
+            <Thoughts
+                style={padding}
+                thoughts={film.comments} />
             <ThoughtTextArea style={{paddingHorizontal: 20}} />
         </ViewWrapper>
     )
