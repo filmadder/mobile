@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Username from './user/Username';
+import Username from '../user/Username';
+import { colours } from '../../colours';
 
 const FeedCardHeader = props => {
     return (
@@ -20,8 +21,10 @@ const s = StyleSheet.create({
         marginVertical: 10,
     },
     actionText: {
+        color: colours.black,
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: 17,
+        fontSize: 16,
+        marginTop: 3,
     }
 })
 

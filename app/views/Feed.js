@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import FeedCard from '../components/FeedCard'
+import FeedCard from '../components/feed/FeedCard'
 import ViewWrapper from './ViewWrapper';
 
 import { useDispatch, connect } from 'react-redux';
@@ -15,21 +15,21 @@ const Feed = ({ feed }) => {
             type: "get_feed",
             per_page: 3,
             page: 0,
-            id: 0
+            id: null
         }))
     }, [get])
-
     
     if (Object.entries(feed).length === 0) {
         return (<ViewWrapper>
                     <Text>loader</Text>
                 </ViewWrapper>)
     } else {
-        const items = feed.map(item => 
-                <FeedCard
-                    key={item['film']['pk']}
-                    item={item} />
-            );
+        const items = feed.map(item =>
+            {   
+                return <FeedCard
+                            key={item['film']['pk']}
+                            item={item} />
+            });
 
         return (
             <ViewWrapper
@@ -42,7 +42,7 @@ const Feed = ({ feed }) => {
 
 const mapStateToProps = state => {
     return {
-        feed: state.downstreamData,
+        feed: state.downstreamData.feed,
     }
 };
 

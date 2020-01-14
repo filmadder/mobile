@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text }  from 'react-native';
 
-import UserCard from '../../components/user/UserCard';
-import Username from '../../components/user/Username';
+import UserCard from '../../../components/user/UserCard';
+import Username from '../../../components/user/Username';
 
-import { users } from '../../../data'; 
+import { users } from '../../../../data'; 
 
 const Friendship = props => {
     return (

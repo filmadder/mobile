@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 
-import Avatar from './user/Avatar';
-import Film from '../components/feedItems/Film';
-import Friendship from '../components/feedItems/Friendship';
-import Thought from '../components/feedItems/Thought';
-import Tag from '../components/feedItems/Tag';
+import Avatar from '../user/Avatar';
+import Film from './feedItems/Film';
+import Friendship from './feedItems/Friendship';
+import Thought from './feedItems/Thought';
+import Tag from './feedItems/Tag';
 
-import { colours } from '../colours';
+import { colours } from '../../colours';
 
 const FeedCard = props => {
     const type = props.item.type;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View }  from 'react-native';
 
-import FilmCard from '../FilmCard';
+import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
 
 const Film = props => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
-import FilmCard from '../FilmCard';
+import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
 
-import { colours } from '../../colours';
+import { colours } from '../../../colours';
 
 const Thought = props => {
 

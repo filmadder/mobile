@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet }  from 'react-native';
 
-import FilmCard from '../FilmCard';
-import TagItem from '../../components/TagItem';
+import FilmCard from '../../FilmCard';
+import TagItem from '../../../components/TagItem';
 import FeedCardHeader from '../FeedCardHeader';
 
-import { colours } from '../../colours';
+import { colours } from '../../../colours';
 
 const Tag = props => {
     const tags = props.tags.map(tag =>

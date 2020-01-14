@@ -5,6 +5,10 @@ import { withNavigation } from 'react-navigation';
 import { colours } from '../colours';
 
 const FilmCard = props => {
+    
+    if (Object.entries(films).length === 0) {
+        return <Text>loader</Text>;
+    }
 
     return (
         <TouchableOpacity
@@ -15,8 +19,6 @@ const FilmCard = props => {
                 style={s.poster}/>
             <View style={s.titleContainer}>
                 <Text style={s.title}>{props.film.title}</Text>
-                {/* <Text style={styles.director}>Radley Scott</Text>
-                <Text style={styles.genre}>film | 2015</Text> */}
             </View>
         </TouchableOpacity>
     )
