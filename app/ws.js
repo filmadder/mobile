@@ -21,8 +21,6 @@ const open = () => {
                 if (queue.hasOwnProperty(data['id'])) {
                     queue[data['id']](data);
                     delete queue[data['id']];
-                } else {
-                    console.log('push message!');
                 }
             };
 

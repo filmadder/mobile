@@ -1,28 +1,43 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, Image, StyleSheet } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import CheckboxField from '../components/CheckboxField';
 import ViewWrapper from './ViewWrapper';
+
+import ImagePicker from 'react-native-image-picker';
+
 import { users } from '../../data';
 
 const Settings = props => {
+    const [avatar, setAvatar] = React.useState();
 
     const onCheckboxChange = currentState => {
         console.log('the current state is')
         console.log(currentState)
     }
 
+    const handleChoosePhoto = () =>{
+
+        ImagePicker.launchImageLibrary({noData: true}, response => {
+            if (response.uri) {
+                setAvatar(response.uri)
+            }
+        });
+    }
+
+    const newAvatar = {...users['1'], avatar}
+
     return (
         <ViewWrapper
             title='Settings'>
             <SettingsSection
-                title='Avatar'
-                btnText='upload new'>
+                title='Avatar'>
                 <Avatar
-                    user={users['1']}/>
+                    onPress={handleChoosePhoto}
+                    user={avatar ? newAvatar : users['1']} />
             </SettingsSection>
             <SettingsSection
                 title='Username'
