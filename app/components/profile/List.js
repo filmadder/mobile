@@ -9,7 +9,7 @@ import TagItem from '../TagItem';
 import { colours } from '../../colours';
 import { users } from '../../../data';
 
-const ProfileFilmList = props => {
+const List = props => {
     let content = null;
 
     switch (props.type) {
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ProfileFilmList;
+export default List;

@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import UserCard from '../components/user/UserCard';
-import ProfileList from '../components/profile/ProfileList';
+import List from '../components/profile/List';
 import ProfileFooter from '../components/profile/ProfileFooter';
 import ViewWrapper from './ViewWrapper';
 
@@ -31,9 +31,9 @@ const User = props => {
             <ViewWrapper>
                 <UserCard
                     user={user} />
-                <ProfileList
+                <List
                     type={type}
-                    onTypeSelected={onTypeSelected}></ProfileList>
+                    onTypeSelected={onTypeSelected}></List>
             </ViewWrapper>
             {film && footer}
         </View>

@@ -24,7 +24,6 @@ const FeedCard = props => {
             content = <Friendship />
             break;
         case 'c':
-            console.log(props.item)
             content = <Thought
                     comment={props.item.comment}
                     user={props.item['user']}
