@@ -8,23 +8,29 @@ import AuthForm from '../../components/auth/AuthForm';
 import AuthHeader from '../../components/auth/AuthHeader';
 import Error from '../../components/Error';
 
-import { login } from '../../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { loginUser } from '../../auth';
+// import { login } from '../../redux/actions';
+// import { useDispatch, useSelector } from 'react-redux';
 
 const Login = props => {
     const lowercase = text => (text.toLowerCase());
     const [hasError, setHasError] = React.useState(false);
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const passwordRef = React.createRef();
 
-    const token = useSelector(state => state.token);
 
-    if (token) {
-        props.navigation.navigate('Inner')
-    }
+    const login = () => {
+        loginUser(email, password)
+            .then(token => {
+                props.navigation.navigate('Inner');
+            })
+            .catch(err => console.warn(err))
+    };
 
     const errorMessage = <Error
             errorText='something went wrong on the backend'
@@ -36,6 +42,7 @@ const Login = props => {
             <AuthHeader />
             <AuthForm>
                 <Input
+                    key='0'
                     label='email'
                     value={email}
                     onChangeText={text => lowercase(text)}
@@ -43,12 +50,13 @@ const Login = props => {
                     onChangeText={text => setEmail(text.toLowerCase())}
                     onSubmitEditing={() => passwordRef.current.focus()} />
                 <Input
+                    key='1'
                     label='password'
                     value={password}
                     ref={passwordRef}
                     textContentType='password'
                     onChangeText={text => setPassword(text)} />
-                <FaButton title='login' onPress={() => dispatch(login(email, password))} />
+                <FaButton title='login' onPress={login} />
             </AuthForm>
             <View>
                 <TouchableOpacity

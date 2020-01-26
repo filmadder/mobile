@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 
 const AuthForm = props => {
     const fields = props.children.map(child =>
-        <View key={child.label} style={styles.field}>{child}</View>
+        <View key={props.key} style={styles.field}>{child}</View>
     );
 
     return (

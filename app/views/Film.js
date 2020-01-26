@@ -9,24 +9,26 @@ import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
 
 import { screen } from '../constants/device';
-import { useDispatch, useSelector } from 'react-redux';
-import { get } from '../redux/actions';
+import ws from '../ws';
 
 const Film = props => {
     const filmId = props.navigation.getParam('filmId');
-    const dispatch = useDispatch();
+    const [film, setFilm] = React.useState({});
     const padding = screen.width < 400
         ? { padding: 20 }
         : { padding: 30 };
-    let film = useSelector(state => state.downstreamData.film);
 
-    React.useEffect(() => {
-        dispatch(get({
-            type: "get_film",
-            film: filmId,
-            id: null
-        }))
-    }, [get]);
+    ws.send({
+        type: "get_film",
+        film: filmId,
+        id: null
+    })
+    .then(data => {
+        setFilm(data);
+    })
+    .catch(err => {
+        console.warn(err)
+    })
 
     if (Object.entries(film).length === 0) {
         return (<ViewWrapper>

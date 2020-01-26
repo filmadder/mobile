@@ -4,20 +4,21 @@ import { Text } from 'react-native';
 import FeedCard from '../components/feed/FeedCard'
 import ViewWrapper from './ViewWrapper';
 
-import { useDispatch, connect } from 'react-redux';
-import { get } from '../redux/actions';
+import ws from '../ws';
 
-const Feed = ({ feed }) => {
-    const dispatch = useDispatch();
+const Feed = props => {
+    const [feed, setFeed] = React.useState([]);
 
-    React.useEffect(() => {
-        dispatch(get({
-            type: "get_feed",
-            per_page: 4,
-            page: 0,
-            id: null
-        }))
-    }, [get])
+    ws.send({
+        type: "get_feed",
+        per_page: 4,
+        page: 0,
+        id: null
+    })
+    .then(data => {
+        setFeed(data.items)
+    })
+    .catch(err => console.warn(err))
     
     if (Object.entries(feed).length === 0) {
         return (<ViewWrapper>
@@ -37,12 +38,4 @@ const Feed = ({ feed }) => {
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        feed: state.downstreamData.feed,
-    }
-};
-
-export default connect(
-    mapStateToProps,
-)(Feed);
+export default Feed;
