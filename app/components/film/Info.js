@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import InfoSection from './InfoSection';
+import SynopsisSection from './SynopsisSection';
 
 const Info = props => {
 
@@ -22,10 +23,9 @@ const Info = props => {
                 title={'Actors'}
                 text={props.actors} />
             }
-            {props.synopsis.length > 0&& 
-            <InfoSection
+            {props.synopsis.length > 0 && 
+            <SynopsisSection
                 title={'Synopsis'}
-                synopsis={true}
                 text={props.synopsis} />
             }
         </View>
