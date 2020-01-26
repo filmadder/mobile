@@ -47,7 +47,7 @@ const FeedView = createStackNavigator({
     }
 });
 
-const SettingsView = createSwitchNavigator({
+const SettingsView = createStackNavigator({
     Settings: {
         screen: Settings,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
