@@ -6,8 +6,10 @@ import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import CheckboxField from '../components/CheckboxField';
 import ViewWrapper from './ViewWrapper';
+import LogoutBtn from '../views/auth/LogoutBtn';
 
 import ImagePicker from 'react-native-image-picker';
+import { withNavigation } from 'react-navigation';
 
 import { users } from '../../data';
 
@@ -61,6 +63,9 @@ const Settings = props => {
                         text='show my avatar to befriended users only  befriended users only'
                         onCheckboxChange={onCheckboxChange}></CheckboxField>
             </SettingsSection>
+            <SettingsSection>
+                <LogoutBtn />
+            </SettingsSection>
         </ViewWrapper>
     )
 };
@@ -68,4 +73,4 @@ const Settings = props => {
 const s = StyleSheet.create({
 });
 
-export default Settings;
+export default withNavigation(Settings);

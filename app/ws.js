@@ -6,13 +6,18 @@ let ws = null;
 let queue = {};
 let nextId = 1;
 
-const open = () => {
+export const open = () => {
     if (ws !== null && ws.readyState === WebSocket.OPEN) {
         return Promise.resolve();
     }
 
     return new Promise(function(resolve, reject) {
         AsyncStorage.getItem('token').then(token => {
+            if (!token) {
+                reject('NOTOKEN');
+                return;
+            }
+
             ws = new WebSocket(url + token);
     
             ws.onmessage = event => {
@@ -26,6 +31,7 @@ const open = () => {
 
             ws.onerror = err => {
                 console.warn(err)
+                reject('NOCONNECTION')
             }
 
             ws.onopen = () => {
@@ -33,12 +39,11 @@ const open = () => {
             }
             
         }).catch(err => {
-            console.warn(err)
-            reject()
+            console.warn(err);
+            reject('NOTVALID');
         })
     })
-
-}
+};
 
 export const send = payload => {
     const id = nextId;
@@ -52,8 +57,17 @@ export const send = payload => {
             ws.send(JSON.stringify(payload));
         })
         .catch(err => {
-            console.warn(err)
-            reject()
+            reject(err);
         });
     });
+};
+
+export const close = () => {
+    ws.close();
+};
+
+export default {
+    open: open,
+    close: close,
+    send: send
 }

@@ -34,16 +34,16 @@ export const getMe = userId => {
     }
 }
 
-const getToken = token => {
-    return {
-        type: 'GET_TOKEN',
-        token
-    }
-}
-
-// export const getToken = token => {
+// const getToken = token => {
 //     return {
 //         type: 'GET_TOKEN',
 //         token
 //     }
 // }
+
+export const getToken = token => {
+    return {
+        type: 'GET_TOKEN',
+        token
+    }
+}

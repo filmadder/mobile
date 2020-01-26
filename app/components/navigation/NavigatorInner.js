@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -21,7 +21,7 @@ import { users } from '../../../data';
 const createNavOptions = (navigation) => ({
     title: 'filmadder',
     headerLeft: () => <DrawerBtn navigation={navigation} />,
-    headerRight: () => <Button title='search' onPress={() => navigation.navigate('Search')} />,
+    headerRight: () => <Button title='search' color='white' onPress={() => navigation.navigate('Search')} />,
     headerStyle: {
         backgroundColor: colours.blue3,
     },
@@ -47,7 +47,7 @@ const FeedView = createStackNavigator({
     }
 });
 
-const SettingsView = createStackNavigator({
+const SettingsView = createSwitchNavigator({
     Settings: {
         screen: Settings,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
@@ -55,7 +55,7 @@ const SettingsView = createStackNavigator({
     Profile: {
         screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
+    },
 });
 
 const SearchView = createStackNavigator({
@@ -110,23 +110,16 @@ const ProfileView = createStackNavigator({
     }
 });
 
-const FaNavigatorDrawer  = createDrawerNavigator(
-    {
+const FaNavigatorDrawer  = createDrawerNavigator({
         Profile: {
             screen: ProfileView,
             navigationOptions: {
                 drawerLabel: <Avatar user={users['1']} />,
             }
         },
-        Feed: {
-            screen: FeedView,
-        },
-        Notifications: {
-            screen: NotificationsView
-        },
-        Settings: {
-            screen: SettingsView
-        },
+        Feed: FeedView,
+        Notifications: NotificationsView,
+        Settings: SettingsView,
         Search: {
             screen: SearchView,
             navigationOptions: {
@@ -138,7 +131,7 @@ const FaNavigatorDrawer  = createDrawerNavigator(
             navigationOptions: {
                 drawerLabel: <Hidden />
             }
-        }
+        },
     },
     {
         initialRouteName: 'Feed',
@@ -152,7 +145,6 @@ const FaNavigatorDrawer  = createDrawerNavigator(
         drawerType: 'slide',
         unmountInactiveRoutes: true,
         edgeWidth: 0
-    }
-);
+    });
 
 export default createAppContainer(FaNavigatorDrawer);

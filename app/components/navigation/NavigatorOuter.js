@@ -1,11 +1,18 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import Login from '../../views/auth/Login';
+import Launch from '../../views/Launch';
 import Register from '../../views/auth/Register';
+import FaNavigatorInner from './NavigatorInner';
 
-const FaNavigatorOuter = createStackNavigator(
+const FaNavigatorOuter = createSwitchNavigator(
     {
+        Launch: {
+            screen: Launch,
+            navigationOptions: {
+                header: null,
+            },
+        },
         Login: {
             screen: Login,
             navigationOptions: {
@@ -18,9 +25,15 @@ const FaNavigatorOuter = createStackNavigator(
                 header: null,
             },
         },
+        Inner: {
+            screen: FaNavigatorInner,
+            navigationOptions: {
+                header: null,
+            },
+        },
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Launch',
     }
 );
 
