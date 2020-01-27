@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 
 import UserResult from './resultItems/UserResult';
-import FilmResult from './resultItems/FilmResult';
+import FilmCard from '../../components/FilmCard';
 import DirectorResult from './resultItems/DirectorResult';
 import TagResult from './resultItems/TagResult';
 import { users } from '../../../data';
@@ -12,13 +12,9 @@ const Results = props => {
 
     switch (props.type) {
         case 'films':
-            results = <View>
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
-            </View>
+            results = props.results.map(result => {
+                return <FilmCard film={result} />
+            })
             break;
         case 'tags':
             results = <View>
@@ -44,11 +40,6 @@ const Results = props => {
             break;
         default:
             results = <View>
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
-                <FilmResult />
             </View>        
     }
 

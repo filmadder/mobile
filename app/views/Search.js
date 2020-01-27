@@ -9,6 +9,7 @@ import ws from '../ws';
 
 const Search = props => {
     const [type, setType] = React.useState();
+    const [query, setQuery] = React.useState();
     const [results, setResults] = React.useState([]);
 
     const searchType = props.navigation.getParam('search', 'films');
@@ -17,10 +18,10 @@ const Search = props => {
         if (searchType) {
             setType(searchType)
         }
-        console.log(searchType)
-    }, [searchType])
 
-    const onSearch = (type, query) => {
+    }, [])
+
+    const onSearch = (query) => {
 
         if (query.length > 0) {
             ws.send({
@@ -29,7 +30,8 @@ const Search = props => {
                 id: null
             })
             .then(data => {
-                console.log(data)
+                setResults(data.films)
+                setQuery(query)
             })
             .catch(err => {
                 console.warn(err)
@@ -41,23 +43,24 @@ const Search = props => {
     if (Object.entries(results).length === 0) {
         return (<ViewWrapper>
                 <SearchForm
-                    type={type ? type : 'films'}
+                    type={type || 'films'}
                     style={s.searchForm}
                     onSearch={onSearch} />
                     <Text>loading</Text>
                 </ViewWrapper>)
     } else {
-
-        const results = <Results
-            type={type}
-            query={query} />
                 
         return (
             <ViewWrapper>
                 <SearchForm
+                    type={type || 'films'}
                     style={s.searchForm}
                     onSearch={onSearch} />
-                {query && results}
+                <Results
+                    results={results}
+                    type={type}
+                    query={query} />
+                <Text>results</Text>
             </ViewWrapper>
         )
     }

@@ -2,9 +2,12 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
+import PlaceholderPoster from './PlaceholderPoster';
+
 import { colours } from '../colours';
 
 const FilmCard = props => {
+
     const handleCardPress = () => {
         props.navigation.navigate('Film', { filmId: props.film.pk });
     }
@@ -13,13 +16,14 @@ const FilmCard = props => {
         return <Text>loader</Text>;
     }
 
+    const placeholderPoster = <PlaceholderPoster />;
+    const poster = <Image source={{uri: props.film.poster_url}} style={s.poster}/>
+
     return (
         <TouchableOpacity
             style={[s.card, props.style]}
             onPress={handleCardPress}>
-            <Image
-                source={{uri: props.film.poster_url}}
-                style={s.poster}/>
+            {props.film.poster_url ? poster : placeholderPoster}
             <View style={s.titleContainer}>
                 <Text style={s.title}>{props.film.title}</Text>
             </View>

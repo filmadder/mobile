@@ -20,13 +20,12 @@ const SearchForm = props => {
     const dropdown = <View style={s.dropdown}>{dropdownItems}</View>
     
     const onDropdownSelected = item => {
-        setCurrent(item)
         setIsOpen(!isOpen);
     };
 
     const onButtonClick = () => {
         if (query.length > 0) {
-            props.onSearch(current, query)
+            props.onSearch(query)
         } else {
             showDropdown();
         }

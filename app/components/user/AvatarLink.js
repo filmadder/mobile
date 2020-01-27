@@ -16,8 +16,8 @@ const AvatarLink = props => {
 
     return (
         <TouchableOpacity
-            onPress={() => {}}
-            style={props.style}>
+            style={props.style}
+            onPress={() => {}}>
             <Avatar
                 avatar={props.user.avatar_url} />
         </TouchableOpacity>

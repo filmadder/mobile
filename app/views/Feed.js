@@ -14,7 +14,6 @@ const Feed = props => {
     const handleSearchPress = () => {
         props.navigation.navigate('Search', { 'search': 'friends' });
     }
-
     
     React.useEffect(() => {
 

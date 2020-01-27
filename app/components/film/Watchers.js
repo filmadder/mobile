@@ -5,13 +5,15 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 
 import { colours } from '../../colours';
+import { server } from '../../settings';
 
 const Watchers = props => {
 
     let watchers = props.watchers.map(watcher => {
         let user = {
             name: watcher.name,
-            avatar: watcher.avatar
+            avatar_url: '/media/' + watcher.avatar_url,
+            pk: watcher.pk
         }
         
         let tags = watcher.tags && watcher.tags.map((tag, index) => (
@@ -26,7 +28,8 @@ const Watchers = props => {
                 <UserRow
                     key={watcher.pk}
                     user={user}
-                    size='medium' />
+                    size='medium'
+                    onPress={() => {}} />
                     {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
         )

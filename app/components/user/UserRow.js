@@ -40,12 +40,13 @@ const UserRow = props => {
 
     return (
         <TouchableOpacity
-            style={[s.container, props.style]}>
+            style={[s.container, props.style]}
+            onPress={props.onPress}>
             <Avatar
-                avatar={props.user.avatar}
+                avatar={props.user.avatar_url}
                 style={avatar} />
             <Username
-                user={props.user}
+                name={props.user.name}
                 size={props.size} />
         </TouchableOpacity>
     )

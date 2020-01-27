@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Avatar from '../../components/user/Avatar';
-import Username from '../../components/user/Username';
+import AvatarLink from '../../components/user/AvatarLink';
+import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 
 import { colours } from '../../colours';
@@ -12,11 +12,11 @@ const Thought = props => {
 
     return (
         <View style={s.container}>
-            <Avatar
+            <AvatarLink
                 style={s.avatar}
                 user={props.user} />
             <View style={s.header}>
-                <Username
+                <UsernameLink
                     size='small'
                     user={props.user} />
                 <Text style={s.date}>{props.date}</Text>

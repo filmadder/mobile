@@ -12,8 +12,9 @@ const Thoughts = props => {
 
     let thoughts = props.thoughts.map(thought => {
         let user = {
-            avatar: thought.author.avatar_url,
-            name: thought.author.name
+            avatar_url: '/media/' + thought.author.avatar_url,
+            name: thought.author.name,
+            pk: thought.author.pk
         }
 
         if (showAll) {
