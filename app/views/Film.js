@@ -31,7 +31,7 @@ const Film = props => {
         .catch(err => (isSubscribed) ? console.warn(err) : null)
 
         return () => (isSubscribed = false);
-    })
+    }, [])
 
     if (Object.entries(film).length === 0) {
         return (<ViewWrapper>

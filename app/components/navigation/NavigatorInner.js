@@ -44,7 +44,11 @@ const FeedView = createStackNavigator({
     Film: {
         screen: Film,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
+    },
+    Search: {
+        screen: Search,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
 });
 
 const SettingsView = createStackNavigator({

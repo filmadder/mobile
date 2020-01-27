@@ -16,6 +16,7 @@ export const loginUser = (email, password) => {
             })
             .then(data => {
                 if (data[0] === 200) {
+                    console.log(data[1])
                     AsyncStorage.setItem('token', data[1].token)
                 }
 

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     buttonTitle: {
-        fontSize: 20,
+        fontSize: 22,
         fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico-Regular',
         color: 'white',
     }

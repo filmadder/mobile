@@ -9,7 +9,6 @@ import { searches } from '../../constants/filters';
 const SearchForm = props => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [query, setQuery] = React.useState('');
-    const [current, setCurrent] = React.useState('films');
 
     const dropdownItems = searches.map(item =>
         <SearchDropdownItem
@@ -26,7 +25,7 @@ const SearchForm = props => {
     };
 
     const onButtonClick = () => {
-        if (query.trim().length > 0) {
+        if (query.length > 0) {
             props.onSearch(current, query)
         } else {
             showDropdown();
@@ -58,7 +57,7 @@ const SearchForm = props => {
                 <TouchableOpacity
                     style={s.button}
                     onPress={() => onButtonClick()}>
-                    <Text style={s.type}>{current}</Text>
+                    <Text style={s.type}>{props.type}</Text>
                 </TouchableOpacity>
             </View>
             {isOpen && dropdown}
