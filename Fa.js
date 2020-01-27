@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FaNavigatorOuter from './app/components/navigation/NavigatorOuter';
+import FaNavigator from './app/components/navigation/Navigator';
 import { StatusBar } from 'react-native';
 // import reducers from './app/redux/reducers';
 
@@ -10,7 +10,7 @@ const Fa: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle='light-content'></StatusBar>
-        <FaNavigatorOuter />
+        <FaNavigator />
     </>
   );
 };

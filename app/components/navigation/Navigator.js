@@ -5,7 +5,7 @@ import Launch from '../../views/Launch';
 import Register from '../../views/auth/Register';
 import FaNavigatorInner from './NavigatorInner';
 
-const FaNavigatorOuter = createSwitchNavigator(
+const FaNavigator = createSwitchNavigator(
     {
         Launch: {
             screen: Launch,
@@ -37,4 +37,4 @@ const FaNavigatorOuter = createSwitchNavigator(
     }
 );
 
-export default createAppContainer(FaNavigatorOuter);
+export default createAppContainer(FaNavigator);
