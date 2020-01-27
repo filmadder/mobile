@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
     title: {
-        fontFamily: 'Pacifico-Regular',
         color: 'white',
         fontSize: 36,
     },

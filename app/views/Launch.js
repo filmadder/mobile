@@ -3,13 +3,14 @@ import { Text, Image, StyleSheet } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import ws from '../ws';
 
 const Launch = props => {
 
     ws.open()
         .then(() => {
-            props.navigation.navigate('Feed');
+            props.navigation.navigate('Inner');
         })
         .catch(() => {
             props.navigation.navigate('Login');

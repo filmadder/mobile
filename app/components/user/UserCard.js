@@ -13,7 +13,7 @@ const UserCard = props => {
             onPress={() => {}}>
             <View style={styles.containerInner}>
                 <Avatar
-                    user={props.user} />
+                    avatar={props.user.avatar} />
                 <Username
                     style={styles.username}
                     user={props.user}

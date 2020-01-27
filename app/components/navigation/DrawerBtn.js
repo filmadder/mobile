@@ -3,8 +3,12 @@ import { TouchableOpacity, Image, StyleSheet  } from 'react-native';
 
 const DrawerBtn = props => {
 
+    const toggleDrawer = () => {
+        props.navigation.toggleDrawer();
+    }
+
     return (
-        <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
+        <TouchableOpacity onPress={toggleDrawer}>
             <Image
                 style={s.menuBtn}
                 source={require('../../../assets/images/logo.png')} />

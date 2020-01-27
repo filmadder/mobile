@@ -1,28 +1,22 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { Image, StyleSheet, View } from 'react-native';
+// import { withNavigation } from 'react-navigation';
 
 import { colours } from '../../colours';
+import { server } from '../../settings';
 
 const Avatar = props => {
-    const avatar = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixel.nymag.com%2Fimgs%2Fdaily%2Fvulture%2F2018%2F11%2F02%2F02-avatar-2.w700.h700.jpg&f=1&nofb=1';
-
-    const handlePress = () => {
-        if (props.onPress) {
-            props.onPress()
-        } else {
-            props.navigation.push('Profile', { user: props.user })
-        }
-    }
+    // avatar url
+    const avatar = props.avatar
+        ? server + props.avatar
+        : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixel.nymag.com%2Fimgs%2Fdaily%2Fvulture%2F2018%2F11%2F02%2F02-avatar-2.w700.h700.jpg&f=1&nofb=1';
 
     return (
-        <TouchableOpacity
-            style={[styles.avatarContainer, props.style]}
-            onPress={handlePress}>
+        <View style={[styles.avatarContainer, props.style]}>
             <Image
                 source={{uri: avatar}}
                 style={styles.avatar} />
-        </TouchableOpacity>
+        </View>
     )
 };
 
@@ -46,4 +40,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(Avatar);
+export default Avatar;

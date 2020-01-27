@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 
-import Avatar from '../user/Avatar';
+import AvatarLink from '../user/AvatarLink';
 import Film from './feedItems/Film';
 import Friendship from './feedItems/Friendship';
 import Thought from './feedItems/Thought';
@@ -11,7 +11,7 @@ import { colours } from '../../colours';
 
 const FeedCard = props => {
     const type = props.item.type;
-    let content = null
+    let content = null;
 
     switch (type) {
         case 't': 
@@ -45,9 +45,10 @@ const FeedCard = props => {
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
-                <Avatar
+                <AvatarLink
                     user={props.item.user}
                     style={styles.avatar} />
+
                     {content}
             </View>
         </View>

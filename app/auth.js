@@ -16,8 +16,12 @@ export const loginUser = (email, password) => {
             })
             .then(data => {
                 if (data[0] === 200) {
-                    console.log(data[1])
                     AsyncStorage.setItem('token', data[1].token)
+                    AsyncStorage.setItem('user', JSON.stringify({
+                        name: data[1].user.name,
+                        pk: data[1].user.pk.toString(),
+                        avatar_url: data[1]['user']['avatar_url']
+                    }))
                 }
 
                 return data[1].token

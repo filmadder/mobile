@@ -42,7 +42,7 @@ const UserRow = props => {
         <TouchableOpacity
             style={[s.container, props.style]}>
             <Avatar
-                user={props.user}
+                avatar={props.user.avatar}
                 style={avatar} />
             <Username
                 user={props.user}

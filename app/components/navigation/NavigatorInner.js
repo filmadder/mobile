@@ -13,10 +13,9 @@ import Profile from '../../views/Profile';
 import Film from '../../views/Film';
 
 import DrawerBtn from './DrawerBtn';
+import MyProfileBtn from './MyProfileBtn';
 import Hidden from './Hidden';
-import Avatar from '../user/Avatar';
 import { colours } from '../../colours';
-import { users } from '../../../data';
 
 const createNavOptions = (navigation) => ({
     title: 'filmadder',
@@ -114,11 +113,11 @@ const ProfileView = createStackNavigator({
     }
 });
 
-const FaNavigatorDrawer  = createDrawerNavigator({
+const FaNavigatorDrawer = createDrawerNavigator({
         Profile: {
             screen: ProfileView,
             navigationOptions: {
-                drawerLabel: <Avatar user={users['1']} />,
+                drawerLabel: <MyProfileBtn />,
             }
         },
         Feed: FeedView,

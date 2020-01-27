@@ -15,6 +15,7 @@ const Feed = props => {
         props.navigation.navigate('Search', { 'search': 'friends' });
     }
 
+    
     React.useEffect(() => {
 
         let isSubscribed = true;
