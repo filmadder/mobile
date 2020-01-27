@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
@@ -13,7 +13,7 @@ import { withNavigation } from 'react-navigation';
 
 import { users } from '../../data';
 
-const Settings = props => {
+const Settings = () => {
     const [avatar, setAvatar] = React.useState();
 
     const onCheckboxChange = currentState => {
@@ -69,8 +69,5 @@ const Settings = props => {
         </ViewWrapper>
     )
 };
-
-const s = StyleSheet.create({
-});
 
 export default withNavigation(Settings);

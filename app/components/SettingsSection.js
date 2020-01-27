@@ -59,7 +59,6 @@ const s = StyleSheet.create({
     },
     content: {
         padding: 30,
-        width: '100%',
         alignItems: 'center'
     }
 });

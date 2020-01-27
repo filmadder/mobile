@@ -8,17 +8,32 @@ import AuthForm from '../../components/auth/AuthForm';
 import Error from '../../components/Error';
 import AuthHeader from '../../components/auth/AuthHeader';
 
-const Register = props => {
-    const lowercase = text => (text.toLowerCase());
-    const [hasError, setHasError] = React.useState(false);
+import { registerUser } from '../../auth';
 
-    const email = React.createRef();
-    const password1 = React.createRef();
-    const password2 = React.createRef();
+const Register = props => {
+    const [hasError, setHasError] = React.useState(false);
+    const [email, setEmail] = React.useState('')
+    const [name, setName] = React.useState('')
+    const [password1, setPassword1] = React.useState('')
+    const [password2, setPassword2] = React.useState('')
+    
+    const emailRef = React.createRef();
+    const password1Ref = React.createRef();
+    const password2Ref = React.createRef();
 
     const errorMessage = <Error
             errorText='passwords dont match'
             onDismiss={() => setHasError(false)}/>
+    
+    const register = () => {
+        registerUser(email, name, password1, password2)
+            .then(token => {
+                if (token) {
+                    props.navigation.navigate('Inner');
+                }
+            })
+            .catch(err => console.warn(err))
+    };
 
     return (
         <AuthContainer style={styles.register}>
@@ -27,25 +42,32 @@ const Register = props => {
             <AuthForm>
                 <Input
                     label='username'
+                    value={name}
                     textContentType='none'
-                    onSubmitEditing={() => email.current.focus()} />
+                    onChangeText={text => setName(text)}
+                    onSubmitEditing={() => emailRef.current.focus()} />
                 <Input
-                    ref={email}
+                    ref={emailRef}
                     label='email'
-                    onChangeText={text => lowercase(text)}
+                    value={email}
                     textContentType='emailAddress'
-                    onSubmitEditing={() => password1.current.focus()} />
+                    onChangeText={text => setEmail(text.toLowerCase())}
+                    onSubmitEditing={() => password1Ref.current.focus()} />
                 <Input
-                    ref={password1}
+                    ref={password1Ref}
                     label='password'
+                    value={password1}
                     textContentType='password'
-                    onSubmitEditing={() => password2.current.focus()} />
+                    onChangeText={text => setPassword1(text)}
+                    onSubmitEditing={() => password2Ref.current.focus()} />
                 <Input
-                    ref={password2}
+                    ref={password2Ref}
                     label='repeat password'
+                    value={password2}
                     textContentType='password'
+                    onChangeText={text => setPassword2(text)}
                     onSubmitEditing={() => (console.log('on submit editing'))} />
-                <FaButton title='register' onPress={() => {}} />
+                <FaButton title='register' onPress={register} />
             </AuthForm>
             <View>
                 <TouchableOpacity

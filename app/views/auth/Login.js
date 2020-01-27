@@ -8,22 +8,15 @@ import AuthForm from '../../components/auth/AuthForm';
 import AuthHeader from '../../components/auth/AuthHeader';
 import Error from '../../components/Error';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
 import { loginUser } from '../../auth';
-// import { login } from '../../redux/actions';
-// import { useDispatch, useSelector } from 'react-redux';
 
 const Login = props => {
-    const lowercase = text => (text.toLowerCase());
     const [hasError, setHasError] = React.useState(false);
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-    // const dispatch = useDispatch();
-
+    
     const passwordRef = React.createRef();
-
-
+    
     const login = () => {
         loginUser(email, password)
             .then(token => {
@@ -42,15 +35,12 @@ const Login = props => {
             <AuthHeader />
             <AuthForm>
                 <Input
-                    key='0'
                     label='email'
                     value={email}
-                    onChangeText={text => lowercase(text)}
                     textContentType='emailAddress'
                     onChangeText={text => setEmail(text.toLowerCase())}
                     onSubmitEditing={() => passwordRef.current.focus()} />
                 <Input
-                    key='1'
                     label='password'
                     value={password}
                     ref={passwordRef}
