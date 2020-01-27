@@ -6,19 +6,24 @@ import ViewWrapper from './ViewWrapper';
 
 import ws from '../ws';
 
-const Feed = props => {
+const Feed = () => {
     const [feed, setFeed] = React.useState([]);
 
-    ws.send({
-        type: "get_feed",
-        per_page: 4,
-        page: 0,
-        id: null
-    })
-    .then(data => {
-        setFeed(data.items)
-    })
-    .catch(err => console.warn(err))
+    React.useEffect(() => {
+
+        let isSubscribed = true;
+
+        ws.send({
+            type: "get_feed",
+            per_page: 4,
+            page: 0,
+            id: null
+        })
+        .then(data => (isSubscribed ? setFeed(data.items) : []))
+        .catch(err => (isSubscribed ? (console.warn(err)) : null))
+
+        return () => (isSubscribed = false);
+    }, [feed])
     
     if (Object.entries(feed).length === 0) {
         return (<ViewWrapper>

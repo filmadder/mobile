@@ -63,7 +63,10 @@ export const send = payload => {
 };
 
 export const close = () => {
-    ws.close();
+
+    if (ws !== null && ws.readyState === WebSocket.OPEN) {
+        ws.close();
+    }
 };
 
 export default {

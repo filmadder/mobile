@@ -18,16 +18,19 @@ const Film = props => {
         ? { padding: 20 }
         : { padding: 30 };
 
-    ws.send({
-        type: "get_film",
-        film: filmId,
-        id: null
-    })
-    .then(data => {
-        setFilm(data);
-    })
-    .catch(err => {
-        console.warn(err)
+    React.useEffect(() => {
+
+        isSubscribed = true;
+
+        ws.send({
+            type: "get_film",
+            film: filmId,
+            id: null
+        })
+        .then(data => (isSubscribed) ? setFilm(data) : {})
+        .catch(err => (isSubscribed) ? console.warn(err) : null)
+
+        return () => (isSubscribed = false);
     })
 
     if (Object.entries(film).length === 0) {

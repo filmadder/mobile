@@ -9,7 +9,7 @@ import { colours } from '../../colours';
 import { users } from '../../../data';
 
 const Thought = props => {
-    console.log(props.user)
+
     return (
         <View style={s.container}>
             <Avatar
