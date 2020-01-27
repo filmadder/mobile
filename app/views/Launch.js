@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
-import ws from '../ws';
+import { Text, Image, StyleSheet } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
+
+import ws from '../ws';
 
 const Launch = props => {
 
@@ -15,11 +16,30 @@ const Launch = props => {
         })
 
     return (
-        <View style={{flex: 1}}>
-            <ActivityIndicator size="large" color="#0000ff" />
-            <Text>Launch</Text>
-        </View>
+        <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={s.container}>
+            <Image source={require('../../assets/images/logo.png')} style={s.logo}/>
+            <Text style={s.title}>filmadder</Text>
+        </LinearGradient>
     );
 };
+
+const s = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: '100%',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    logo: {
+        height: 200,
+        width: 200,
+    },
+    title: {
+        fontFamily: 'Pacifico-Regular',
+        color: 'white',
+        fontSize: 50,
+    },
+})
 
 export default Launch;
