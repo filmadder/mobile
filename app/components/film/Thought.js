@@ -14,6 +14,7 @@ const Thought = props => {
         <View style={s.container}>
             <AvatarLink
                 style={s.avatar}
+                size='medium'
                 user={props.user} />
             <View style={s.header}>
                 <UsernameLink
@@ -41,8 +42,6 @@ const s = StyleSheet.create({
         marginVertical: 20,
     },
     avatar: {
-        height: 30,
-        width: 30,
         position: 'absolute',
         top: -10,
         left: -10,

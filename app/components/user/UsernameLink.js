@@ -13,6 +13,7 @@ const UsernameLink = props => {
         <TouchableOpacity
             onPress={() => {}}>
             <Username
+                size={props.size}
                 name={props.user.name} />
         </TouchableOpacity>
     )

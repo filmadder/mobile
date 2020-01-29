@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-import SearchDropdown from './SearchDropdown';
+import SearchFilters from './SearchFilters';
 
 import { colours } from '../../colours';
 import { searchTypes } from '../../constants/filters';
@@ -36,17 +36,17 @@ const SearchForm = props => {
                         style={s.textField}
                         placeholder='type here'
                         value={query}
-                        onSubmitEditing={() => search()}
+                        onSubmitEditing={search}
                         onChangeText={text => setQuery(text)}></TextInput>
                     <TouchableOpacity
                         style={s.buttonContainer}
-                        onPress={() => search()}>
+                        onPress={search}>
                         <Text style={s.button}>search</Text>
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <SearchDropdown
+            <SearchFilters
                 onTypeSelected={onTypeSelected}
                 searchTypes={searchTypes}
                 type={type} />

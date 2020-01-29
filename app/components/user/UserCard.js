@@ -7,16 +7,25 @@ import Username from './Username'
 
 const UserCard = props => {
 
+    const goToProfile = () => {
+        if (!props.cancelPress) {
+            props.navigation.navigate('Profile', { 'user': props.user.pk })
+        }
+    };
+
     return (
         <TouchableOpacity
             style={[styles.container, props.style]}
-            onPress={() => {}}>
+            onPress={goToProfile}>
             <View style={styles.containerInner}>
                 <Avatar
-                    avatar={props.user.avatar} />
+                    style={{ marginRight: 0 }}
+                    size={props.size}
+                    avatar={props.user.avatar_url} />
                 <Username
                     style={styles.username}
-                    user={props.user}
+                    name={props.user.name}
+                    size={props.size}
                     navigation={props.navigation} />
             </View>
         </TouchableOpacity>

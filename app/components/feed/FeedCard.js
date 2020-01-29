@@ -47,7 +47,8 @@ const FeedCard = props => {
             <View style={styles.contents}>
                 <AvatarLink
                     user={props.item.user}
-                    style={styles.avatar} />
+                    style={styles.avatar}
+                    size='large' />
 
                     {content}
             </View>

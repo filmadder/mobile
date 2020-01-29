@@ -6,45 +6,20 @@ import Avatar from './Avatar';
 import Username from './Username';
 
 const UserRow = props => {
-    let avatar = null;
 
-    switch (props.size) {
-        case 'large':
-            avatar = {
-                height: 60,
-                width: 60,
-                marginRight: 20,
-            };
-            break;
-        case 'medium':
-            avatar = {
-                height: 30,
-                width: 30,
-                marginRight: 10,
-            };
-            break;
-        case 'small':
-            avatar = {
-                height: 20,
-                width: 20,
-                marginRight: 10,
-            };
-            break;
-        default:
-            avatar = {
-                height: 30,
-                width: 30,
-                marginRight: 10,
-            };
+    const goToProfile = () => {
+        if (!props.cancelPress) {
+            props.navigation.push('Profile', { 'user': props.user.pk })
+        }
     };
 
     return (
         <TouchableOpacity
             style={[s.container, props.style]}
-            onPress={props.onPress}>
+            onPress={goToProfile}>
             <Avatar
                 avatar={props.user.avatar_url}
-                style={avatar} />
+                size={props.size} />
             <Username
                 name={props.user.name}
                 size={props.size} />

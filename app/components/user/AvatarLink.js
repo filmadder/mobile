@@ -7,18 +7,16 @@ import Avatar from './Avatar';
 const AvatarLink = props => {
 
     const handlePress = () => {
-        if (props.onPress) {
-            props.onPress()
-        } else {
-            props.navigation.push('Profile', { user: props.user })
-        }
-    }
+        props.navigation.push('Profile', { user: props.user.pk })
+    };
 
     return (
         <TouchableOpacity
             style={props.style}
-            onPress={() => {}}>
+            onPress={handlePress}>
             <Avatar
+                style={{ marginRight: 0 }}
+                size={props.size}
                 avatar={props.user.avatar_url} />
         </TouchableOpacity>
     )

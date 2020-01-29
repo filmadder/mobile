@@ -9,7 +9,7 @@ import { colours } from '../colours';
 const FilmCard = props => {
 
     const handleCardPress = () => {
-        props.navigation.navigate('Film', { filmId: props.film.pk });
+        props.navigation.push('Film', { filmId: props.film.pk });
     }
     
     if (Object.entries(films).length === 0) {

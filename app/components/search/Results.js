@@ -13,7 +13,12 @@ const Results = props => {
             break;
         case 'users':
             results = props.results.map(result => {
-                return <UserRow key={result.pk} user={result} />
+                return (
+                    <UserRow
+                        key={result.pk}
+                        size='large'
+                        user={result} />
+                )
             })
             break;
         default:

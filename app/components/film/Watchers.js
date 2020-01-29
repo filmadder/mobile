@@ -28,8 +28,7 @@ const Watchers = props => {
                 <UserRow
                     key={watcher.pk}
                     user={user}
-                    size='medium'
-                    onPress={() => {}} />
+                    size='medium' />
                     {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
         )

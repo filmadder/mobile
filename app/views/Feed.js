@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import FeedCard from '../components/feed/FeedCard'
 import ViewWrapper from './ViewWrapper';

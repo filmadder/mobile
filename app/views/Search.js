@@ -5,7 +5,6 @@ import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
 
-import { searchTypes } from '../constants/filters';
 import ws from '../ws';
 
 const Search = props => {

@@ -9,11 +9,11 @@ const ProfileFilmFooter = props => {
 
     const content = !isOpen
         ? <ProfileFooterClosed
-            total='25'
-            current='watchlist' />
+            total={props.total}
+            current={props.current} />
         : <ProfileFooterOpen
-            total='25'
-            current='watchlist' />
+            total={props.total}
+            current={props.current} />
 
     return (
         <TouchableWithoutFeedback

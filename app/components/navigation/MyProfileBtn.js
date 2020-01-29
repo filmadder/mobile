@@ -16,7 +16,7 @@ const MyProfileBtn = () => {
     }, [])
 
     if (user) {
-        return <AvatarLink user={user} />
+        return <AvatarLink size='large' user={user} />
     }
 
     return null

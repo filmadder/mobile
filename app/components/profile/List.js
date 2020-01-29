@@ -18,30 +18,12 @@ const List = props => {
             break;
         case 'tags':
             content = <View style={[styles.content, styles.tagList]}>
-                <TagItem
-                    style={styles.tag}
-                    tagName='3 hamsters'
-                    tagTotal='40' />
-                <TagItem
-                    style={styles.tag}
-                    tagName='5 hamsters'
-                    tagTotal='1' />
-                <TagItem
-                    style={styles.tag}
-                    tagName='1 hamster'
-                    tagTotal='10' />
+                
             </View>
             break;
         default:
             content = <View style={[styles.content]}>
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
-                <FilmCard style={styles.card} />
+                {props.list.map(item => <FilmCard key={item.pk} film={item} />)}
             </View>
     }
 

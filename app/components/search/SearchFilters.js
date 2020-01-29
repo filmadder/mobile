@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colours } from '../../colours';
 
-const SearchDropdown = props => {
+const SearchFilters = props => {
 
     const filterItems = props.searchTypes.map(item => {
         const selected = props.type === item.filter;
@@ -55,4 +55,4 @@ const s = StyleSheet.create({
     }
 });
 
-export default SearchDropdown;
+export default SearchFilters;
