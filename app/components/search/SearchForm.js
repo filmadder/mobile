@@ -1,85 +1,72 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-import SearchDropdownItem from './SearchDropdownItem'
+import SearchDropdown from './SearchDropdown';
 
 import { colours } from '../../colours';
-import { searches } from '../../constants/filters';
+import { searchTypes } from '../../constants/filters';
 
 const SearchForm = props => {
-    const [isOpen, setIsOpen] = React.useState(false);
     const [query, setQuery] = React.useState('');
+    const [type, setType] = React.useState(props.navigationType || 'films');
 
-    const dropdownItems = searches.map(item =>
-        <SearchDropdownItem
-            key={item.id}
-            handleDropdown={item => onDropdownSelected(item)}
-            item={item} />
-    );
+    React.useEffect(() => {
+        if (query) {
+            search();
+        }
+    }, [type]) 
 
-    const dropdown = <View style={s.dropdown}>{dropdownItems}</View>
-    
-    const onDropdownSelected = item => {
-        setIsOpen(!isOpen);
-    };
-
-    const onButtonClick = () => {
-        if (query.length > 0) {
-            props.onSearch(query)
-        } else {
-            showDropdown();
+    const search = () => {
+        if (query.trim().length > 0) {
+            props.onSearch(query.trim(), type)
         }
     };
 
-    const handleTyping = text => {
-        setQuery(text);
-
-        if (isOpen) {
-            setIsOpen(false)
-        }
-    };
-
-    const showDropdown = () => {
-        setIsOpen(!isOpen);
-        setQuery('');
-    };
+    const onTypeSelected = type => {
+        setType(type);
+        props.onTypeChange(type);
+    }
 
     return (
-        <View style={[s.container, props.style]}>
-            <View style={s.searchForm}>
-                <TextInput
-                    style={s.textField}
-                    placeholder='type here'
-                    value={query}
-                    onSubmitEditing={() => onButtonClick()}
-                    onChangeText={text => handleTyping(text)}></TextInput>
-                <TouchableOpacity
-                    style={s.button}
-                    onPress={() => onButtonClick()}>
-                    <Text style={s.type}>{props.type}</Text>
-                </TouchableOpacity>
+        <View>
+            <View style={[s.formContainer, props.style]}>
+                <View style={s.searchForm}>
+                    <TextInput
+                        {...props}
+                        style={s.textField}
+                        placeholder='type here'
+                        value={query}
+                        onSubmitEditing={() => search()}
+                        onChangeText={text => setQuery(text)}></TextInput>
+                    <TouchableOpacity
+                        style={s.buttonContainer}
+                        onPress={() => search()}>
+                        <Text style={s.button}>search</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            {isOpen && dropdown}
+
+            <SearchDropdown
+                onTypeSelected={onTypeSelected}
+                searchTypes={searchTypes}
+                type={type} />
         </View>
     )
 };
 
 const s = StyleSheet.create({
-    container: {
-        alignItems: 'flex-end',
+    formContainer: {
+        alignItems: 'center',
     },
     searchForm: {
+        maxWidth: 450,
         flexDirection: 'row',
         width: '100%',
         borderColor: colours.blue4,
         borderWidth: 1,
         borderRadius: 50,
-        alignItems: 'center',
+        justifyContent: 'center',
         paddingHorizontal: 30,
-    },
-    dropdown: {
-        paddingRight: 30,
-        paddingVertical: 10,
     },
     textField: {
         flex: 5,
@@ -91,12 +78,12 @@ const s = StyleSheet.create({
         borderRightWidth: 1,
         borderRightColor: colours.blue4,
     },
-    button: {
+    buttonContainer: {
         flex: 2,
         paddingLeft: 15,
         justifyContent: 'center',
     },
-    type: {
+    button: {
         textAlign: 'center',
         fontFamily: 'Pacifico-Regular',
         color: colours.blue4,

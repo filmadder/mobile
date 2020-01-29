@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import TagItem from '../../TagItem';
-import UserRow from '../../user/UserRow';
+import TagItem from '../TagItem';
+import UserRow from '../user/UserRow';
 
 const TagResult = props => {
     let users = props.users.map(user => <UserRow size={'small'} username={user.username} />);

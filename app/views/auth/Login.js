@@ -12,6 +12,7 @@ import { loginUser } from '../../auth';
 
 const Login = props => {
     const [hasError, setHasError] = React.useState(false);
+    const [error, setError] = React.useState('');
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     
@@ -22,11 +23,15 @@ const Login = props => {
             .then(token => {
                 props.navigation.navigate('Inner');
             })
-            .catch(err => console.warn(err))
+            .catch(err => {
+                console.log('in')
+                setHasError(true)
+                setError(err)
+            })
     };
 
     const errorMessage = <Error
-            errorText='something went wrong on the backend'
+            errorText={error}
             onDismiss={() => setHasError(false)} />
     
     return (

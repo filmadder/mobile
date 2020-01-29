@@ -15,13 +15,9 @@ export const films = [
         id: '3',
         filter: 'friends'
     },
-    {
-        id: '4',
-        filter: 'tags'
-    }
 ];
 
-export const searches = [
+export const searchTypes = [
     {
         id: '4',
         filter: 'films'
@@ -31,11 +27,7 @@ export const searches = [
         filter: 'users'
     },
     {
-        id: '2',
-        filter: 'tags'
-    },
-    {
         id: '3',
-        filter: 'director'
+        filter: 'directors'
     },
 ];

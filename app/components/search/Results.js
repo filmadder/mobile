@@ -1,46 +1,26 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
-import UserResult from './resultItems/UserResult';
 import FilmCard from '../../components/FilmCard';
-import DirectorResult from './resultItems/DirectorResult';
-import TagResult from './resultItems/TagResult';
-import { users } from '../../../data';
+import TagResult from './TagResult';
+import UserRow from '../user/UserRow';
 
 const Results = props => {
     let results = null;
 
     switch (props.type) {
-        case 'films':
-            results = props.results.map(result => {
-                return <FilmCard film={result} />
-            })
-            break;
         case 'tags':
-            results = <View>
-                <TagResult
-                    tag={{name: 'outstanding'}}
-                    users={[{username: 'stela'}, {username: 'aurora'}]} />
-                <TagResult
-                    tag={{name: 'mesmerising'}}
-                    users={[{username: 'pavel'}, {username: 'inna'}, {username: 'villi'}]} />
-            </View>
-            break;
-        case 'director':
-            results = <View>
-                <DirectorResult />
-                <DirectorResult />
-            </View>
             break;
         case 'users':
-            results = <View>
-                <UserResult user={users['1']} />
-                <UserResult user={users['3']} />
-            </View>
+            results = props.results.map(result => {
+                return <UserRow key={result.pk} user={result} />
+            })
             break;
         default:
-            results = <View>
-            </View>        
+            results = props.results.map(result => {
+                return <FilmCard key={result.pk} film={result} />
+            })
+            break;     
     }
 
     return (
@@ -52,7 +32,7 @@ const Results = props => {
 
 const s = StyleSheet.create({
     container: {
-
+        marginBottom: 40,
     }
 })
 

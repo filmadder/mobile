@@ -5,33 +5,50 @@ import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
 
+import { searchTypes } from '../constants/filters';
 import ws from '../ws';
 
 const Search = props => {
-    const [type, setType] = React.useState();
-    const [query, setQuery] = React.useState();
     const [results, setResults] = React.useState([]);
+    const [searchDone, setSearchDone] = React.useState(false);
+    const [type, setType] = React.useState();
 
-    const searchType = props.navigation.getParam('search', 'films');
-
-    React.useEffect(() => {
-        if (searchType) {
-            setType(searchType)
+    const addFilter = (query, type) => {
+        switch(type) {
+            case 'tags':
+                return query + ' t!'
+            case 'directors':
+                return query + ' d!'
+            case 'users':
+                return query + ' u!'
+            default:
+                return query
         }
+    }
 
-    }, [])
+    const onTypeChange = type => {
+        setType(type)
+        setSearchDone(false)
+        setResults([])
+    };
 
-    const onSearch = (query) => {
+    const search = (query, type) => {
+
+        setType(type)
 
         if (query.length > 0) {
+
+            // adds the bang according to the serach type
+            query = addFilter(query, type)
+
             ws.send({
                 type: "search",
                 query: query,
                 id: null
             })
             .then(data => {
-                setResults(data.films)
-                setQuery(query)
+                setResults(data.films || data.users)
+                setSearchDone(true)
             })
             .catch(err => {
                 console.warn(err)
@@ -39,36 +56,29 @@ const Search = props => {
         }
     };
 
-    // render
-    if (Object.entries(results).length === 0) {
-        return (<ViewWrapper>
-                <SearchForm
-                    type={type || 'films'}
-                    style={s.searchForm}
-                    onSearch={onSearch} />
-                    <Text>loading</Text>
-                </ViewWrapper>)
-    } else {
-                
-        return (
-            <ViewWrapper>
-                <SearchForm
-                    type={type || 'films'}
-                    style={s.searchForm}
-                    onSearch={onSearch} />
+    return (
+        <ViewWrapper>
+            <SearchForm
+                onTypeChange={onTypeChange}
+                navigationType={props.navigation.getParam('search')}
+                style={s.searchForm}
+                onSearch={search}
+                onFocus={() => setSearchDone(false)} />
+            {(Object.entries(results).length > 0) && (
                 <Results
                     results={results}
-                    type={type}
-                    query={query} />
-                <Text>results</Text>
-            </ViewWrapper>
-        )
-    }
+                    type={type} />
+            )}
+            {(searchDone && Object.entries(results).length === 0) && (
+                <Text>no results for {type}</Text>
+            )}
+        </ViewWrapper>
+    )
 };
 
 const s = StyleSheet.create({
     searchForm: {
-        paddingBottom: 30,
+        paddingVertical: 10,
     }
 });
 

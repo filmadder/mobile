@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import { wsUrl } from './settings';
 
-const url = 'ws://localhost:8000/socket/';
+const url = wsUrl + '/socket/';
 
 let ws = null;
 let queue = {};
@@ -19,26 +20,28 @@ export const open = () => {
             }
 
             ws = new WebSocket(url + token);
-    
+            
             ws.onmessage = event => {
                 const data = JSON.parse(event.data);
-               
+                
                 if (queue.hasOwnProperty(data['id'])) {
                     queue[data['id']](data);
                     delete queue[data['id']];
                 }
             };
-
+            
             ws.onerror = err => {
                 console.warn(err)
-                reject('NOCONNECTION')
+                reject('NOCONNECTION');
+                return;
             }
-
+            
             ws.onopen = () => {
                 resolve()
             }
             
         }).catch(err => {
+            console.log('rejected')
             console.warn(err);
             reject('NOTVALID');
         })

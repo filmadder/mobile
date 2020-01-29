@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import FilmCard from '../FilmCard';
-import UserResult from '../search/resultItems/UserResult';
 import ListFilterDropdown from '../ListFilterDropdown';
 import TagItem from '../TagItem';
 
@@ -15,8 +14,6 @@ const List = props => {
     switch (props.type) {
         case 'friends':
             content = <View style={[styles.content]}>
-                <UserResult user={users['3']} />
-                <UserResult user={users['3']} />
             </View>
             break;
         case 'tags':

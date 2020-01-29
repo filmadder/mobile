@@ -1,20 +1,26 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import { server } from './settings';
 
 export const loginUser = (email, password) => {
-    return fetch('http://localhost:8000/auth/', {
+    const request = JSON.stringify({
+        email,
+        password
+    });
+
+    return fetch(server + '/auth/', {
                 method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password
-                })
+                body: request
             })
             .then(response => {
+                console.log('in respones')
+                console.log(response)
                 return Promise.all([
                     Promise.resolve(response.status),
                     response.json()
                 ]);
             })
             .then(data => {
+                console.log(data)
                 if (data[0] === 200) {
                     AsyncStorage.setItem('token', data[1].token)
                     AsyncStorage.setItem('user', JSON.stringify({
@@ -39,7 +45,7 @@ export const registerUser = (email, name, password1, password2) => {
 
     console.log(body)
 
-    return fetch('http://localhost:8000/auth/', {
+    return fetch(server + '/auth/', {
                 method: 'PUT',
                 body: JSON.stringify({
                     email,

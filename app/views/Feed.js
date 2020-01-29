@@ -12,7 +12,7 @@ const Feed = props => {
     const [feed, setFeed] = React.useState(null);
 
     const handleSearchPress = () => {
-        props.navigation.navigate('Search', { 'search': 'friends' });
+        props.navigation.navigate('Search', { 'search': 'users' });
     }
     
     React.useEffect(() => {
