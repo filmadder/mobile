@@ -11,7 +11,7 @@ const UsernameLink = props => {
 
     return (
         <TouchableOpacity
-            onPress={() => {}}>
+            onPress={() =>  props.navigation.push('Profile', { user: props.user.pk })}>
             <Username
                 size={props.size}
                 name={props.user.name} />

@@ -8,10 +8,20 @@ import FeedCardHeader from '../FeedCardHeader';
 import { colours } from '../../../colours';
 
 const Tag = props => {
-    const tags = props.tags.map(tag =>
+    let action = null;
+
+    switch (props.type) {
+        case 't':
+            action = ' tagged with';
+            break;
+        default:
+            action = ' no such action'
+    }
+
+    const tags = props.tags.map((tag, index) =>
         <TagItem
             // hacky unique key
-            key={props.film.key + 'tag'}
+            key={index}
             style={styles.tag}
             tagName={tag}
             tagTotal='4' />

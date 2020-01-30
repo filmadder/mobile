@@ -1,41 +1,51 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 
 import FeedCard from '../components/feed/FeedCard'
-import ViewWrapper from './ViewWrapper';
 import NothingYet from './nothing/NothingYet';
 import Loader from '../components/Loader';
+import ViewTitle from '../components/ViewTitle';
 
 import ws from '../ws';
 
 const Feed = props => {
-    const [feed, setFeed] = React.useState(null);
+    const [feed, setFeed] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    const [page, setPage] = React.useState(0);
 
-    const handleSearchPress = () => {
-        props.navigation.navigate('Search', { 'search': 'users' });
-    }
     
     React.useEffect(() => {
-
-        let isSubscribed = true;
+                
+        getFeed();
+        
+    }, [])
+    
+    const handleSearchPress = () => {
+        props.navigation.navigate('Search', { 'search': 'users' });
+    };
+    
+    const getFeed = () => {
+        setPage(page + 1);
 
         ws.send({
             type: "get_feed",
-            per_page: 4,
-            page: 0,
+            per_page: 20,
+            page: page,
             id: null
         })
-        .then(data => (isSubscribed ? setFeed(data.items) : null))
-        .catch(err => (isSubscribed ? (console.warn(err)) : null))
-
-        return () => (isSubscribed = false);
-    }, [])
-
+        .then(data => {
+            setLoading(false);
+            setFeed(feed.concat(data.items));
+        })
+        .catch(err => (console.warn(err)))
+    }
+    
 
     /*
          RENDER
     */
     // show the loading screen before fetch
-    if (feed === null) {
+    if (loading) {
         return <Loader />
     // show Nothing screen when there are no feed items
     } else if (feed.length === 0) {
@@ -48,15 +58,14 @@ const Feed = props => {
         )
     // show feed
     } else {
-        const items = feed.map(item => <FeedCard
-                            key={item['film']['pk']}
-                            item={item} />);
-
         return (
-            <ViewWrapper
-                title='Feed'>
-                {items}
-            </ViewWrapper>
+            <FlatList
+                ListHeaderComponent={<ViewTitle title='Feed' style={{ paddingTop: 20 }} />}
+                data={feed}
+                renderItem={({ item }) => <FeedCard item={item} />}
+                keyExtractor={item => item.pk.toString()}
+                onEndReached={getFeed}
+            />
         )
     }
 };

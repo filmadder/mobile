@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 
 import AvatarLink from '../user/AvatarLink';
 import Film from './feedItems/Film';
@@ -10,37 +10,41 @@ import Tag from './feedItems/Tag';
 import { colours } from '../../colours';
 
 const FeedCard = props => {
-    const type = props.item.type;
-    let content = null;
+    const [content, setContent] = React.useState(null);
 
-    switch (type) {
-        case 't': 
-            content = <Tag 
-                    user={props.item['user']}
-                    film={props.item['film']}
-                    tags={props.item['tags']} />
-            break;
-        case 'f':
-            content = <Friendship />
-            break;
-        case 'c':
-            content = <Thought
-                    comment={props.item.comment}
-                    user={props.item['user']}
-                    film={props.item['film']} />
-            break;
-        case 'a':
-        case 'i':
-        case 'o':
-        case 'u':
-            content = <Film
-                    action={props.item['type']}
-                    user={props.item['user']}
-                    film={props.item['film']} />
-            break;
-        default:
-            content = <View><Text>no such type of feed item</Text></View>
-    }
+    React.useEffect(() => {
+        const type = props.item.type;
+    
+        switch (type) {
+            case 't':
+                setContent(<Tag
+                        type={type}
+                        user={props.item.user}
+                        film={props.item.film}
+                        tags={props.item.tags} />)
+                break;
+            case 'f':
+                setContent(<Friendship />)
+                break;
+            case 'c':
+                setContent(<Thought
+                        comment={props.item.comment}
+                        user={props.item.user}
+                        film={props.item.film} />)
+                break;
+            case 'a':
+            case 'i':
+            case 'o':
+            case 'u':
+                setContent(<Film
+                        type={type}
+                        user={props.item.user}
+                        film={props.item.film} />)
+                break;
+            default:
+                setContent(<View><Text>no such type of feed item</Text></View>)
+        }
+    }, []) 
 
     return (
         <View style={[styles.container, props.style]}>
@@ -59,7 +63,7 @@ const FeedCard = props => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        paddingHorizontal: 0,
+        paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
         marginVertical: 50,
     },
     contents: {

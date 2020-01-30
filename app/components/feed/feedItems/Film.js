@@ -7,7 +7,7 @@ import FeedCardHeader from '../FeedCardHeader';
 const Film = props => {
     let action = null;
 
-    switch (props.action) {
+    switch (props.type) {
         case 'a':
             action = ' added to seen';
             break;

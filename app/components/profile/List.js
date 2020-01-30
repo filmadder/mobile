@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import FilmCard from '../FilmCard';
+import UserRow from '../user/UserRow';
 import ListFilterDropdown from '../ListFilterDropdown';
-import TagItem from '../TagItem';
+import Loader from '../Loader';
 
 import { colours } from '../../colours';
-import { users } from '../../../data';
 
 const List = props => {
     let content = null;
@@ -14,11 +14,11 @@ const List = props => {
     switch (props.type) {
         case 'friends':
             content = <View style={[styles.content]}>
+                {props.list.map(item => <UserRow key={item.pk} user={item} size='large' />)}
             </View>
             break;
         case 'tags':
             content = <View style={[styles.content, styles.tagList]}>
-                
             </View>
             break;
         default:
