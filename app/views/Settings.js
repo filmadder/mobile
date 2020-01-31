@@ -57,6 +57,7 @@ const Settings = () => {
                 <SettingsSection
                     title='Avatar'>
                     <AvatarLink
+                        size='large'
                         user={user}
                         onPress={handleChoosePhoto} />
                 </SettingsSection>

@@ -6,11 +6,12 @@ import Film from './feedItems/Film';
 import Friendship from './feedItems/Friendship';
 import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
+import Loader from '../Loader';
 
 import { colours } from '../../colours';
 
 const FeedCard = props => {
-    const [content, setContent] = React.useState(null);
+    const [content, setContent] = React.useState(<Text>loading..</Text>);
 
     React.useEffect(() => {
         const type = props.item.type;

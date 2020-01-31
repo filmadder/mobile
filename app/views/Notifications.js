@@ -1,29 +1,53 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
-import ViewTitle from '../components/ViewTitle';
 import NotificationItem from '../components/NotificationItem';
 import FaButton from '../components/dom/FaButton';
-import ViewWrapper from './ViewWrapper';
-import { users } from '../../data';
+import ViewTitle from '../components/ViewTitle';
+import ws from '../ws';
 
 const Notifications = props => {
+    const [page, setPage] = React.useState(0);
+    const [updates, setUpdates] = React.useState([]);
+
+    React.useEffect(() => {
+
+        getUpdates();
+
+    }, [updates]);
+
+    const getUpdates = () => {
+        console.log('gets updates')
+        setPage(page + 1);
+
+        ws.send({
+            type: "get_updates",
+            per_page: 10,
+            page: page,
+            id: null
+        })
+        .then(data => {
+            console.log(data)
+
+            if (data.items.length > 0) {
+                setUpdates(updates.concat(data.items))
+            }
+        })
+        .catch(err => (console.log(err)))
+    };
+
     return (
-        <ViewWrapper
-            title='Notifications'>
-            <NotificationItem
-                user={users['2']}
-                text='send you a friend request'>
-                <View style={s.buttonGroup}>
-                    <FaButton title='accept' />
-                    <FaButton title='decline' />
-                </View>
-            </NotificationItem>
-            <NotificationItem
-                user={users['3']}
-                text='accepted your friend request'>
-            </NotificationItem>
-        </ViewWrapper>
+            <FlatList
+                ListHeaderComponent={<ViewTitle title='Notifications' style={{ paddingTop: 20 }} />}
+                data={updates}
+                renderItem={({ item }) => <NotificationItem
+                        user={item.user}
+                        type={item.type}
+                        created={item.created} />
+                }
+                keyExtractor={item => item.pk.toString()}
+                onEndReached={() => getUpdates()}
+            />
     )
 };
 
