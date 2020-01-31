@@ -20,17 +20,17 @@ const Film = props => {
 
     React.useEffect(() => {
 
-        isSubscribed = true;
-
+        // gets the film info
         ws.send({
             type: "get_film",
             film: filmId,
             id: null
         })
-        .then(data => (isSubscribed) ? setFilm(data) : {})
-        .catch(err => (isSubscribed) ? console.warn(err) : null)
+        .then(data => {
+            setFilm(data)
+        })
+        .catch(err => (console.warn(err)))
 
-        return () => (isSubscribed = false);
     }, [])
 
     if (Object.entries(film).length === 0) {
@@ -43,6 +43,7 @@ const Film = props => {
         <ViewWrapper
             style={s.view}>
             <Header
+                filmId={filmId}
                 style={padding}
                 poster={film.film.poster_url}
                 title={film.film.title}
@@ -50,7 +51,7 @@ const Film = props => {
                 year={film.film.year}
                 country={film.film.countries}
                 duration={film.film.runtime}
-                status={'seen'} />
+                status={film.status} />
             <Info
                 style={padding}
                 directors={film.film.directors}

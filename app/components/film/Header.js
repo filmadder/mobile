@@ -1,10 +1,61 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Text } from 'react-native';
+import { View, TouchableOpacity, ImageBackground, Text, Button, StyleSheet } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+import ws from '../../ws';
 import { colours } from '../../colours';
 
 const Header = props => {
+    const [status, setStatus] = React.useState(props.status);
+    const [statusText, setStatusText] = React.useState();
+    const [showStatusOptions, setshowStatusOptions] = React.useState();
+
+    React.useEffect(() => {
+
+        setText();
+        setshowStatusOptions(false);
+
+    }, [status])
+
+    const setText = () => {
+
+        switch(status) {
+            case 'p':
+                setStatusText('seen');
+                break;
+            case 'n':
+                setStatusText('not set');
+                break;
+            case 'f':
+                setStatusText('watchlist');
+                break;
+            case 'o':
+                setStatusText('watching');
+        }
+    }
+
+    const setNewStatus = newStatus => {
+
+        if (newStatus === status) {
+            newStatus = 'n'
+        }
+
+        ws.send({
+            id: null,
+            type: "set_film_status",
+            film: props.filmId,
+            status: newStatus      
+        })
+        .then(data => {
+            if (data.type === 'confirm') {
+                setStatus(newStatus);
+            }
+        })
+        .catch(err => {
+            console.warn(err)
+        })
+    };
+
     return (
         <ImageBackground
             style={s.poster}
@@ -22,7 +73,17 @@ const Header = props => {
                         <Text style={s.duration}>{props.duration}</Text>
                     </View>
                     <View style={s.infoRight}>
-                        <Text style={s.status}>{props.status}</Text>
+                        {showStatusOptions && (
+                            <View>
+                                <Button onPress={() => setNewStatus('f')} color='white' title='watchlist'></Button>
+                                <Button onPress={() => setNewStatus('p')} color='white' title='seen'></Button>
+                                <Button onPress={() => setNewStatus('o')} color='white' title='currently watching'></Button>
+                            </View>
+                        )}
+                        <TouchableOpacity
+                            onPress={() => setshowStatusOptions(!showStatusOptions)}>
+                            <Text style={s.status}>{statusText}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </LinearGradient>
