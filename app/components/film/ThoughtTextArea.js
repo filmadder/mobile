@@ -1,15 +1,50 @@
 import React from 'react';
-import { View, Dimensions, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import FaButton from '../dom/FaButton';
 
 import { colours } from '../../colours';
+import ws from '../../ws';
 
 const ThoughtTextArea = props => {
     const [thought, setThought] = React.useState('');
+    const [hasSpoilers, setHasSpoilers] = React.useState(false);
+    const [hasError, setHasError] = React.useState(false);
+    const [error, setError] = React.useState('');
+
+    const postComment = () => {
+        ws.send({
+            id: null,
+            type: "post_comment",
+            film: props.filmId,
+            text: thought,
+            has_spoilers: hasSpoilers
+        })
+        .then(response => {
+            if (response.type === 'confirm') {
+
+                setThought('');
+
+                props.addThought();
+            } else {
+                console.log(response.message)
+                setHasError(true)
+                setError(response.message)
+            }
+        })
+        .catch(err => {
+            setHasError(true)
+            setError(err)
+        })
+    }
+
+    const errorMessage = <View>
+        <Text>{error}</Text>
+    </View>
 
     return (
         <View style={[s.container, props.style]}>
+            {hasError && errorMessage}
             <View style={s.textareaContainer}>
                 <TextInput
                     style={s.textarea}
@@ -17,11 +52,12 @@ const ThoughtTextArea = props => {
                     placeholder='share your thoughts'
                     onChangeText={text => setThought(text)}
                     multiline={true}
+                    onFocus={() => setHasError(false)}
                     numberOfLines={5}></TextInput>
             </View>
             <FaButton
                 title='post'
-                onPress={() => {}}></FaButton>
+                onPress={postComment}></FaButton>
         </View>
     )
 };

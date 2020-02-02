@@ -21,6 +21,11 @@ const Film = props => {
     React.useEffect(() => {
 
         // gets the film info
+        getFilm();
+
+    }, [])
+
+    const getFilm = () => {
         ws.send({
             type: "get_film",
             film: filmId,
@@ -30,8 +35,7 @@ const Film = props => {
             setFilm(data)
         })
         .catch(err => (console.warn(err)))
-
-    }, [])
+    }
 
     if (Object.entries(film).length === 0) {
         return (<ViewWrapper>
@@ -73,7 +77,10 @@ const Film = props => {
             <Thoughts
                 style={padding}
                 thoughts={film.comments} />
-            <ThoughtTextArea style={{paddingHorizontal: 20}} />
+            <ThoughtTextArea
+                addThought={() => getFilm()}
+                filmId={filmId}
+                style={{paddingHorizontal: 20}} />
         </ViewWrapper>
     )
 };

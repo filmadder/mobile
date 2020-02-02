@@ -47,8 +47,6 @@ const Thoughts = props => {
                     onCheckboxChange={() => setShowAll(!showAll)} />
                 {thoughts.length > 0 ? thoughts : <Text>no thoughts yet</Text>}
             </View>
-            <FaSmallButton
-                title='load more' />
         </View>
     )
 };

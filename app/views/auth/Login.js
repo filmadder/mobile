@@ -24,7 +24,6 @@ const Login = props => {
                 props.navigation.navigate('Inner');
             })
             .catch(err => {
-                console.log('in')
                 setHasError(true)
                 setError(err)
             })

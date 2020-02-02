@@ -1,14 +1,32 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 
 import { colours } from '../../colours';
-import { users } from '../../../data';
 
 const Thought = props => {
+    const [sameUser, setSameUser] = React.useState(false);
+
+    React.useEffect(() => {
+        AsyncStorage.getItem('user')
+            .then(user => {
+                let thisUser = JSON.parse(user)
+                if (thisUser.pk === props.user.pk.toString()) {
+                    setSameUser(true)
+                }
+            })
+            .catch(err => {
+                console.warn(err)
+            })
+    }, [])
+
+    let button = sameUser
+        ? <FaSmallButton style={s.button} title='delete' />
+        : <FaSmallButton style={s.button} title='reply' />
 
     return (
         <View style={s.container}>
@@ -25,9 +43,7 @@ const Thought = props => {
             <View style={s.textContainer}>
                 <Text style={s.text}>{props.text}</Text>
             </View>
-            <FaSmallButton
-                style={s.button}
-                title='reply' />
+            {button}
         </View>
     )
 };

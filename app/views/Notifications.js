@@ -14,7 +14,7 @@ const Notifications = props => {
 
         getUpdates();
 
-    }, [updates]);
+    }, [updates, setUpdates]);
 
     const getUpdates = () => {
         console.log('gets updates')
