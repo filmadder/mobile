@@ -3,12 +3,29 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import CheckboxField from '../../components/CheckboxField';
 import Thought from './Thought';
-import FaSmallButton from '../dom/FaSmallButton';
 
 import { colours } from '../../colours';
+import ws from '../../ws';
 
 const Thoughts = props => {
     const [showAll, setShowAll] = React.useState(false);
+
+    const deleteComment = pk => {
+        ws.send({
+            id: null,
+            type: "delete_comment",
+            film: props.filmId,
+            comment: pk
+        })
+        .then(response => {
+            if (response.type === 'confirm') {
+                props.reloadFilm();
+            }
+        })
+        .catch(err => {
+            console.warn(err)
+        })
+    };
 
     let thoughts = props.thoughts.map(thought => {
         let user = {
@@ -23,7 +40,8 @@ const Thoughts = props => {
                     key={thought.pk}
                     user={user}
                     text={thought.text}
-                    date={thought.posted} />
+                    date={thought.posted}
+                    deleteComment={() => deleteComment(thought.pk)} />
         )} else {
             if (!thought.has_spoilers) {
                 return (
@@ -31,7 +49,8 @@ const Thoughts = props => {
                         key={thought.pk}
                         user={user}
                         text={thought.text}
-                        date={thought.posted} />
+                        date={thought.posted}
+                        deleteComment={() => deleteComment(thought.pk)} />
                 )}
         }
     })

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import FaButton from '../dom/FaButton';
+import CheckboxField from '../CheckboxField';
 
 import { colours } from '../../colours';
 import ws from '../../ws';
@@ -24,8 +25,9 @@ const ThoughtTextArea = props => {
             if (response.type === 'confirm') {
 
                 setThought('');
+                setHasSpoilers(false)
 
-                props.addThought();
+                props.reloadFilm();
             } else {
                 console.log(response.message)
                 setHasError(true)
@@ -55,6 +57,11 @@ const ThoughtTextArea = props => {
                     onFocus={() => setHasError(false)}
                     numberOfLines={5}></TextInput>
             </View>
+            <CheckboxField
+                    style={s.checkbox}
+                    text='this has spoilers'
+                    checked={hasSpoilers}
+                    onCheckboxChange={() => setHasSpoilers(!hasSpoilers)} />
             <FaButton
                 title='post'
                 onPress={postComment}></FaButton>
@@ -73,6 +80,9 @@ const s = StyleSheet.create({
         borderRadius: 10,
         padding: 15,
         marginBottom: 20,
+    },
+    checkbox: {
+        justifyContent: 'flex-end'
     },
     textarea: {
         height: 120,

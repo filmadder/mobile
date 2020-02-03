@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Alert, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import AvatarLink from '../../components/user/AvatarLink';
@@ -24,9 +24,17 @@ const Thought = props => {
             })
     }, [])
 
-    let button = sameUser
-        ? <FaSmallButton style={s.button} title='delete' />
-        : <FaSmallButton style={s.button} title='reply' />
+    const deleteComment = text => {
+        Alert.alert(
+            'Delete Comment',
+            text,
+            [
+                {text: 'No', onPress: () => {}, style: 'cancel'},
+                {text: 'Yes', onPress: () => props.deleteComment()},
+            ],
+            { cancelable: true }
+          );
+    };
 
     return (
         <View style={s.container}>
@@ -43,7 +51,12 @@ const Thought = props => {
             <View style={s.textContainer}>
                 <Text style={s.text}>{props.text}</Text>
             </View>
-            {button}
+            {sameUser && (
+                <FaSmallButton
+                    style={s.button}
+                    title='delete'
+                    onPress={() => deleteComment(props.text)} />
+            )}
         </View>
     )
 };
