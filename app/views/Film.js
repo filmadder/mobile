@@ -68,17 +68,14 @@ const Film = props => {
                     actors={film.film.actors}
                     synopsis={film.film.plot} />
                 <Watchers
-                    key='watchers_past'
                     style={padding}
                     type={'Seen'}
                     watchers={film.watchers_past} />
                 <Watchers
-                    key='watchers_present'
                     style={padding}
                     type={'Currently Watching'}
                     watchers={film.watchers_present} />
                 <Watchers
-                    key='watchers_future'
                     style={padding}
                     type={'Watchlist'}
                     watchers={film.watchers_future} />

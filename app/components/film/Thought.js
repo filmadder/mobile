@@ -29,7 +29,7 @@ const Thought = props => {
             'Delete Comment',
             text,
             [
-                {text: 'No', onPress: () => {}, style: 'cancel'},
+                {text: 'No', style: 'cancel'},
                 {text: 'Yes', onPress: () => props.deleteComment()},
             ],
             { cancelable: true }

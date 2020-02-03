@@ -16,15 +16,16 @@ const Watchers = props => {
             pk: watcher.pk
         }
         
-        let tags = watcher.tags && watcher.tags.map((tag, index) => (
-            <TagItem
-                key={index}
+        let tags = watcher.tags && watcher.tags.map((tag, index) => {
+            return <TagItem
+                key={tag + index}
                 style={{margin: 5}}
                 tagName={tag} />
-        ))
+        })
 
         return (
-            <View style={s.userContainer}>
+            <View style={s.userContainer}
+                key={props.type}>
                 <UserRow
                     key={watcher.pk}
                     user={user}
@@ -39,7 +40,10 @@ const Watchers = props => {
             <View style={s.header}>
                 <Text style={s.title}>{props.type}</Text>
             </View>
-            {watchers.length > 0 ? watchers : <Text>none of your friends</Text>}
+            {watchers.length > 0
+                ? watchers
+                : <Text>none of your friends</Text>
+            }
         </View>
     )
 

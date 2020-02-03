@@ -25,6 +25,7 @@ const Info = props => {
             }
             {props.synopsis.length > 0 && 
             <SynopsisSection
+                // key='synopsis'
                 title={'Synopsis'}
                 text={props.synopsis} />
             }

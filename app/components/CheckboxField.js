@@ -15,7 +15,9 @@ const CheckboxField = props => {
             <View style={s.textContainer}>
                 <Text style={s.text}>{props.text}</Text>
             </View>
-            <Checkbox onCheckboxChange={onCheckboxChange} />
+            <Checkbox
+                checked={props.checked}
+                onCheckboxChange={onCheckboxChange} />
         </View>
     )
 };
