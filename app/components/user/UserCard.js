@@ -8,7 +8,9 @@ import Username from './Username'
 const UserCard = props => {
 
     const goToProfile = () => {
+
         if (!props.cancelPress) {
+            console.log(props.navigation)
             props.navigation.navigate('Profile', { 'user': props.user.pk })
         }
     };

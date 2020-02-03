@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 
 import UserCard from '../components/user/UserCard';
 import List from '../components/profile/List';
+import NotFriends from '../components/profile/NotFriends';
 import ProfileFooter from '../components/profile/ProfileFooter';
 import ViewWrapper from './ViewWrapper';
 import Loader from '../components/Loader'
@@ -10,17 +11,17 @@ import Loader from '../components/Loader'
 import ws from '../ws';
 
 const User = props => {
-    const [type, setType] = React.useState();
+    const [type, setType] = React.useState('watchlist');
     const [user, setUser] = React.useState({});
     const [list, setList] = React.useState([]);
+    const [friendshipStatus, setFriendshipStatus] = React.useState();
+    const [areFriends, setAreFriends] = React.useState(false);
 
-    const film = (type === 'watchlist' || type === 'watched' || type === 'watching')
-        ? true
-        : false
+    const isFilmList = (type === 'watchlist' || type === 'watched' || type === 'watching')
 
     const footer = <ProfileFooter
             current={type}
-            total={list.length} />;
+            total={list && list.length} />;
 
     const onTypeSelected = type => {
         setType(type);
@@ -29,8 +30,11 @@ const User = props => {
 
     React.useEffect(() => {
 
-        let isSubscribed = true;
+        getUser();
 
+    }, [type])
+
+    const getUser = () => {
         ws.send({
             type: "get_user",
             user: props.navigation.getParam('user'),
@@ -38,6 +42,12 @@ const User = props => {
         })
         .then(data => {
             setUser(data.user);
+
+            setFriendshipStatus(data.friendship_status);
+
+            if (data.friendship_status === 'f') {
+                setAreFriends(true);
+            }
 
             switch (type) {
                 case 'friends':
@@ -60,10 +70,8 @@ const User = props => {
                     break;
             }
         })
-        .catch(err => (isSubscribed ? (console.warn(err)) : null))
-
-        return () => (isSubscribed = false);
-    }, [type])
+        .catch(err => (console.warn(err)))
+    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -72,12 +80,18 @@ const User = props => {
                     cancelPress={true}
                     size='large'
                     user={user} />
-                <List
+                {areFriends && list && <List
                     type={type}
                     list={list}
-                    onTypeSelected={onTypeSelected}></List>
+                    onTypeSelected={onTypeSelected}></List>}
+                {!areFriends && (
+                    <NotFriends
+                        reload={getUser}
+                        status={friendshipStatus}
+                        user={user} />
+                )}
             </ViewWrapper>
-            {film && footer}
+            {isFilmList && footer}
         </View>
     )
 };

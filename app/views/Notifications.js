@@ -11,13 +11,10 @@ const Notifications = props => {
     const [updates, setUpdates] = React.useState([]);
 
     React.useEffect(() => {
-
         getUpdates();
-
     }, [updates, setUpdates]);
 
     const getUpdates = () => {
-        console.log('gets updates')
         setPage(page + 1);
 
         ws.send({
@@ -27,7 +24,6 @@ const Notifications = props => {
             id: null
         })
         .then(data => {
-            console.log(data)
 
             if (data.items.length > 0) {
                 setUpdates(updates.concat(data.items))

@@ -26,7 +26,7 @@ const Thought = props => {
 
     const deleteComment = text => {
         Alert.alert(
-            'Delete Comment',
+            'Are you sure you want to delete this thought?',
             text,
             [
                 {text: 'No', style: 'cancel'},

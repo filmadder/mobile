@@ -12,12 +12,9 @@ const Feed = props => {
     const [feed, setFeed] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [page, setPage] = React.useState(0);
-
     
     React.useEffect(() => {
-                
         getFeed();
-        
     }, [])
     
     const handleSearchPress = () => {

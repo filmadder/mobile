@@ -1,24 +1,26 @@
 import React from 'react';
-import { View, Text }  from 'react-native';
+import { View }  from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import UserCard from '../../../components/user/UserCard';
-import Username from '../../../components/user/Username';
-
-import { users } from '../../../../data'; 
+import FeedCardHeader from '../FeedCardHeader';
 
 const Friendship = props => {
+
     return (
         <View>
-            <View style={styles.action}>
-                <Username
-                    user={props.user} />
-                <Text style={styles.actionText}> befriended someone</Text>
-            </View>
+            <FeedCardHeader 
+                user={props.userA}
+                navigation={props.navigation}
+                action={' befiended'} />
+
             <UserCard
+                navigation={props.navigation}
                 style={{ backgroundColor: 'transparent' }}
-                user={users['3']} />
+                user={props.userB}
+                size='large' />
         </View>
     )
 };
 
-export default Friendship;
+export default withNavigation(Friendship);

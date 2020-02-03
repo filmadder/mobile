@@ -11,47 +11,46 @@ import Loader from '../Loader';
 import { colours } from '../../colours';
 
 const FeedCard = props => {
-    const [content, setContent] = React.useState(<Text>loading..</Text>);
-
-    React.useEffect(() => {
-        const type = props.item.type;
+    let content = null;
+    const type = props.item.type;
     
-        switch (type) {
-            case 't':
-                setContent(<Tag
-                        type={type}
-                        user={props.item.user}
-                        film={props.item.film}
-                        tags={props.item.tags} />)
-                break;
-            case 'f':
-                setContent(<Friendship />)
-                break;
-            case 'c':
-                setContent(<Thought
-                        comment={props.item.comment}
-                        user={props.item.user}
-                        film={props.item.film} />)
-                break;
-            case 'a':
-            case 'i':
-            case 'o':
-            case 'u':
-                setContent(<Film
-                        type={type}
-                        user={props.item.user}
-                        film={props.item.film} />)
-                break;
-            default:
-                setContent(<View><Text>no such type of feed item</Text></View>)
-        }
-    }, []) 
+    switch (type) {
+        case 't':
+            content = <Tag
+                    type={type}
+                    user={props.item.user}
+                    film={props.item.film}
+                    tags={props.item.tags} />
+            break;
+        case 'f':
+            content = <Friendship
+                userA={props.item.user_a}
+                userB={props.item.user_b} />
+            break;
+        case 'c':
+            content = <Thought
+                    comment={props.item.comment}
+                    user={props.item.user}
+                    film={props.item.film} />
+            break;
+        case 'a':
+        case 'i':
+        case 'o':
+        case 'u':
+            content = <Film
+                    type={type}
+                    user={props.item.user}
+                    film={props.item.film} />
+            break;
+        default:
+            content = <View><Text>no such type of feed item</Text></View>
+    }
 
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
                 <AvatarLink
-                    user={props.item.user}
+                    user={props.item.user || props.item.user_a}
                     style={styles.avatar}
                     size='large' />
 
