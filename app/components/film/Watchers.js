@@ -24,10 +24,10 @@ const Watchers = props => {
         })
 
         return (
-            <View style={s.userContainer}
-                key={props.type}>
+            <View
+                style={s.userContainer}
+                key={user.pk}>
                 <UserRow
-                    key={watcher.pk}
                     user={user}
                     size='medium' />
                     {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
