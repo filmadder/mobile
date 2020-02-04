@@ -49,6 +49,7 @@ const Header = props => {
         .then(data => {
             if (data.type === 'confirm') {
                 setStatus(newStatus);
+                props.reloadFilm();
             }
         })
         .catch(err => {

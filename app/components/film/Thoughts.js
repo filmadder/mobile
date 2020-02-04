@@ -8,7 +8,12 @@ import { colours } from '../../colours';
 import ws from '../../ws';
 
 const Thoughts = props => {
-    const [showAll, setShowAll] = React.useState(false);
+    const [showAll, setShowAll] = React.useState(props.status === 'p');
+
+    React.useEffect(() => {
+        console.log('reloads')
+        setShowAll(props.status === 'p')
+    }, [props.status])
 
     const deleteComment = pk => {
         ws.send({
@@ -62,6 +67,7 @@ const Thoughts = props => {
             </View>
             <View>
                 <CheckboxField
+                    checked={showAll}
                     text='show thoughts with spoilers'
                     onCheckboxChange={() => setShowAll(!showAll)} />
                 {thoughts.length > 0 ? thoughts : <Text>no thoughts yet</Text>}

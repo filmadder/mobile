@@ -23,10 +23,8 @@ const ThoughtTextArea = props => {
         })
         .then(response => {
             if (response.type === 'confirm') {
-
                 setThought('');
                 setHasSpoilers(false)
-
                 props.reloadFilm();
             } else {
                 console.log(response.message)

@@ -31,6 +31,7 @@ const Film = props => {
             id: null
         })
         .then(data => {
+            console.log('reloads')
             setFilm(data)
         })
         .catch(err => (console.warn(err)))
@@ -60,6 +61,7 @@ const Film = props => {
                     year={film.film.year}
                     country={film.film.countries}
                     duration={film.film.runtime}
+                    reloadFilm={reloadFilm}
                     status={film.status} />
                 <Info
                     style={padding}
@@ -83,7 +85,8 @@ const Film = props => {
                     reloadFilm={reloadFilm}
                     style={padding}
                     filmId={filmId}
-                    thoughts={film.comments} />
+                    thoughts={film.comments}
+                    status={film.status} />
                 <ThoughtTextArea
                     reloadFilm={reloadFilm}
                     filmId={filmId}
