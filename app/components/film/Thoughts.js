@@ -11,7 +11,6 @@ const Thoughts = props => {
     const [showAll, setShowAll] = React.useState(props.status === 'p');
 
     React.useEffect(() => {
-        console.log('reloads')
         setShowAll(props.status === 'p')
     }, [props.status])
 

@@ -31,7 +31,6 @@ const Film = props => {
             id: null
         })
         .then(data => {
-            console.log('reloads')
             setFilm(data)
         })
         .catch(err => (console.warn(err)))

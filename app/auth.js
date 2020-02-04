@@ -69,3 +69,13 @@ export const registerUser = (email, name, password1, password2) => {
             })
             .catch(err => console.warn(err))
 }
+
+export const getLoggedUser = () => {
+    return AsyncStorage.getItem('user')
+        .then(user => {
+            return JSON.parse(user)
+        })
+        .catch(err => {
+            console.warn(err)
+        })
+}

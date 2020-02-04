@@ -11,20 +11,29 @@ import { colours } from '../../colours';
 const List = props => {
     let content = null;
 
-    switch (props.type) {
-        case 'friends':
-            content = <View style={[styles.content]}>
-                {props.list.map(item => <UserRow key={item.pk} user={item} size='large' />)}
-            </View>
-            break;
-        case 'tags':
-            content = <View style={[styles.content, styles.tagList]}>
-            </View>
-            break;
-        default:
-            content = <View style={[styles.content]}>
-                {props.list.map(item => <FilmCard key={item.pk} film={item} />)}
-            </View>
+    // empty list
+    if (props.list.length === 0) {
+        content = <View style={[styles.content]}>
+            <Text>nothing in {props.type}</Text>
+        </View>
+    // full list
+    } else {
+        switch (props.type) {
+            case 'friends':
+                content = <View style={[styles.content]}>
+                    {props.list.map(item => <UserRow key={item.pk} user={item} size='large' />)}
+                </View>
+                break;
+            case 'tags':
+                content = <View style={[styles.content, styles.tagList]}>
+                </View>
+                break;
+            default:
+                content = <View style={[styles.content]}>
+                    {props.list.map(item => <FilmCard key={item.pk} film={item} />)}
+                </View>
+
+        }
     }
 
     return (

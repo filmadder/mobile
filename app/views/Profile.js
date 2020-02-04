@@ -6,22 +6,23 @@ import List from '../components/profile/List';
 import NotFriends from '../components/profile/NotFriends';
 import ProfileFooter from '../components/profile/ProfileFooter';
 import ViewWrapper from './ViewWrapper';
-import Loader from '../components/Loader'
 
+import { getLoggedUser } from '../auth';
 import ws from '../ws';
 
 const User = props => {
     const [type, setType] = React.useState('watchlist');
     const [user, setUser] = React.useState({});
+    const [isThemselves, setIsThemselves] = React.useState();
     const [list, setList] = React.useState([]);
     const [friendshipStatus, setFriendshipStatus] = React.useState();
-    const [areFriends, setAreFriends] = React.useState(false);
+    const [isBefriended, setIsBefriended] = React.useState(false);
 
-    const isFilmList = (type === 'watchlist' || type === 'watched' || type === 'watching')
+    const isFilmList = (type === 'watchlist' || type === 'watched' || type === 'watching');
 
     const footer = <ProfileFooter
-            current={type}
-            total={list && list.length} />;
+        current={type}
+        total={list && list.length} />;
 
     const onTypeSelected = type => {
         setType(type);
@@ -31,7 +32,6 @@ const User = props => {
     React.useEffect(() => {
 
         getUser();
-
     }, [type])
 
     const getUser = () => {
@@ -42,11 +42,10 @@ const User = props => {
         })
         .then(data => {
             setUser(data.user);
-
             setFriendshipStatus(data.friendship_status);
 
             if (data.friendship_status === 'f') {
-                setAreFriends(true);
+                setIsBefriended(true);
             }
 
             switch (type) {
@@ -69,6 +68,17 @@ const User = props => {
                     setList(data.films_future);
                     break;
             }
+
+            return data.user.pk
+        })
+        .then(pk => {
+            getLoggedUser()
+                .then(user => {
+                    setIsThemselves(user.pk.toString() === pk.toString())
+                })
+                .catch(err => {
+                    console.warn(err)
+                })
         })
         .catch(err => (console.warn(err)))
     }
@@ -80,15 +90,15 @@ const User = props => {
                     cancelPress={true}
                     size='large'
                     user={user} />
-                {areFriends && list && <List
-                    type={type}
-                    list={list}
-                    onTypeSelected={onTypeSelected}></List>}
-                {!areFriends && (
-                    <NotFriends
-                        reload={getUser}
-                        status={friendshipStatus}
-                        user={user} />
+                {isBefriended || isThemselves ? (
+                    <List
+                        type={type}
+                        list={list}
+                        onTypeSelected={onTypeSelected}></List>
+                ) : (<NotFriends
+                    reload={getUser}
+                    status={friendshipStatus}
+                    user={user} />
                 )}
             </ViewWrapper>
             {isFilmList && footer}
