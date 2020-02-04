@@ -57,7 +57,6 @@ const NotFriends = props => {
             user: props.user.pk        
         })
         .then(response => {
-            console.log(response)
             if (response.type === 'confirm') {
                 props.reload();
             } else {

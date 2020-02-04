@@ -2,13 +2,11 @@ import React from 'react';
 import { View, Text, Dimensions, StyleSheet, Button } from 'react-native';
 
 import UserRow from '../components/user/UserRow';
-import FaButton from '../components/dom/FaButton';
 
 import { colours } from '../colours'
 
 const NotificationItem = props => {
     const [actionText, setActionText] = React.useState();
-    const [actionButtons, setActionButtons] = React.useState();
 
     React.useEffect(() => {
 
@@ -20,12 +18,6 @@ const NotificationItem = props => {
         switch(props.type) {
             case 'q':
                 setActionText('wants to be friends with you');
-                setActionButtons(
-                    <View style={s.buttons}>
-                        <FaButton title='accept'></FaButton>
-                        <FaButton title='decline'></FaButton>
-                    </View>
-                )
                 break;
             case 'f':
                 setActionText('and you are friends now')
@@ -47,7 +39,6 @@ const NotificationItem = props => {
                         user={props.user}
                         size='large' />
                     <Text style={s.text}>{actionText}</Text>
-                    {actionButtons}
                 </View>
                 {props.children}
             </View>
@@ -67,10 +58,6 @@ const s = StyleSheet.create({
     },
     action: {
         alignItems: 'center',
-    },
-    buttons: {
-        marginTop: 20,
-        flexDirection: 'row',
     },
     text: {
         fontFamily: 'SourceSansPro-Regular',

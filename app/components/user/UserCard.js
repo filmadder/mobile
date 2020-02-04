@@ -1,24 +1,53 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { colours } from '../../colours';
+import { View, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 
 import Avatar from './Avatar'
 import Username from './Username'
+
+import ws from '../../ws';
+import { colours } from '../../colours';
 
 const UserCard = props => {
 
     const goToProfile = () => {
 
-        if (!props.cancelPress) {
-            console.log(props.navigation)
+        if (!props.longPress) {
             props.navigation.navigate('Profile', { 'user': props.user.pk })
         }
     };
 
+    const handleLongPress = () => {
+        if (props.longPress) {
+            Alert.alert(
+                'Delete Friend',
+                `remove ${props.user.name} from friends`,
+                [
+                    {text: 'No', style: 'cancel'},
+                    {text: 'Yes', onPress: () => dropFriendship()},
+                ],
+                { cancelable: true }
+              );
+        }
+    };
+
+    const dropFriendship = () => {
+        ws.send({
+            id: null,
+            type: "drop_friendship",
+            user: props.user.pk
+        })
+        .then(response => {
+            if (response.type === 'confirm') {
+                props.reload();
+            }
+        })
+    }
+
     return (
         <TouchableOpacity
             style={[styles.container, props.style]}
-            onPress={goToProfile}>
+            onPress={goToProfile}
+            onLongPress={handleLongPress}>
             <View style={styles.containerInner}>
                 <Avatar
                     style={{ marginRight: 0 }}

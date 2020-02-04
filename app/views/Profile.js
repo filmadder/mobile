@@ -34,6 +34,12 @@ const User = props => {
         getUser();
     }, [type])
 
+    const reload = () => {
+        setIsBefriended(false),
+        setList([])
+        getUser()
+    }
+
     const getUser = () => {
         ws.send({
             type: "get_user",
@@ -87,7 +93,8 @@ const User = props => {
         <View style={{ flex: 1 }}>
             <ViewWrapper>
                 <UserCard
-                    cancelPress={true}
+                    longPress={isBefriended && !isThemselves}
+                    reload={reload}
                     size='large'
                     user={user} />
                 {isBefriended || isThemselves ? (
@@ -96,9 +103,9 @@ const User = props => {
                         list={list}
                         onTypeSelected={onTypeSelected}></List>
                 ) : (<NotFriends
-                    reload={getUser}
-                    status={friendshipStatus}
-                    user={user} />
+                        reload={reload}
+                        status={friendshipStatus}
+                        user={user} />
                 )}
             </ViewWrapper>
             {isFilmList && footer}
