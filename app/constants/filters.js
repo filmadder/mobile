@@ -1,4 +1,4 @@
-export const films = [
+export const profileLists = [
     {
         id: '0',
         filter: 'watchlist'
@@ -13,6 +13,10 @@ export const films = [
     },
     {
         id: '3',
+        filter: 'tags'
+    },
+    {
+        id: '4',
         filter: 'friends'
     },
 ];

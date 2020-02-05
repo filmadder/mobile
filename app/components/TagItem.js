@@ -1,20 +1,40 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation';
+
 import { colours } from '../colours';
+import ws from '../ws';
 
 const TagItem = props => {
+    const [tagTotal, setTagTotal] = React.useState(props.tagTotal)
     
     let total = <View style={styles.total}>
-            <Text style={styles.tagTotal}>{props.tagTotal}</Text>
+            <Text style={styles.tagTotal}>{tagTotal}</Text>
           </View>
     
+    const getTag = () => {
+        ws.send({
+            id: null,
+            type: "get_tag",
+            tag: props.tagName
+        })
+        .then(response => {
+            props.navigation.push('Tag', { data: response });
+        })
+        .catch(err => (console.warn(err)))
+    }
+
     return (
-        <View style={[styles.container, props.style]}>
-            <View style={[styles.tag, props.tagTotal && styles.tagRightRadius]}>
-                <Text style={styles.tagName}>{props.tagName}</Text>
+        <TouchableOpacity
+            style={[styles.container, props.style]}
+            onPress={getTag}>
+            <View>
+                <View style={[styles.tag, props.tagTotal && styles.tagRightRadius]}>
+                    <Text style={styles.tagName}>{props.tagName}</Text>
+                </View>
+                {tagTotal && total}
             </View>
-            {props.tagTotal && total}
-        </View>
+        </TouchableOpacity>
     )
 };
 
@@ -56,4 +76,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TagItem;
+export default withNavigation(TagItem);

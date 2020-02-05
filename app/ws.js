@@ -41,7 +41,6 @@ export const open = () => {
             }
             
         }).catch(err => {
-            console.log('rejected')
             console.warn(err);
             reject('NOTVALID');
         })

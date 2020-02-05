@@ -27,7 +27,6 @@ const ThoughtTextArea = props => {
                 setHasSpoilers(false)
                 props.reloadFilm();
             } else {
-                console.log(response.message)
                 setHasError(true)
                 setError(response.message)
             }

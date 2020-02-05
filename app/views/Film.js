@@ -9,10 +9,12 @@ import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
 
 import { screen } from '../constants/device';
+import { getLoggedUser } from '../auth';
 import ws from '../ws';
 
 const Film = props => {
     const [film, setFilm] = React.useState({});
+    const [loggedUser, setLoggedUser] = React.useState();
     const filmId = props.navigation.getParam('filmId');
     const padding = screen.width < 400
         ? { padding: 20 }
@@ -32,6 +34,15 @@ const Film = props => {
         })
         .then(data => {
             setFilm(data)
+        })
+        .then(() => {
+            getLoggedUser()
+                .then(user => {
+                    setLoggedUser(user)
+                })
+                .catch(err => {
+                    console.warn(err)
+                })
         })
         .catch(err => (console.warn(err)))
     }
@@ -71,14 +82,20 @@ const Film = props => {
                 <Watchers
                     style={padding}
                     type={'Seen'}
+                    filmId={filmId}
+                    loggedUser={loggedUser}
                     watchers={film.watchers_past} />
                 <Watchers
                     style={padding}
                     type={'Currently Watching'}
+                    filmId={filmId}
+                    loggedUser={loggedUser}
                     watchers={film.watchers_present} />
                 <Watchers
                     style={padding}
                     type={'Watchlist'}
+                    filmId={filmId}
+                    loggedUser={loggedUser}
                     watchers={film.watchers_future} />
                 <Thoughts
                     reloadFilm={reloadFilm}

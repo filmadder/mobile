@@ -1,36 +1,53 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
+import TagForm from '../../components/tagging/TagForm';
 
 import { colours } from '../../colours';
-import { server } from '../../settings';
 
 const Watchers = props => {
+    const [isEditMode, setIsEditMode] = React.useState(false)
 
     let watchers = props.watchers.map(watcher => {
-        let user = {
+        const user = {
             name: watcher.name,
             avatar_url: '/media/' + watcher.avatar_url,
             pk: watcher.pk
         }
         
-        let tags = watcher.tags && watcher.tags.map((tag, index) => {
+        const tags = watcher.tags && watcher.tags.map((tag, index) => {
             return <TagItem
                 key={tag + index}
                 style={{margin: 5}}
                 tagName={tag} />
         })
 
+        const manageTagsBtn = (props.loggedUser && props.loggedUser.pk === user.pk.toString() && props.type === 'Seen') && (
+            <Button
+                title='tag'
+                onPress={() => setIsEditMode(true)} />
+        )
+
         return (
             <View
                 style={s.userContainer}
                 key={user.pk}>
-                <UserRow
-                    user={user}
-                    size='medium' />
-                    {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
+                {props.loggedUser && props.loggedUser.pk === user.pk.toString() && (
+                    <TagForm
+                        filmId={props.filmId}
+                        visible={isEditMode}
+                        tags={watcher.tags}
+                        close={() => setIsEditMode(false)} />
+                )}
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <UserRow
+                        user={user}
+                        size='medium' />
+                    {manageTagsBtn}
+                </View>
+                {watcher.tags && <View style={s.tagsContainer}>{tags}</View>}
             </View>
         )
     })

@@ -94,6 +94,7 @@ const User = props => {
             <ViewWrapper>
                 <UserCard
                     longPress={isBefriended && !isThemselves}
+                    cancelPress={isThemselves}
                     reload={reload}
                     size='large'
                     user={user} />

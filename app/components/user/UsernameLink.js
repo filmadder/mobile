@@ -11,6 +11,7 @@ const UsernameLink = props => {
 
     return (
         <TouchableOpacity
+            style={[s.container, props.style]}
             onPress={() =>  props.navigation.push('Profile', { user: props.user.pk })}>
             <Username
                 size={props.size}
@@ -20,6 +21,8 @@ const UsernameLink = props => {
 };
 
 const s = StyleSheet.create({
+    container: {
+    },
     username: {
         textAlign: 'center',
         color: colours.black,

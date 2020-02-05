@@ -11,8 +11,8 @@ const UserCard = props => {
 
     const goToProfile = () => {
 
-        if (!props.longPress) {
-            props.navigation.navigate('Profile', { 'user': props.user.pk })
+        if (!props.longPress && !props.cancelPress) {
+            props.navigation.push('Profile', { 'user': props.user.pk })
         }
     };
 

@@ -11,6 +11,7 @@ import Settings from '../../views/Settings';
 import Search from '../../views/Search';
 import Profile from '../../views/Profile';
 import Film from '../../views/Film';
+import Tag from '../../views/Tag';
 
 import DrawerBtn from './DrawerBtn';
 import MyProfileBtn from './MyProfileBtn';
@@ -48,6 +49,10 @@ const FeedView = createStackNavigator({
         screen: Search,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     },
+    Tag: {
+        screen: Tag,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
 });
 
 const SettingsView = createStackNavigator({
@@ -73,7 +78,7 @@ const SearchView = createStackNavigator({
     Film: {
         screen: Film,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
+    },
 });
 
 const NotificationsView = createStackNavigator({
@@ -100,6 +105,10 @@ const FilmView = createStackNavigator({
         screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     },
+    Tag: {
+        screen: Tag,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
 });
 
 const ProfileView = createStackNavigator({
@@ -110,7 +119,22 @@ const ProfileView = createStackNavigator({
     Film: {
         screen: Film,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
+    },
+    Tag: {
+        screen: Tag,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+});
+
+const TagView = createStackNavigator({
+    Profile: {
+        screen: Profile,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
+    Film: {
+        screen: Film,
+        navigationOptions: ({ navigation }) => createNavOptions(navigation),
+    },
 });
 
 const FaNavigatorDrawer = createDrawerNavigator({
@@ -131,6 +155,12 @@ const FaNavigatorDrawer = createDrawerNavigator({
         },
         Film: {
             screen: FilmView,
+            navigationOptions: {
+                drawerLabel: <Hidden />
+            }
+        },
+        Tag: {
+            screen: TagView,
             navigationOptions: {
                 drawerLabel: <Hidden />
             }

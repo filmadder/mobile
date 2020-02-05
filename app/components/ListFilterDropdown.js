@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, FlatList, Easing } from 'react-native';
 import { colours } from '../colours';
-import { films } from '../constants/filters';
+import { profileLists } from '../constants/filters';
 
 
 const ListFilterDropdown = props => {
@@ -51,7 +51,7 @@ const ListFilterDropdown = props => {
     }
 
     let dropdown = null;
-    let items = films.map(item => <Item key={item.id} item={item} />)
+    let items = profileLists.map(item => <Item key={item.id} item={item} />)
 
     if (isOpen) {
         dropdown = <View>

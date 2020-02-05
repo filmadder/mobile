@@ -66,7 +66,7 @@ const Header = props => {
                 colors={['rgba(0, 0, 0, 0.2)', colours.blue5]}
                 locations={[0, 0.85]}
                 style={s.overlay}>
-                <View style={[s.infoContainer, props.style]}>
+                <View style={[s.infoContainer]}>
                     <View style={s.infoLeft}>
                         <Text style={s.title}>{props.title}</Text>
                         <Text style={s.type}>{props.type} | {props.year}</Text>

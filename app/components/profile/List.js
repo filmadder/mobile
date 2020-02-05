@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import FilmCard from '../FilmCard';
 import UserRow from '../user/UserRow';
 import ListFilterDropdown from '../ListFilterDropdown';
+import TagItem from '../TagItem';
 import Loader from '../Loader';
 
 import { colours } from '../../colours';
@@ -26,6 +27,13 @@ const List = props => {
                 break;
             case 'tags':
                 content = <View style={[styles.content, styles.tagList]}>
+                    {props.list.map((item, index) => (
+                        <TagItem
+                            key={index}
+                            tagName={item}
+                            style={{marginRight: 5, marginVertical: 5}}
+                        />
+                    ))}
                 </View>
                 break;
             default:
