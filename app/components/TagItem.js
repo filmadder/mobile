@@ -28,12 +28,10 @@ const TagItem = props => {
         <TouchableOpacity
             style={[styles.container, props.style]}
             onPress={getTag}>
-            <View>
-                <View style={[styles.tag, props.tagTotal && styles.tagRightRadius]}>
-                    <Text style={styles.tagName}>{props.tagName}</Text>
-                </View>
-                {tagTotal && total}
+            <View style={[styles.tag, props.tagTotal && styles.tagRightRadius]}>
+                <Text style={styles.tagName}>{props.tagName}</Text>
             </View>
+            {tagTotal && total}
         </TouchableOpacity>
     )
 };
@@ -41,6 +39,7 @@ const TagItem = props => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        
     },
     tag: {
         backgroundColor: colours.blue3,

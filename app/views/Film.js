@@ -83,6 +83,8 @@ const Film = props => {
                     style={padding}
                     type={'Seen'}
                     filmId={filmId}
+                    filmTitle={film.film.title}
+                    reloadFilm={reloadFilm}
                     loggedUser={loggedUser}
                     watchers={film.watchers_past} />
                 <Watchers

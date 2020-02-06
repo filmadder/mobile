@@ -60,12 +60,14 @@ const styles = StyleSheet.create({
     },
     tags: {
         flexDirection: 'row',
+        flexWrap: 'wrap',
         paddingVertical: 15,
         color: colours.black,
         fontSize: 16,
     },
     tag: {
         marginRight: 10,
+        marginVertical: 5,
     }
 });
 

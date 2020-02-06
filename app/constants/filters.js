@@ -5,7 +5,7 @@ export const profileLists = [
     },
     {
         id: '1',
-        filter: 'watched'
+        filter: 'seen'
     },
     {
         id: '2',

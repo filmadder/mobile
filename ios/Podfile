@@ -38,6 +38,8 @@ target 'faMobile' do
 
   pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'faMobileTests' do
     inherit! :search_paths
     # Pods for testing

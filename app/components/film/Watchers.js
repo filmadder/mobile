@@ -4,11 +4,17 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 import TagForm from '../../components/tagging/TagForm';
+import IconButton from '../../components/dom/IconButton';
 
 import { colours } from '../../colours';
 
 const Watchers = props => {
-    const [isEditMode, setIsEditMode] = React.useState(false)
+    const [isEditMode, setIsEditMode] = React.useState(false);
+
+    const closeModal = () => {
+        setIsEditMode(false);
+        props.reloadFilm()
+    }
 
     let watchers = props.watchers.map(watcher => {
         const user = {
@@ -25,8 +31,8 @@ const Watchers = props => {
         })
 
         const manageTagsBtn = (props.loggedUser && props.loggedUser.pk === user.pk.toString() && props.type === 'Seen') && (
-            <Button
-                title='tag'
+            <IconButton
+                name='tags'
                 onPress={() => setIsEditMode(true)} />
         )
 
@@ -37,11 +43,13 @@ const Watchers = props => {
                 {props.loggedUser && props.loggedUser.pk === user.pk.toString() && (
                     <TagForm
                         filmId={props.filmId}
+                        filmTitle={props.filmTitle}
+                        reloadFilm={props.reloadFilm}
                         visible={isEditMode}
                         tags={watcher.tags}
-                        close={() => setIsEditMode(false)} />
+                        close={closeModal} />
                 )}
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <UserRow
                         user={user}
                         size='medium' />

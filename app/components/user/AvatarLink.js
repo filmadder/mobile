@@ -7,7 +7,11 @@ import Avatar from './Avatar';
 const AvatarLink = props => {
 
     const handlePress = () => {
-        props.navigation.push('Profile', { user: props.user.pk })
+        if (props.fromHeader) {
+            props.navigation.navigate('Profile', { user: props.user.pk })
+        } else {
+            props.navigation.push('Profile', { user: props.user.pk })
+        }
     };
 
     return (

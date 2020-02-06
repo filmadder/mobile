@@ -15,13 +15,19 @@ import Tag from '../../views/Tag';
 
 import DrawerBtn from './DrawerBtn';
 import MyProfileBtn from './MyProfileBtn';
+import IconButton from '../dom/IconButton';
 import Hidden from './Hidden';
 import { colours } from '../../colours';
 
 const createNavOptions = (navigation) => ({
     title: 'filmadder',
     headerLeft: () => <DrawerBtn navigation={navigation} />,
-    headerRight: () => <Button title='search' color='white' onPress={() => navigation.navigate('Search')} />,
+    headerRight: () => <IconButton
+        style={{ paddingHorizontal: 10 }}
+        name='search'
+        color='white'
+        onPress={() => navigation.navigate('Search')}
+    />,
     headerStyle: {
         backgroundColor: colours.blue3,
     },

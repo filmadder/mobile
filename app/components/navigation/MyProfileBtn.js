@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Avatar from '../user/Avatar';
+import AvatarLink from '../user/AvatarLink';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const MyProfileBtn = () => {
@@ -16,7 +16,14 @@ const MyProfileBtn = () => {
     }, [])
 
     if (user) {
-        return <Avatar size='large' user={user} style={{marignRight: 0}} />
+        return (
+            <AvatarLink
+                size='large'
+                user={user}
+                fromHeader={true}
+                style={{ marignRight: 0 }}
+            />
+        )
     }
 
     return null
