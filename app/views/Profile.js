@@ -32,7 +32,7 @@ const User = props => {
     React.useEffect(() => {
 
         getUser();
-    }, [type])
+    }, [type, props.navigation])
 
     const reload = () => {
         setIsBefriended(false),

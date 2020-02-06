@@ -8,7 +8,7 @@ const ViewWrapper = props => {
     
     return (
         <ScrollView
-            style={[s.container, props.style]}
+            contentContainerStyle={[s.container, props.style]}
             {...props}>
             {props.title && viewTitle}
             {props.children}

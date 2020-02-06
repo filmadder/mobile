@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import IconButton from '../dom/IconButton';
 
 import { colours } from '../../colours';
 
@@ -17,11 +18,20 @@ const Checkbox = props => {
 
     return (
         <View>
-            <TouchableOpacity
-                onPress={() => handleCheckobox()}
-                style={[s.checkbox, props.style, checked && s.checked]}>
-            </TouchableOpacity>
-        </View>
+            {checked ? (
+                <IconButton
+                    style={[s.checkbox, props.style, s.checked]}
+                    name='check'
+                    color='white'
+                    size={20}
+                    onPress={() => handleCheckobox()} />
+            ) : (
+                <TouchableOpacity
+                    onPress={() => handleCheckobox()}
+                    style={[s.checkbox, props.style]}>
+                </TouchableOpacity>
+            )}
+        </View> 
     )
 };
 

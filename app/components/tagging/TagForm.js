@@ -46,8 +46,6 @@ const TagForm = props => {
         })
     }
 
-
-
     return (
         <Modal
         style={s.modal}
