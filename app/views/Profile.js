@@ -64,7 +64,7 @@ const User = props => {
                 case 'watchlist':
                     setList(data.films_future);
                     break;
-                case 'watched':
+                case 'seen':
                     setList(data.films_past);
                     break;
                 case 'watching':

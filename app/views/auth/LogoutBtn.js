@@ -10,13 +10,18 @@ import ws from '../../ws';
 const LogoutBtn = () => {
 
     const logout = () => {
-        AsyncStorage.removeItem('token');
-        AsyncStorage.getItem('token')
-            .then(token => (console.log(token)))
+        AsyncStorage.removeItem('token')
+            .then(() => {
+                AsyncStorage.removeItem('user')
+            })
+            .then(() => {
+                ws.close();
 
-        ws.close();
-
-        RNRestart.Restart();
+                RNRestart.Restart();
+            })
+            .catch(err => {
+                console.warn(err)
+            })
     };
 
     return (

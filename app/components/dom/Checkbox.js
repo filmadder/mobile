@@ -22,8 +22,7 @@ const Checkbox = props => {
                 <IconButton
                     style={[s.checkbox, props.style, s.checked]}
                     name='check'
-                    color='white'
-                    size={20}
+                    color='red'
                     onPress={() => handleCheckobox()} />
             ) : (
                 <TouchableOpacity

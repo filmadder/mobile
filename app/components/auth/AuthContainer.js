@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const AuthContainer = props => {
     return (
         <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={[styles.container, props.style]}>
-            <KeyboardAvoidingView behavior='padding'>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
                     {props.children}
                 </ScrollView>

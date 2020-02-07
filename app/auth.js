@@ -18,7 +18,10 @@ export const loginUser = (email, password) => {
                 ]);
             })
             .then(data => {
+                console.log(data)
                 if (data[0] === 200) {
+                    console.log('from auth user data below')
+                    console.log(data[1])
                     AsyncStorage.setItem('token', data[1].token)
                     AsyncStorage.setItem('user', JSON.stringify({
                         name: data[1].user.name,
@@ -33,12 +36,6 @@ export const loginUser = (email, password) => {
 }
 
 export const registerUser = (email, name, password1, password2) => {
-    const body = JSON.stringify({
-        email,
-        name,
-        password1,
-        password2
-    })
 
     return fetch(server + '/auth/', {
                 method: 'PUT',
@@ -57,7 +54,13 @@ export const registerUser = (email, name, password1, password2) => {
             })
             .then(data => {
                 if (data[0] === 200) {
+                    console.log('in')
                     AsyncStorage.setItem('token', data[1].token)
+                    AsyncStorage.setItem('user', JSON.stringify({
+                        name: data[1].user.name,
+                        pk: data[1].user.pk.toString(),
+                        avatar_url: data[1]['user']['avatar_url']
+                    }))
                 }
 
                 return data[1].token

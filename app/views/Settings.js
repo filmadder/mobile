@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, Button } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import AvatarLink from '../components/user/AvatarLink';
@@ -13,8 +13,6 @@ import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-community/async-storage';
 import { withNavigation } from 'react-navigation';
 
-import { users } from '../../data';
-
 const Settings = () => {
     const [avatar, setAvatar] = React.useState();
     const [user, setUser] = React.useState();
@@ -23,6 +21,7 @@ const Settings = () => {
         // TODO (separate in a module)
         AsyncStorage.getItem('user')
             .then(user => {
+                console.log(user)
                 let parsedUser = JSON.parse(user);
                 setUser(parsedUser);
             })

@@ -12,9 +12,9 @@ const FilmCard = props => {
         props.navigation.push('Film', { filmId: props.film.pk });
     }
     
-    if (Object.entries(films).length === 0) {
-        return <Text>loader</Text>;
-    }
+    // if (Object.entries(films).length === 0) {
+    //     return <Text>loader</Text>;
+    // }
 
     const placeholderPoster = <PlaceholderPoster />;
     const poster = <Image source={{uri: props.film.poster_url}} style={s.poster}/>

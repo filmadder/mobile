@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, Text, View, Modal, KeyboardAvoidingView, Button, StyleSheet } from 'react-native';
+import { TextInput, Text, View, Modal, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
 import TagItem from '../../components/TagItem';
 import IconButton from '../dom/IconButton';
@@ -17,14 +17,15 @@ const TagForm = props => {
     }
 
     const addTag = () => {
+        const formatedTag = newTag.trim().split(' ').join('-')
         if (tags.length >= 5) {
             console.warn('you can add up t 5 tags')
-        } else if (tags.includes(newTag.trim().replace(' ', '-'))) {
+        } else if (tags.includes(formatedTag)) {
             console.warn('this tag already exists')
-        } else if (newTag.trim().length === 0) {
+        } else if (formatedTag.length === 0) {
             setNewTag('')
         } else {
-            setTags([...tags, newTag.trim().replace(' ', '-')])
+            setTags([...tags, formatedTag])
             setNewTag('')
         }
     }
@@ -51,7 +52,7 @@ const TagForm = props => {
         style={s.modal}
             visible={props.visible}
             animationType='slide'>
-            <KeyboardAvoidingView behavior='padding'>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
                 <View style={s.card}>
                     {tags && (
                         <View style={s.currentTags}>
@@ -62,7 +63,7 @@ const TagForm = props => {
                                     <TagItem tagName={tag} style={s.tag} />
                                     <IconButton
                                         name='trash'
-                                        size={18}
+                                        size={24}
                                         onPress={() => removeTag(tag)}
                                     />
                                 </View>

@@ -34,6 +34,7 @@ const SearchForm = props => {
                     <TextInput
                         {...props}
                         style={s.textField}
+                        placeholderTextColor={colours.blue3}
                         placeholder='type here'
                         value={query}
                         onSubmitEditing={search}

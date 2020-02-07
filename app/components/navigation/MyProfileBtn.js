@@ -21,7 +21,7 @@ const MyProfileBtn = () => {
                 size='large'
                 user={user}
                 fromHeader={true}
-                style={{ marignRight: 0 }}
+                style={{ marignRight: 0, margin: 20 }}
             />
         )
     }

@@ -14,6 +14,8 @@ export const open = () => {
 
     return new Promise(function(resolve, reject) {
         AsyncStorage.getItem('token').then(token => {
+            console.log('token from ws')
+            console.log(token)
             if (!token) {
                 reject('NOTOKEN');
                 return;

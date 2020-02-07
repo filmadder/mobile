@@ -28,6 +28,7 @@ const Register = props => {
     const register = () => {
         registerUser(email, name, password1, password2)
             .then(token => {
+                console.log(token)
                 if (token) {
                     props.navigation.navigate('Inner');
                 }
@@ -66,7 +67,7 @@ const Register = props => {
                     value={password2}
                     textContentType='password'
                     onChangeText={text => setPassword2(text)}
-                    onSubmitEditing={() => (console.log('on submit editing'))} />
+                    onSubmitEditing={register} />
                 <FaButton title='register' onPress={register} />
             </AuthForm>
             <View>

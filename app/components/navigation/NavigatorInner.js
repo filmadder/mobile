@@ -23,9 +23,9 @@ const createNavOptions = (navigation) => ({
     title: 'filmadder',
     headerLeft: () => <DrawerBtn navigation={navigation} />,
     headerRight: () => <IconButton
-        style={{ paddingHorizontal: 10 }}
         name='search'
         color='white'
+        size={25}
         onPress={() => navigation.navigate('Search')}
     />,
     headerStyle: {

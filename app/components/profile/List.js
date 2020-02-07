@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         borderTopWidth: 1,
-        borderTopColor: colours.blue4
+        borderTopColor: colours.blue4,
+        minHeight: 300,
     },
     content: {
         width: '100%',

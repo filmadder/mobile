@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
 
 import ws from '../ws';
+import { getLoggedUser } from '../auth';
 
 const Feed = props => {
     const [feed, setFeed] = React.useState([]);

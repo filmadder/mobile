@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
@@ -60,7 +60,7 @@ const Film = props => {
 
     return (
         <View>
-            <KeyboardAvoidingView behavior='position'>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
                 <ViewWrapper
                     contentContainerStyle={s.view}>
                     <Header
@@ -90,7 +90,7 @@ const Film = props => {
                         watchers={film.watchers_past} />
                     <Watchers
                         style={padding}
-                        type={'Currently Watching'}
+                        type={'Currently watching'}
                         filmId={filmId}
                         loggedUser={loggedUser}
                         watchers={film.watchers_present} />

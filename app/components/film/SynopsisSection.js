@@ -8,11 +8,11 @@ const SynopsisSection = props => {
     const [showing, setShowing] = React.useState(true);
     const hideIcon = <IconButton
         style={{ marginHorizontal: 8}}
-        size={20} name='eye-slash'
+        name='eye-slash'
         onPress={() => setShowing(false)} />
     const showIcon = <IconButton
         style={{ marginHorizontal: 8}}
-        size={20} name='eye'
+        name='eye'
         onPress={() => setShowing(true)} />
 
     return (
