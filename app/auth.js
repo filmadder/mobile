@@ -18,10 +18,7 @@ export const loginUser = (email, password) => {
                 ]);
             })
             .then(data => {
-                console.log(data)
                 if (data[0] === 200) {
-                    console.log('from auth user data below')
-                    console.log(data[1])
                     AsyncStorage.setItem('token', data[1].token)
                     AsyncStorage.setItem('user', JSON.stringify({
                         name: data[1].user.name,
@@ -54,7 +51,6 @@ export const registerUser = (email, name, password1, password2) => {
             })
             .then(data => {
                 if (data[0] === 200) {
-                    console.log('in')
                     AsyncStorage.setItem('token', data[1].token)
                     AsyncStorage.setItem('user', JSON.stringify({
                         name: data[1].user.name,

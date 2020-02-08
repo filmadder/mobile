@@ -1,21 +1,21 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { wsUrl } from './settings';
+import { EventRegister } from 'react-native-event-listeners'
 
 const url = wsUrl + '/socket/';
 
 let ws = null;
 let queue = {};
 let nextId = 1;
+// let emitter = new Emitter();
 
 export const open = () => {
     if (ws !== null && ws.readyState === WebSocket.OPEN) {
         return Promise.resolve();
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         AsyncStorage.getItem('token').then(token => {
-            console.log('token from ws')
-            console.log(token)
             if (!token) {
                 reject('NOTOKEN');
                 return;
@@ -26,6 +26,12 @@ export const open = () => {
             ws.onmessage = event => {
                 const data = JSON.parse(event.data);
                 
+                // when a notification arrices
+                if (data.hasOwnProperty('has_unread_updates') || 
+                    data.type === 'new_update') {
+                    EventRegister.emit('hasUpdates')
+                }
+
                 if (queue.hasOwnProperty(data['id'])) {
                     queue[data['id']](data);
                     delete queue[data['id']];
@@ -74,7 +80,7 @@ export const close = () => {
 };
 
 export default {
-    open: open,
-    close: close,
-    send: send
+    open,
+    close,
+    send,
 }

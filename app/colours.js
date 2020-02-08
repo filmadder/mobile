@@ -5,6 +5,7 @@ export const colours = {
     blue3: '#7BA4F4',
     blue4: '#6996EF',
     blue5: '#4C76C8',
+    pink: '#FF005C',
 
     black: '#414141'
 };

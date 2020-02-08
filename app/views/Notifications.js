@@ -11,8 +11,10 @@ const Notifications = props => {
     const [updates, setUpdates] = React.useState([]);
 
     React.useEffect(() => {
+        console.log(props.navigation)
+        props.navigation.popToTop()
         getUpdates();
-    }, [updates, setUpdates]);
+    }, [updates]);
 
     const getUpdates = () => {
         setPage(page + 1);
@@ -24,7 +26,7 @@ const Notifications = props => {
             id: null
         })
         .then(data => {
-
+            console.log(data)
             if (data.items.length > 0) {
                 setUpdates(updates.concat(data.items))
             }

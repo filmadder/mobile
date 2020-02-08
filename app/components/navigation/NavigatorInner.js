@@ -96,10 +96,9 @@ const NotificationsView = createStackNavigator({
         screen: Profile,
         navigationOptions: ({ navigation }) => createNavOptions(navigation),
     },
-    Film: {
-        screen: Film,
-        navigationOptions: ({ navigation }) => createNavOptions(navigation),
-    }
+},
+{
+    initialRouteName: 'Notifications'
 });
 
 const FilmView = createStackNavigator({
@@ -148,10 +147,16 @@ const FaNavigatorDrawer = createDrawerNavigator({
             screen: ProfileView,
             navigationOptions: {
                 drawerLabel: <MyProfileBtn />,
+                unmountOnBlur: true,
             }
         },
         Feed: FeedView,
-        Notifications: NotificationsView,
+        Notifications: {
+            screen: NotificationsView,
+            navigationOptions: {
+                unmountOnBlur: true,
+            }
+        },
         Settings: SettingsView,
         Search: {
             screen: SearchView,
@@ -183,7 +188,7 @@ const FaNavigatorDrawer = createDrawerNavigator({
         },
         drawerType: 'slide',
         unmountInactiveRoutes: true,
-        edgeWidth: 0
+        edgeWidth: 0,
     });
 
 export default createAppContainer(FaNavigatorDrawer);

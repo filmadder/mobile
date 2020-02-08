@@ -1,7 +1,21 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet  } from 'react-native';
+import { EventRegister } from 'react-native-event-listeners'
 
 const DrawerBtn = props => {
+    const [hasUpdates, setHasUpdates] = React.useState(false);
+   
+    React.useEffect(() => {
+        let listener = EventRegister.addEventListener('hasUpdates', () => {
+            setHasUpdates(true)
+        })
+
+        return () => EventRegister.removeEventListener(listener)
+    }, [])
+
+    const image = hasUpdates
+        ? require('../../../assets/images/logo-notif.png')
+        : require('../../../assets/images/logo.png') 
 
     const toggleDrawer = () => {
         props.navigation.toggleDrawer();
@@ -11,7 +25,7 @@ const DrawerBtn = props => {
         <TouchableOpacity onPress={toggleDrawer}>
             <Image
                 style={s.menuBtn}
-                source={require('../../../assets/images/logo.png')} />
+                source={image} />
         </TouchableOpacity>
     )
 };
