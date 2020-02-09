@@ -1,9 +1,10 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 
-import AvatarLink from '../user/AvatarLink';
+import Avatar from '../user/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const MyProfileBtn = () => {
+const MyProfileBtn = props => {
     const [user, setUser] = React.useState()
 
     React.useEffect(() => {
@@ -15,14 +16,21 @@ const MyProfileBtn = () => {
             .catch(err => (console.warn(err)))
     }, [])
 
+    const handlePress = () => {
+        props.navigation.navigate('Profile', { user: user.pk })
+    }
+
     if (user) {
+        console.log(user)
         return (
-            <AvatarLink
-                size='large'
-                user={user}
-                fromHeader={true}
-                style={{ marignRight: 0, margin: 20 }}
-            />
+            <TouchableOpacity
+                onPress={handlePress}>
+                <Avatar
+                    size='large'
+                    avatar={user.avatar_url}
+                    style={{ marignRight: 0, margin: 20 }}
+                />
+            </TouchableOpacity>
         )
     }
 

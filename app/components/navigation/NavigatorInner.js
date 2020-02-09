@@ -14,6 +14,7 @@ import Film from '../../views/Film';
 import Tag from '../../views/Tag';
 
 import DrawerBtn from './DrawerBtn';
+import LabelBtn from './LabelBtn';
 import MyProfileBtn from './MyProfileBtn';
 import IconButton from '../dom/IconButton';
 import Hidden from './Hidden';
@@ -145,19 +146,35 @@ const TagView = createStackNavigator({
 const FaNavigatorDrawer = createDrawerNavigator({
         Profile: {
             screen: ProfileView,
-            navigationOptions: {
-                drawerLabel: <MyProfileBtn />,
-                unmountOnBlur: true,
-            }
+            navigationOptions: ({ navigation }) => ({
+                drawerLabel: <MyProfileBtn
+                    navigation={navigation} />,
+            })
         },
-        Feed: FeedView,
+        Feed: {
+            screen: FeedView,
+            navigationOptions: ({ navigation }) => ({
+                drawerLabel: <LabelBtn
+                    label='Feed'
+                    navigation={navigation} />,
+            })
+        },
         Notifications: {
             screen: NotificationsView,
-            navigationOptions: {
-                unmountOnBlur: true,
-            }
+            navigationOptions: ({ navigation }) => ({
+                drawerLabel: <LabelBtn
+                    label='Notifications'
+                    navigation={navigation} />,
+            }),
         },
-        Settings: SettingsView,
+        Settings: {
+            screen: SettingsView,
+            navigationOptions: ({ navigation }) => ({
+                drawerLabel: <LabelBtn
+                    label='Settings'
+                    navigation={navigation} />,
+            })
+        },
         Search: {
             screen: SearchView,
             navigationOptions: {
@@ -180,6 +197,9 @@ const FaNavigatorDrawer = createDrawerNavigator({
     {
         initialRouteName: 'Feed',
         contentOptions: {
+            activeBackgroundColor: colours.blue1,
+            activeTintColor: '#fff',
+            inactiveTintColor: colours.blue2,
             itemsContainerStyle: {
                 alignItems: 'center',
                 justifyContent: 'center',
