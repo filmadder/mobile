@@ -2,17 +2,19 @@ import React from 'react';
 import { StyleSheet, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const AuthContainer = props => {
+const AuthContainer = React.forwardRef((props, ref) => {
     return (
         <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={[styles.container, props.style]}>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
+                <ScrollView
+                    ref={ref}
+                    contentContainerStyle={styles.scrollView}>
                     {props.children}
                 </ScrollView>
             </KeyboardAvoidingView>
         </LinearGradient>
     )
-};
+});
 
 const styles = StyleSheet.create({
     container: {

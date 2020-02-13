@@ -7,7 +7,6 @@ const url = wsUrl + '/socket/';
 let ws = null;
 let queue = {};
 let nextId = 1;
-// let emitter = new Emitter();
 
 export const open = () => {
     if (ws !== null && ws.readyState === WebSocket.OPEN) {
@@ -27,7 +26,7 @@ export const open = () => {
                 const data = JSON.parse(event.data);
                 
                 // when a notification arrices
-                if (data.hasOwnProperty('has_unread_updates') || 
+                if (data['has_unread_updates'] || 
                     data.type === 'new_update') {
                     EventRegister.emit('hasUpdates')
                 }

@@ -5,13 +5,15 @@ import Input from '../../components/dom/Input';
 import FaButton from '../../components/dom/FaButton';
 import AuthContainer from '../../components/auth/AuthContainer';
 import AuthForm from '../../components/auth/AuthForm';
-import Error from '../../components/Error';
+import AuthError from '../../components/AuthError';
 import AuthHeader from '../../components/auth/AuthHeader';
+import RedirectLink from '../../components/auth/RedirectLink';
 
 import { registerUser } from '../../auth';
 
 const Register = props => {
     const [hasError, setHasError] = React.useState(false);
+    const [error, setError] = React.useState('');
     const [email, setEmail] = React.useState('')
     const [name, setName] = React.useState('')
     const [password1, setPassword1] = React.useState('')
@@ -20,24 +22,33 @@ const Register = props => {
     const emailRef = React.createRef();
     const password1Ref = React.createRef();
     const password2Ref = React.createRef();
+    const viewRef = React.createRef();
 
-    const errorMessage = <Error
-            errorText='passwords dont match'
-            onDismiss={() => setHasError(false)}/>
+    const dismissError = () => {
+        setHasError(false)
+        setError('')
+    }
+
+    const errorMessage = <AuthError
+            errorText={error}
+            dismiss={dismissError}/>
     
     const register = () => {
         registerUser(email, name, password1, password2)
-            .then(token => {
-                console.log(token)
-                if (token) {
-                    props.navigation.navigate('Inner');
-                }
+            .then(() => {
+                props.navigation.navigate('Inner');
             })
-            .catch(err => console.warn(err))
+            .catch(err => {
+                viewRef.current.scrollTo({x: 0, y: 0, animated: true})
+                setHasError(true)
+                setError(err.toString())
+            })
     };
 
     return (
-        <AuthContainer style={styles.register}>
+        <AuthContainer
+            ref={viewRef}
+            style={styles.register}>
             {hasError && errorMessage}
             <AuthHeader />
             <AuthForm>
@@ -45,6 +56,7 @@ const Register = props => {
                     label='username'
                     value={name}
                     textContentType='none'
+                    setFocused={() => setHasError(false)}
                     onChangeText={text => setName(text)}
                     onSubmitEditing={() => emailRef.current.focus()} />
                 <Input
@@ -52,6 +64,7 @@ const Register = props => {
                     label='email'
                     value={email}
                     textContentType='emailAddress'
+                    setFocused={() => setHasError(false)}
                     onChangeText={text => setEmail(text.toLowerCase())}
                     onSubmitEditing={() => password1Ref.current.focus()} />
                 <Input
@@ -59,6 +72,7 @@ const Register = props => {
                     label='password'
                     value={password1}
                     textContentType='password'
+                    setFocused={() => setHasError(false)}
                     onChangeText={text => setPassword1(text)}
                     onSubmitEditing={() => password2Ref.current.focus()} />
                 <Input
@@ -66,16 +80,15 @@ const Register = props => {
                     label='repeat password'
                     value={password2}
                     textContentType='password'
+                    setFocused={() => setHasError(false)}
                     onChangeText={text => setPassword2(text)}
                     onSubmitEditing={register} />
                 <FaButton title='register' onPress={register} />
             </AuthForm>
-            <View>
-                <TouchableOpacity
-                    onPress={() => props.navigation.navigate('Login')}>
-                    <Text>Already have an account?</Text>
-                </TouchableOpacity>
-            </View>
+            <RedirectLink
+                onPress={() => props.navigation.navigate('Login')}
+                text='Already have an account?'
+            />
         </AuthContainer>
     )
 };

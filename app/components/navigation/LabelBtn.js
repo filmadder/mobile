@@ -20,9 +20,8 @@ const LabelBtn = props => {
 
 const s = StyleSheet.create({
     container: {
-        paddingHorizontal: 14,
+        paddingHorizontal: 20,
         paddingVertical: 7,
-        margin: 10,
     },
     label: {
         fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',

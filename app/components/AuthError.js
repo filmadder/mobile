@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Platform, TouchableWithoutFeedback, Animated } 
 import Svg, { Circle, Line } from 'react-native-svg';
 import { colours } from '../colours';
 
-const Error = props => {
+const AuthError = props => {
     const aniVal = new Animated.Value(0);
 
     const animate = () => Animated.spring(
@@ -24,6 +24,7 @@ const Error = props => {
 
     const error = <View style={{ alignItems: 'center' }}>
             <TouchableWithoutFeedback
+                onPress={() => props.dismiss()}
                 style={{backgroundColor: 'red', height: 120, width: 120}}>
                     <Svg height="120" width="120">
                         <Circle cx="60" cy="60" r="59" stroke={colours.blue4} strokeWidth='1.5' fill="none" />
@@ -86,4 +87,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Error;
+export default AuthError;

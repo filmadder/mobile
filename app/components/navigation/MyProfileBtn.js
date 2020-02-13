@@ -18,10 +18,10 @@ const MyProfileBtn = props => {
 
     const handlePress = () => {
         props.navigation.navigate('Profile', { user: user.pk })
+        props.navigation.closeDrawer()
     }
 
     if (user) {
-        console.log(user)
         return (
             <TouchableOpacity
                 onPress={handlePress}>

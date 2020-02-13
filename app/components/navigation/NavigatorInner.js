@@ -199,12 +199,15 @@ const FaNavigatorDrawer = createDrawerNavigator({
         contentOptions: {
             activeBackgroundColor: colours.blue1,
             activeTintColor: '#fff',
-            inactiveTintColor: colours.blue2,
+            itemStyle: {
+                marginVertical: 10,
+                borderRadius: 5,
+            },
             itemsContainerStyle: {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingVertical: 50,
-            }
+            },
         },
         drawerType: 'slide',
         unmountInactiveRoutes: true,

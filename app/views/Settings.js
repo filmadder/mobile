@@ -21,7 +21,6 @@ const Settings = () => {
         // TODO (separate in a module)
         AsyncStorage.getItem('user')
             .then(user => {
-                console.log(user)
                 let parsedUser = JSON.parse(user);
                 setUser(parsedUser);
             })

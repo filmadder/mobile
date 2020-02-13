@@ -5,6 +5,10 @@ import { colours } from '../../colours';
 const Input = React.forwardRef((props, ref) => {
     const [focused, setFocused] = React.useState(false);
 
+    React.useEffect(() => {
+        props.setFocused(focused)
+    }, [focused])
+
     return (
         <View style={[styles.inputContainer, props.style]}>
             <Text style={[styles.label, focused && styles.labelFocused]}>{props.label}</Text>
