@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import FeedCard from '../components/feed/FeedCard'
 import NothingYet from './nothing/NothingYet';
@@ -7,11 +7,10 @@ import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
 
 import ws from '../ws';
-import { getLoggedUser } from '../auth';
 
 const Feed = props => {
     const [feed, setFeed] = React.useState([]);
-    const [loading, setLoading] = React.useState(true);
+    const [loaded, setLoaded] = React.useState(false);
     const [page, setPage] = React.useState(0);
     
     React.useEffect(() => {
@@ -32,40 +31,41 @@ const Feed = props => {
             id: null
         })
         .then(data => {
-            setLoading(false);
+            setLoaded(true);
             setFeed(feed.concat(data.items));
         })
-        .catch(err => (console.warn(err)))
-    }
-    
+        .catch(err => {
+            setLoaded(true);
+        })
+    }    
 
     /*
          RENDER
     */
-    // show the loading screen before fetch
-    if (loading) {
+    // show the loading screen before fetch is finished
+    if (!loaded) {
         return <Loader />
-    // show Nothing screen when there are no feed items
-    } else if (feed.length === 0) {
-        return (
-            <NothingYet
-                buttonTitle='add friends'
-                onPress={handleSearchPress}
-                title='Your Feed is empty'
-                text='add friends to see what they have watched' />
-        )
-    // show feed
-    } else {
-        return (
-            <FlatList
-                ListHeaderComponent={<ViewTitle title='Feed' style={{ paddingTop: 20 }} />}
-                data={feed}
-                renderItem={({ item }) => <FeedCard item={item} />}
-                keyExtractor={item => item.pk.toString()}
-                onEndReached={getFeed}
-            />
-        )
     }
+
+    return (
+        <View style={{ flex: 1 }} >
+            {feed.length === 0 ? (
+                <NothingYet
+                    buttonTitle='add friends'
+                    onPress={handleSearchPress}
+                    title='Your Feed is empty'
+                    text='add friends to see what they have watched' />
+            ) : (
+                <FlatList
+                    ListHeaderComponent={<ViewTitle title='Feed' style={{ paddingTop: 20 }} />}
+                    data={feed}
+                    renderItem={({ item }) => <FeedCard item={item} />}
+                    keyExtractor={item => item.pk.toString()}
+                    onEndReached={getFeed}
+                />
+            )}
+        </View>
+    )
 };
 
 export default Feed;

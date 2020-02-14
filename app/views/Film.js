@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import { Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
@@ -21,7 +21,6 @@ const Film = props => {
         : { padding: 30 };
 
     React.useEffect(() => {
-        // gets the film info
         getFilm();
 
     }, [])
@@ -59,60 +58,58 @@ const Film = props => {
     }
 
     return (
-        <View>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
-                <ViewWrapper
-                    contentContainerStyle={s.view}>
-                    <Header
-                        filmId={filmId}
-                        style={padding}
-                        poster={film.film.poster_url}
-                        title={film.film.title}
-                        type={film.film.omdb_type}
-                        year={film.film.year}
-                        country={film.film.countries}
-                        duration={film.film.runtime}
-                        reloadFilm={reloadFilm}
-                        status={film.status} />
-                    <Info
-                        style={padding}
-                        directors={film.film.directors}
-                        writers={film.film.writers}
-                        actors={film.film.actors}
-                        synopsis={film.film.plot} />
-                    <Watchers
-                        style={padding}
-                        type={'Seen'}
-                        filmId={filmId}
-                        filmTitle={film.film.title}
-                        reloadFilm={reloadFilm}
-                        loggedUser={loggedUser}
-                        watchers={film.watchers_past} />
-                    <Watchers
-                        style={padding}
-                        type={'Currently watching'}
-                        filmId={filmId}
-                        loggedUser={loggedUser}
-                        watchers={film.watchers_present} />
-                    <Watchers
-                        style={padding}
-                        type={'Watchlist'}
-                        filmId={filmId}
-                        loggedUser={loggedUser}
-                        watchers={film.watchers_future} />
-                    <Thoughts
-                        reloadFilm={reloadFilm}
-                        style={padding}
-                        filmId={filmId}
-                        thoughts={film.comments}
-                        status={film.status} />
-                    <ThoughtTextArea
-                        reloadFilm={reloadFilm}
-                        filmId={filmId}
-                        style={{paddingHorizontal: 20}} />
-                </ViewWrapper>
-            </KeyboardAvoidingView>
-        </View>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
+            <ViewWrapper
+                contentContainerStyle={s.view}>
+                <Header
+                    filmId={filmId}
+                    style={padding}
+                    poster={film.film.poster_url}
+                    title={film.film.title}
+                    type={film.film.omdb_type}
+                    year={film.film.year}
+                    country={film.film.countries}
+                    duration={film.film.runtime}
+                    reloadFilm={reloadFilm}
+                    status={film.status} />
+                <Info
+                    style={padding}
+                    directors={film.film.directors}
+                    writers={film.film.writers}
+                    actors={film.film.actors}
+                    synopsis={film.film.plot} />
+                <Watchers
+                    style={padding}
+                    type={'Seen'}
+                    filmId={filmId}
+                    filmTitle={film.film.title}
+                    reloadFilm={reloadFilm}
+                    loggedUser={loggedUser}
+                    watchers={film.watchers_past} />
+                <Watchers
+                    style={padding}
+                    type={'Currently watching'}
+                    filmId={filmId}
+                    loggedUser={loggedUser}
+                    watchers={film.watchers_present} />
+                <Watchers
+                    style={padding}
+                    type={'Watchlist'}
+                    filmId={filmId}
+                    loggedUser={loggedUser}
+                    watchers={film.watchers_future} />
+                <Thoughts
+                    reloadFilm={reloadFilm}
+                    style={padding}
+                    filmId={filmId}
+                    thoughts={film.comments}
+                    status={film.status} />
+                <ThoughtTextArea
+                    reloadFilm={reloadFilm}
+                    filmId={filmId}
+                    style={{paddingHorizontal: 20}} />
+            </ViewWrapper>
+        </KeyboardAvoidingView>
     )
 };
 

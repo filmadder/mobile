@@ -1,16 +1,14 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 
 import FaNavigator from './app/components/navigation/Navigator';
-import { StatusBar } from 'react-native';
-// import reducers from './app/redux/reducers';
 
-const Fa: () => React$Node = () => {
-  // const store = createStore(reducers, applyMiddleware(thunk));
+const Fa = () => {
 
   return (
     <>
       <StatusBar barStyle='light-content'></StatusBar>
-        <FaNavigator />
+      <FaNavigator />
     </>
   );
 };

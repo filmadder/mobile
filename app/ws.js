@@ -38,9 +38,8 @@ export const open = () => {
             };
             
             ws.onerror = err => {
-                console.warn(err)
-                reject('NOCONNECTION');
-                return;
+                EventRegister.emit('error', 'no connection')
+                reject(err);
             }
             
             ws.onopen = () => {
@@ -48,7 +47,7 @@ export const open = () => {
             }
             
         }).catch(err => {
-            console.warn(err);
+            EventRegister.emit('error', 'not valid')
             reject('NOTVALID');
         })
     })
@@ -66,6 +65,7 @@ export const send = payload => {
             ws.send(JSON.stringify(payload));
         })
         .catch(err => {
+            EventRegister.emit('error', 'error')
             reject(err);
         });
     });

@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
-
 import PlaceholderPoster from './PlaceholderPoster';
-
 import { colours } from '../colours';
 
 const FilmCard = props => {
@@ -11,11 +9,6 @@ const FilmCard = props => {
     const handleCardPress = () => {
         props.navigation.push('Film', { filmId: props.film.pk });
     }
-    
-    // if (Object.entries(films).length === 0) {
-    //     return <Text>loader</Text>;
-    // }
-
     const placeholderPoster = <PlaceholderPoster />;
     const poster = <Image source={{uri: props.film.poster_url}} style={s.poster}/>
 

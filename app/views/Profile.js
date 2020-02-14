@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
-import UserCard from '../components/user/UserCard';
-import List from '../components/profile/List';
+import ProfileList from '../components/profile/ProfileList';
 import NotFriends from '../components/profile/NotFriends';
-import ProfileFooter from '../components/profile/ProfileFooter';
-import ViewWrapper from './ViewWrapper';
+import UserCard from '../components/user/UserCard';
+import Loader from '../components/Loader';
 
 import { getLoggedUser } from '../auth';
 import ws from '../ws';
@@ -13,31 +12,21 @@ import ws from '../ws';
 const User = props => {
     const [type, setType] = React.useState('watchlist');
     const [user, setUser] = React.useState({});
+    const [loaded, setLoaded] = React.useState(false);
     const [isThemselves, setIsThemselves] = React.useState();
-    const [list, setList] = React.useState([]);
+    const [list, setList] = React.useState();
     const [friendshipStatus, setFriendshipStatus] = React.useState();
     const [isBefriended, setIsBefriended] = React.useState(false);
 
-    const isFilmList = (type === 'watchlist' || type === 'watched' || type === 'watching');
-
-    const footer = <ProfileFooter
-        current={type}
-        total={list && list.length} />;
-
     const onTypeSelected = type => {
         setType(type);
-        setList([]);
     };
 
     React.useEffect(() => {
-
         getUser();
-    }, [type, props.navigation])
+    }, [])
 
     const reload = () => {
-        setIsBefriended(false),
-        setList([])
-        getUser()
     }
 
     const getUser = () => {
@@ -47,6 +36,7 @@ const User = props => {
             id: null
         })
         .then(data => {
+            setLoaded(true);
             setUser(data.user);
             setFriendshipStatus(data.friendship_status);
 
@@ -54,26 +44,13 @@ const User = props => {
                 setIsBefriended(true);
             }
 
-            switch (type) {
-                case 'friends':
-                    setList(data.friends);
-                    break;
-                case 'tags':
-                    setList(data.tags);
-                    break;
-                case 'watchlist':
-                    setList(data.films_future);
-                    break;
-                case 'seen':
-                    setList(data.films_past);
-                    break;
-                case 'watching':
-                    setList(data.films_present);
-                    break;
-                default:
-                    setList(data.films_future);
-                    break;
-            }
+            setList({
+                'friends': data.friends,
+                'tags': data.tags,
+                'watchlist': data.films_future,
+                'seen': data.films_past,
+                'watching': data.films_present
+            })
 
             return data.user.pk
         })
@@ -89,27 +66,36 @@ const User = props => {
         .catch(err => (console.warn(err)))
     }
 
+    if (!loaded) {
+        return <Loader />
+    }
+
     return (
-        <View style={{ flex: 1 }}>
-            <ViewWrapper>
-                <UserCard
-                    longPress={isBefriended && !isThemselves}
-                    cancelPress={isThemselves}
+        <View>
+            {isBefriended || isThemselves ? (
+                <ProfileList
+                    type={type}
+                    list={list}
                     reload={reload}
-                    size='large'
-                    user={user} />
-                {isBefriended || isThemselves ? (
-                    <List
-                        type={type}
-                        list={list}
-                        onTypeSelected={onTypeSelected}></List>
-                ) : (<NotFriends
+                    loaded={loaded}
+                    isThemselves={isThemselves}
+                    isBefriended={isBefriended}
+                    user={user}
+                    onTypeSelected={onTypeSelected}></ProfileList>
+            ) : (
+                <View>
+                    <UserCard
+                        longPress={isBefriended && !isThemselves}
+                        cancelPress={isThemselves}
                         reload={reload}
-                        status={friendshipStatus}
+                        size='large'
                         user={user} />
-                )}
-            </ViewWrapper>
-            {isFilmList && footer}
+                    <NotFriends
+                            reload={reload}
+                            status={friendshipStatus}
+                            user={user} />
+                </View>
+            )}
         </View>
     )
 };

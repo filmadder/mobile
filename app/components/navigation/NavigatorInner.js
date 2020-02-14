@@ -1,9 +1,8 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import React from 'react';
-import { Button } from 'react-native';
 
 import Feed from '../../views/Feed';
 import Notifications from '../../views/Notifications';

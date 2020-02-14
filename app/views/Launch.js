@@ -7,13 +7,16 @@ import ws from '../ws';
 
 const Launch = props => {
 
-    ws.open()
-        .then(() => {
-            props.navigation.navigate('Inner');
-        })
-        .catch(() => {
-            props.navigation.navigate('Login');
-        })
+    React.useEffect(() => {
+        ws.open()
+            .then(() => {
+                props.navigation.navigate('Inner');
+            })
+            .catch(() => {
+                props.navigation.navigate('Login');
+            })
+    }, [])
+
 
     return (
         <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={s.container}>

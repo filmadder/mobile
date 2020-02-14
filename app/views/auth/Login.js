@@ -35,7 +35,6 @@ const Login = props => {
                     setError(err.toString())
                 })
         }
-    
     };
 
     const dismissError = () => {

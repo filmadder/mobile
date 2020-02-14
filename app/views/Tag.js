@@ -6,7 +6,7 @@ import  UsernameLink from '../components/user/UsernameLink';
 import FilmCard from '../components/FilmCard';
 
 const Tag = props => {
-    const data = props.navigation.getParam('data')
+    const data = props.navigation.getParam('data');
 
     return (
         <FlatList

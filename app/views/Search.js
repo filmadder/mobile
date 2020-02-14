@@ -1,10 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
-
 import ws from '../ws';
 
 const Search = props => {
@@ -55,6 +53,9 @@ const Search = props => {
         }
     };
 
+    /*
+        RENDER
+    */
     return (
         <ViewWrapper>
             <SearchForm
@@ -63,11 +64,13 @@ const Search = props => {
                 style={s.searchForm}
                 onSearch={search}
                 onFocus={() => setSearchDone(false)} />
-            {(Object.entries(results).length > 0) && (
+            {/* has results */}
+            {(results.length > 0) && (
                 <Results
                     results={results}
                     type={type} />
             )}
+            {/* no results */}
             {(searchDone && Object.entries(results).length === 0) && (
                 <Text>no results for {type}</Text>
             )}

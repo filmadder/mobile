@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet  } from 'react-native';
-import { EventRegister } from 'react-native-event-listeners'
+import { EventRegister } from 'react-native-event-listeners';
 
 const DrawerBtn = props => {
     const [hasUpdates, setHasUpdates] = React.useState(false);

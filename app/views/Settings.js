@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
+import { Text } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import AvatarLink from '../components/user/AvatarLink';
@@ -10,22 +10,19 @@ import LogoutBtn from '../views/auth/LogoutBtn';
 import Loader from '../components/Loader';
 
 import ImagePicker from 'react-native-image-picker';
-import AsyncStorage from '@react-native-community/async-storage';
 import { withNavigation } from 'react-navigation';
+import { getLoggedUser } from '../auth';
 
 const Settings = () => {
     const [avatar, setAvatar] = React.useState();
     const [user, setUser] = React.useState();
 
     React.useEffect(() => {
-        // TODO (separate in a module)
-        AsyncStorage.getItem('user')
+        getLoggedUser()
             .then(user => {
-                let parsedUser = JSON.parse(user);
-                setUser(parsedUser);
+                setUser(user);
             })
             .catch(err => (console.warn(err)))
-
     }, [])
 
     const onCheckboxChange = currentState => {
@@ -42,8 +39,7 @@ const Settings = () => {
         });
     }
 
-    // const newAvatar = {...users['1'], avatar}
-
+    
     /*
         RENDER
     */
@@ -88,7 +84,7 @@ const Settings = () => {
         )
     }
 
-    //return the loader
+    // return the loader
     return <Loader />
 
 };
