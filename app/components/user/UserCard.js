@@ -52,6 +52,7 @@ const UserCard = props => {
                 <Avatar
                     style={{ marginRight: 0 }}
                     size={props.size}
+                    name={props.user.name}
                     avatar={props.user.avatar_url} />
                 <Username
                     style={styles.username}

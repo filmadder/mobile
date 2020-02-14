@@ -18,6 +18,7 @@ const UserRow = props => {
             style={[s.container, props.style]}
             onPress={goToProfile}>
             <Avatar
+                name={props.user.name}
                 avatar={props.user.avatar_url}
                 size={props.size} />
             <Username

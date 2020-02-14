@@ -1,56 +1,39 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-// import { withNavigation } from 'react-navigation';
+import { StyleSheet, View } from 'react-native';
 
 import { colours } from '../../colours';
-import { server } from '../../settings';
+import JdentIcon from './JdentIcon';
 
 const Avatar = props => {
-    let size = {
-        height: 30,
-        width: 30,
-        marginRight: 10,
-    };
-    // avatar url
-    const avatar = props.avatar
-        ? server + props.avatar
-        : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixel.nymag.com%2Fimgs%2Fdaily%2Fvulture%2F2018%2F11%2F02%2F02-avatar-2.w700.h700.jpg&f=1&nofb=1';
+    let size = null;
+    let marginRight = null;
+    const name = props.name || 'default';
     
     switch (props.size) {
         case 'large':
-            size = {
-                height: 60,
-                width: 60,
-                marginRight: 20,
-            };
+            size = 60;
+            marginRight = 20;
             break;
         case 'medium':
-            size = {
-                height: 30,
-                width: 30,
-                marginRight: 10,
-            };
+            size = 30;
+            marginRight = 10;
             break;
         case 'small':
-            size = {
-                height: 20,
-                width: 20,
-                marginRight: 10,
-            };
+            size = 10;
+            marginRight = 10;
             break;
         default:
-            size = {
-                height: 30,
-                width: 30,
-                marginRight: 10,
-            };
+            size = 30;
+            marginRight = 10;
     };
 
     return (
-        <View style={[styles.avatarContainer, size, props.style]}>
-            <Image
-                source={{uri: avatar}}
-                style={styles.avatar} />
+        <View style={[styles.avatarContainer]}>
+            <View style={[{marginRight}, props.style]}>
+                <JdentIcon
+                    value={name}
+                    size={size} />
+            </View>
         </View>
     )
 };

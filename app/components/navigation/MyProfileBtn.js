@@ -27,6 +27,7 @@ const MyProfileBtn = props => {
                 onPress={handlePress}>
                 <Avatar
                     size='large'
+                    name={user.name}
                     avatar={user.avatar_url}
                     style={{ marignRight: 0, margin: 20 }}
                 />

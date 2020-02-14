@@ -21,6 +21,7 @@ const AvatarLink = props => {
             <Avatar
                 style={{ marginRight: 0 }}
                 size={props.size}
+                name={props.user.name}
                 avatar={props.user.avatar_url} />
         </TouchableOpacity>
     )
