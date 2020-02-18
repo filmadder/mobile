@@ -39,16 +39,6 @@ const Avatar = props => {
 };
 
 const styles = StyleSheet.create({
-    avatarContainer: {
-        elevation: 5,
-        shadowOffset: {
-            height: 4,
-            width: 0,
-        },
-        shadowColor: colours.black,
-        shadowRadius: 2,
-        shadowOpacity: 0.3,
-    },
     avatar: {
         borderRadius: 60,
         height: '100%',

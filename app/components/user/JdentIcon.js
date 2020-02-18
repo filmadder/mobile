@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import jdenticon from 'jdenticon';
 import { SvgXml } from 'react-native-svg';
+import { colours } from '../../colours';
 
 const JdentIcon = props => {
     const svg = jdenticon.toSvg(props.value, props.size - props.size / 6, {
@@ -31,6 +32,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
+        elevation: 9,
+        shadowOffset: {
+            height: 5,
+            width: 0,
+        },
+        shadowColor: colours.black,
+        shadowRadius: 2,
+        shadowOpacity: 0.3,
     }
 })
 
