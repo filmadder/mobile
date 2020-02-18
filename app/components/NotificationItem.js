@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Dimensions, StyleSheet, Button } from 'react-native';
 
 import UserRow from '../components/user/UserRow';
+import Date from '../components/Date';
 
 import { colours } from '../colours'
 
@@ -31,6 +32,8 @@ const NotificationItem = props => {
         }
     }
 
+    console.log(props.item)
+
     return (
         <View style={[s.container, props.style]}>
             <View style={s.card}>
@@ -41,6 +44,9 @@ const NotificationItem = props => {
                     <Text style={s.text}>{actionText}</Text>
                 </View>
                 {props.children}
+                <Date
+                    styles={{ paddingVertical: 10 }}
+                    created={props.created} />
             </View>
         </View>
     )
@@ -52,7 +58,7 @@ const s = StyleSheet.create({
         paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
     },
     card: {
-        paddingVertical: 40,
+        paddingTop: 40,
         borderBottomWidth: 1,
         borderBottomColor: colours.blue4,
     },

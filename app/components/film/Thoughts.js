@@ -44,7 +44,7 @@ const Thoughts = props => {
                     key={thought.pk}
                     user={user}
                     text={thought.text}
-                    date={thought.posted}
+                    created={thought.posted}
                     deleteComment={() => deleteComment(thought.pk)} />
         )} else {
             if (!thought.has_spoilers) {
@@ -53,7 +53,7 @@ const Thoughts = props => {
                         key={thought.pk}
                         user={user}
                         text={thought.text}
-                        date={thought.posted}
+                        created={thought.posted}
                         deleteComment={() => deleteComment(thought.pk)} />
                 )}
         }

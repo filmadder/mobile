@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
+import Date from '../Date';
 
 import { colours } from '../../colours';
 
@@ -46,7 +47,10 @@ const Thought = props => {
                 <UsernameLink
                     size='small'
                     user={props.user} />
-                <Text style={s.date}>{props.date}</Text>
+                <Date
+                    style={s.date}
+                    created={props.created}
+                />
             </View>
             <View style={s.textContainer}>
                 <Text style={s.text}>{props.text}</Text>

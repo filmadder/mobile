@@ -6,6 +6,7 @@ import Film from './feedItems/Film';
 import Friendship from './feedItems/Friendship';
 import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
+import Date from '../Date';
 
 import { colours } from '../../colours';
 
@@ -45,6 +46,8 @@ const FeedCard = props => {
             content = <View><Text>no such type of feed item</Text></View>
     }
 
+    console.log(props.item);
+
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>
@@ -52,8 +55,8 @@ const FeedCard = props => {
                     user={props.item.user || props.item.user_a}
                     style={styles.avatar}
                     size='large' />
-
-                    {content}
+                {content}
+                <Date created={props.item.created} />
             </View>
         </View>
     )
