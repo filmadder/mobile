@@ -16,7 +16,7 @@ const Thought = props => {
                 action={' shared some thoughts'} />
 
             <View style={styles.comment}>
-                <Text>comment id because this is what we have for now {props.comment.pk}</Text>
+                <Text>{props.comment.text}</Text>
             </View>
 
             <FilmCard
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 15,
         color: colours.black,
-        fontSize: 16,
+        fontSize: 17,
+        fontFamily: 'SourceSansPro-Regular',
     }
 });
 

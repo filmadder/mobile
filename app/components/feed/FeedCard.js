@@ -6,7 +6,6 @@ import Film from './feedItems/Film';
 import Friendship from './feedItems/Friendship';
 import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
-import Loader from '../Loader';
 
 import { colours } from '../../colours';
 

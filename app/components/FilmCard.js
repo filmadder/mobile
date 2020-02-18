@@ -8,17 +8,36 @@ const FilmCard = props => {
 
     const handleCardPress = () => {
         props.navigation.push('Film', { filmId: props.film.pk });
-    }
+    };
+
     const placeholderPoster = <PlaceholderPoster />;
-    const poster = <Image source={{uri: props.film.poster_url}} style={s.poster}/>
+    const poster = <Image source={{uri: props.film.poster_url}} style={s.poster}/>;
+    const titleFont = {
+        fontSize: props.film.title.length < 40 ? 24 : 18
+    };
+    const getDirectors = () => {
+        const list = props.film.directors.split(', ');
+    
+        if (list.length > 2) {
+            return list.slice(0, 2).join(', ') + '...'
+        }
+
+        return list.join(', ')
+    }
 
     return (
         <TouchableOpacity
             style={[s.card, props.style]}
             onPress={handleCardPress}>
             {props.film.poster_url ? poster : placeholderPoster}
-            <View style={s.titleContainer}>
-                <Text style={s.title}>{props.film.title}</Text>
+            <View style={s.infoContainer}>
+                <Text style={[s.title, titleFont]}>{props.film.title}</Text>
+                {props.film.directors !== '' && (
+                    <Text style={s.director}>{getDirectors()}</Text>
+                )}
+                {props.film.year !== '' && (
+                    <Text style={s.year}>{props.film.year}</Text>
+                )}
             </View>
         </TouchableOpacity>
     )
@@ -36,28 +55,27 @@ const s = StyleSheet.create({
         borderRadius: 5,
         marginRight: 15,
     },
-    titleContainer: {
+    infoContainer: {    
         flex: 1,
     },
     title: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: 24,
         color: colours.black,
         marginBottom: 7,
-        flex: 1,
         flexWrap: 'wrap',
+        paddingBottom: 10,
     },
     director: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: 14,
+        fontSize: 17,
         color: colours.black,
         textTransform: 'uppercase',
-        marginBottom: 4,
+        paddingBottom: 5,
     },
-    genre: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: 14,
-        color: colours.black
+    year: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: 16,
+        color: colours.black,
     }
 });
 
