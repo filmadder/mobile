@@ -20,11 +20,9 @@ const Tag = props => {
 
     const tags = props.tags.map((tag, index) =>
         <TagItem
-            // hacky unique key
             key={index}
             style={styles.tag}
-            tagName={tag}
-            tagTotal='4' />
+            tagName={tag} />
     );
 
     return (

@@ -46,8 +46,6 @@ const FeedCard = props => {
             content = <View><Text>no such type of feed item</Text></View>
     }
 
-    console.log(props.item);
-
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.contents}>

@@ -11,14 +11,15 @@ const Header = props => {
     const [showStatusOptions, setshowStatusOptions] = React.useState();
 
     React.useEffect(() => {
-
         setText();
         setshowStatusOptions(false);
+    }, [status]);
 
-    }, [status])
+    const titleFontSize = {
+        fontSize: props.title.length < 40 ? 32 : 24
+    }
 
     const setText = () => {
-
         switch(status) {
             case 'p':
                 setStatusText('seen');
@@ -68,7 +69,7 @@ const Header = props => {
                 style={s.overlay}>
                 <View style={[s.infoContainer, props.style]}>
                     <View style={s.infoLeft}>
-                        <Text style={s.title}>{props.title}</Text>
+                        <Text style={[s.title, titleFontSize]}>{props.title}</Text>
                         <Text style={s.type}>{props.type} | {props.year}</Text>
                         <Text style={s.country}>{props.country}</Text>
                         <Text style={s.duration}>{props.duration}</Text>
@@ -108,12 +109,13 @@ const s = StyleSheet.create({
     },
     infoLeft: {
         paddingRight: 30,
+        flex: 2,
     },
     title: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: 32,
         width: 200,
+        flexWrap: 'wrap'
     },
     type: {
         color: 'white',
@@ -134,12 +136,13 @@ const s = StyleSheet.create({
         fontSize: 18,
     },
     infoRight: {
-
+        flex: 1,
     },
     status: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
         fontSize: 22,
+        textAlign: 'right'
     }
 });
 
