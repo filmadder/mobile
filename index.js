@@ -5,5 +5,6 @@
 import {AppRegistry} from 'react-native';
 import Fa from './Fa';
 import {name as appName} from './app.json';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
-AppRegistry.registerComponent(appName, () => Fa);
+AppRegistry.registerComponent(appName, () => gestureHandlerRootHOC(Fa));
