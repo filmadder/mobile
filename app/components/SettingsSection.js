@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import FaSmallButton from '../components/dom/FaSmallButton';
-import FaButton from '../components/dom/FaButton';
-import SettingsEditMode from '../components/SettingsEditMode';
+import FaSmallButton from './dom/FaSmallButton';
+import FaButton from './dom/FaButton';
+import SettingsEditMode from './SettingsEditMode';
+import SettingsPassword from './SettingsPassword'
 
 import { colours } from '../colours';
 
@@ -19,11 +20,9 @@ const SettingsSection = props => {
             <SettingsEditMode
                 visible={editting}
                 transparent={false}>
-                <View>
-                    {props.children}
-                    <FaButton
-                        title='done'
-                        onPress={() => setEditting(false)} />
+                <View style={s.modal}>
+                    <SettingsPassword
+                        close={() => setEditting(false)}/>
                 </View>
             </SettingsEditMode>
 
@@ -59,6 +58,12 @@ const s = StyleSheet.create({
     },
     content: {
         padding: 30,
+        alignItems: 'center'
+    },
+    modal: {
+        flex: 1,
+        paddingHorizontal: 50,
+        justifyContent: 'center',
         alignItems: 'center'
     }
 });

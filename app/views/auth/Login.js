@@ -65,7 +65,8 @@ const Login = props => {
                     ref={passwordRef}
                     setFocused={() => setHasError(false)}
                     textContentType='password'
-                    onChangeText={text => setPassword(text)} />
+                    onChangeText={text => setPassword(text)}
+                    onSubmitEditing={login} />
                 <FaButton title='login' onPress={login} />
             </AuthForm>
             <RedirectLink

@@ -7,7 +7,7 @@ import FaButton from '../../components/dom/FaButton';
 
 import ws from '../../ws';
 
-const LogoutBtn = () => {
+const LogoutBtn = props => {
 
     const logout = () => {
         AsyncStorage.removeItem('token')
@@ -26,7 +26,7 @@ const LogoutBtn = () => {
 
     return (
         <FaButton
-            title='logout'
+            title={props.title}
             onPress={logout} />
     )
 };

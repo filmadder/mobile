@@ -2,19 +2,16 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
-import AvatarLink from '../components/user/AvatarLink';
+import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
-import CheckboxField from '../components/CheckboxField';
 import ViewWrapper from './ViewWrapper';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import Loader from '../components/Loader';
 
-import ImagePicker from 'react-native-image-picker';
 import { withNavigation } from 'react-navigation';
 import { getLoggedUser } from '../auth';
 
 const Settings = () => {
-    const [avatar, setAvatar] = React.useState();
     const [user, setUser] = React.useState();
 
     React.useEffect(() => {
@@ -30,16 +27,6 @@ const Settings = () => {
         console.log(currentState)
     }
 
-    const handleChoosePhoto = () =>{
-
-        ImagePicker.launchImageLibrary({noData: true}, response => {
-            if (response.uri) {
-                setAvatar(response.uri)
-            }
-        });
-    }
-
-    
     /*
         RENDER
     */
@@ -50,14 +37,12 @@ const Settings = () => {
                 title='Settings'>
                 <SettingsSection
                     title='Avatar'>
-                    <AvatarLink
+                    <Avatar
                         size='large'
-                        user={user}
-                        onPress={handleChoosePhoto} />
+                        user={user} />
                 </SettingsSection>
                 <SettingsSection
-                    title='Username'
-                    btnText='change'>
+                    title='Username'>
                     <Username
                         name={user.name}
                         size='large' />
@@ -67,18 +52,9 @@ const Settings = () => {
                     btnText='change'>
                     <Text>🔑🔑🔑🔑🔑🔑</Text>
                 </SettingsSection>
-                <SettingsSection
-                    style={{ alignItems: 'flex-start' }}
-                    title='Privacy'>
-                        <CheckboxField
-                            text='hide om from the search results'
-                            onCheckboxChange={onCheckboxChange}></CheckboxField>
-                        <CheckboxField
-                            text='show my avatar to befriended users only  befriended users only'
-                            onCheckboxChange={onCheckboxChange}></CheckboxField>
-                </SettingsSection>
                 <SettingsSection>
-                    <LogoutBtn />
+                    <LogoutBtn
+                        title='logout' />
                 </SettingsSection>
             </ViewWrapper>
         )
