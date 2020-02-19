@@ -11,7 +11,7 @@ const DrawerBtn = props => {
         })
 
         return () => EventRegister.removeEventListener(listener)
-    }, [])
+    })
 
     const image = hasUpdates
         ? require('../../../assets/images/logo-notif.png')

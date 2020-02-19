@@ -12,7 +12,7 @@ const AuthHeader = () => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 250,
+        height: 200,
         width: 250,
         alignItems:'center',
         zIndex: -1,

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
-        paddingVertical: 100,
+        paddingVertical: 50,
     }
 })
 

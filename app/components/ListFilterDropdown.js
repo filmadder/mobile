@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, FlatList, Easing } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, Platform, Easing } from 'react-native';
 import { colours } from '../colours';
 import { profileLists } from '../constants/filters';
 
@@ -77,16 +77,16 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colours.blue3,
         marginHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 5,
         paddingHorizontal: 25,
         alignItems: 'center',
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
     },
     item: {
-        fontFamily: 'Pacifico-Regular',
+        fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',
         color: colours.blue0,
-        fontSize: 18,
+        fontSize: 20,
         marginVertical: 5,
         textAlign: 'center'
     }

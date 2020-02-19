@@ -67,7 +67,7 @@ const s = StyleSheet.create({
     },
     director: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: 17,
+        fontSize: 15,
         color: colours.black,
         textTransform: 'uppercase',
         paddingBottom: 5,

@@ -15,7 +15,7 @@ const NotFriends = props => {
                     <Text
                         style={s.title}>You and {props.user.name} are not friends yet</Text>
                     <Text
-                        style={s.text}>You will be able to see {props.user.name}'s once you become friends</Text>
+                        style={s.text}>You will be able to see {props.user.name}'s lists once you become friends</Text>
                     <FaButton
                         onPress={() => makeRequest('request_friendship')}
                         title='befriend' />
