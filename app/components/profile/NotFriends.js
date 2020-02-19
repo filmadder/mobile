@@ -60,7 +60,7 @@ const NotFriends = props => {
             if (response.type === 'confirm') {
                 props.reload();
             } else {
-                console.warn(reponse)
+                console.warn(response)
             }
         })
         .catch(err => console.warn(err))
@@ -76,7 +76,8 @@ const NotFriends = props => {
 const s = StyleSheet.create({
     container: {
         borderTopWidth: 1,
-        borderTopColor: colours.blue3
+        borderTopColor: colours.blue3,
+        paddingHorizontal: 20,
     },
     title: {
         fontFamily: 'Pacifico-Regular',

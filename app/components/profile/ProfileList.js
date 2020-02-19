@@ -10,12 +10,13 @@ const ProfileList = props => {
 
     return (
         <View>
-            {list.length === 0 ? (
+            {list && list.length === 0 ? (
                 <View style={{ paddingHorizontal: 20 }}>
                     <ListHeader
                         onTypeSelected={props.onTypeSelected}
                         isThemselves={props.isThemselves}
                         isBefriended={props.isBefriended}
+                        reload={props.reload}
                         user={props.user} />
                     <Text>nothing in {props.type}</Text>
                 </View>

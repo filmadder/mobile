@@ -27,6 +27,8 @@ const User = props => {
     }, [])
 
     const reload = () => {
+        setIsBefriended(false);
+        getUser();
     }
 
     const getUser = () => {
@@ -91,9 +93,9 @@ const User = props => {
                         size='large'
                         user={user} />
                     <NotFriends
-                            reload={reload}
-                            status={friendshipStatus}
-                            user={user} />
+                        reload={reload}
+                        status={friendshipStatus}
+                        user={user} />
                 </View>
             )}
         </View>
