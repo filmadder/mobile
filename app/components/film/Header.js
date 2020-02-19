@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, ImageBackground, Text, Button, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, ImageBackground, Text, StyleSheet } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import ws from '../../ws';
@@ -64,28 +64,35 @@ const Header = props => {
             source={{uri: props.poster}}
             resizeMode='cover'>
             <LinearGradient
-                colors={['rgba(0, 0, 0, 0.2)', colours.blue5]}
+                colors={['rgba(0, 0, 0, 0.4)', colours.blue5]}
                 locations={[0, 0.85]}
                 style={s.overlay}>
                 <View style={[s.infoContainer, props.style]}>
-                    <View style={s.infoLeft}>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <TouchableOpacity
+                            style={s.statusCurrentBtn}
+                            onPress={() => setshowStatusOptions(!showStatusOptions)}>
+                            <Text style={s.statusCurrent}>{statusText}</Text>
+                        </TouchableOpacity>
+                        {showStatusOptions && (
+                            <View style={s.statusOptionsContainer}>
+                                <TouchableOpacity onPress={() => setNewStatus('f')}>
+                                    <Text style={s.statusOption}>watchlist</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => setNewStatus('p')}>
+                                    <Text style={s.statusOption}>seen</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => setNewStatus('o')}>
+                                    <Text style={s.statusOption}>watching</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                    </View>
+                    <View>
                         <Text style={[s.title, titleFontSize]}>{props.title}</Text>
                         <Text style={s.type}>{props.type} | {props.year}</Text>
                         <Text style={s.country}>{props.country}</Text>
                         <Text style={s.duration}>{props.duration}</Text>
-                    </View>
-                    <View style={s.infoRight}>
-                        {showStatusOptions && (
-                            <View>
-                                <Button onPress={() => setNewStatus('f')} color='white' title='watchlist'></Button>
-                                <Button onPress={() => setNewStatus('p')} color='white' title='seen'></Button>
-                                <Button onPress={() => setNewStatus('o')} color='white' title='currently watching'></Button>
-                            </View>
-                        )}
-                        <TouchableOpacity
-                            onPress={() => setshowStatusOptions(!showStatusOptions)}>
-                            <Text style={s.status}>{statusText}</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
             </LinearGradient>
@@ -104,18 +111,18 @@ const s = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     infoContainer: {
-        flexDirection: 'row',
         justifyContent: 'space-between',
+        height: '100%'
     },
     infoLeft: {
         paddingRight: 30,
-        flex: 2,
+    },
+    infoRight: {
+        flex: 1,
     },
     title: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
-        width: 200,
-        flexWrap: 'wrap'
     },
     type: {
         color: 'white',
@@ -135,14 +142,31 @@ const s = StyleSheet.create({
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: 18,
     },
-    infoRight: {
-        flex: 1,
+    statusOptionsContainer: {
+        backgroundColor: colours.blue0,
+        marginVertical: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 5,
     },
-    status: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: 22,
-        textAlign: 'right'
+    statusCurrentBtn: {
+        backgroundColor: 'white',
+        paddingVertical: 5,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+    },
+    statusCurrent: {
+        color: colours.blue4,
+        fontFamily: 'Pacifico-Regular',
+        fontSize: 20,
+    },
+    statusOption: {
+        fontSize: 20,
+        color: colours.blue4,
+        fontFamily: 'Pacifico-Regular',
+        textAlign: 'right',
+        paddingHorizontal: 5,
+        marginVertical: 5,
     }
 });
 

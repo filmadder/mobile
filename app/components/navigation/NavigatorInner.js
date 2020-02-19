@@ -34,7 +34,7 @@ const createNavOptions = (navigation) => ({
     headerTintColor: '#fff',
     headerTitleStyle: {
         fontFamily: 'Pacifico-Regular',
-        fontSize: 20,
+        fontSize: 22,
     },
 })
   

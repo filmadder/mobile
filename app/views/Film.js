@@ -7,6 +7,7 @@ import Info from '../components/film/Info';
 import Watchers from '../components/film/Watchers';
 import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
+import Loader from '../components/Loader'
 
 import { screen } from '../constants/device';
 import { getLoggedUser } from '../auth';
@@ -52,9 +53,7 @@ const Film = props => {
 
     // RENDER
     if (Object.entries(film).length === 0) {
-        return (<ViewWrapper>
-                    <Text>loader</Text>
-                </ViewWrapper>)
+        return <Loader />
     }
 
     return (

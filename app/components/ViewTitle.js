@@ -14,7 +14,7 @@ const s = StyleSheet.create({
     container: {
         marginVertical: 15,
         marginHorizontal: 30,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     title: {
         fontFamily: 'Pacifico-Regular',
