@@ -38,6 +38,8 @@ const Settings = () => {
                 <SettingsSection
                     title='Avatar'>
                     <Avatar
+                        style={{ marginRight: 0 }}
+                        name={user.name}
                         size='large'
                         user={user} />
                 </SettingsSection>

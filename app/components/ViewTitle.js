@@ -19,7 +19,7 @@ const s = StyleSheet.create({
     title: {
         fontFamily: 'Pacifico-Regular',
         color: colours.blue4,
-        fontSize: 20,
+        fontSize: 22,
         paddingHorizontal: 10,
     }
 });

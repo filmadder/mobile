@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text,  KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import Input from './dom/Input';
 import FaButton from './dom/FaButton';
 import LogoutBtn from '../views/auth/LogoutBtn';
@@ -42,55 +42,63 @@ const SettingsPassword = props => {
 
     };
 
+    const errorComponent = error !== '' ? <Text style={s.message}>{error}</Text> : null
+
     return (
-        <View style={{ width: '100%' }}>
-            {error !== '' &&
-                <Text style={s.message}>{error}</Text>
-            }
+        <View style={{ width: '100%'}}>
             {!success ? (
-                <View>
-                <Input
-                    style={{ paddingVertical: 30 }}
-                    dark='true'
-                    label='old password'
-                    textContentType='password'
-                    value={oldPass}
-                    onChangeText={text => setOldPass(text)}
-                    setFocused={() => setError('')}
-                    onSubmitEditing={() => newRef1.current.focus()} />
-                <Input
-                    style={{ paddingVertical: 30 }}
-                    dark='true'
-                    label='new password'
-                    textContentType='password'
-                    value={newPass1}
-                    onChangeText={text => setNewPass1(text)}
-                    setFocused={() => setError('')}
-                    ref={newRef1}
-                    onSubmitEditing={() => newRef2.current.focus()} />
-                <Input
-                    style={{ paddingVertical: 30 }}
-                    dark='true'
-                    label='repeat new password'
-                    textContentType='password'
-                    value={newPass2}
-                    onChangeText={text => setNewPass2(text)}
-                    setFocused={() => setError('')}
-                    ref={newRef2}
-                    onSubmitEditing={change} />
-                <FaButton
-                    title='change'
-                    onPress={change} />
-                </View>
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                    <ScrollView contentContainerStyle={{ paddingVertical: 30 }}>
+                    {errorComponent}
+                    <Input
+                        style={{ paddingVertical: 30 }}
+                        dark='true'
+                        label='old password'
+                        textContentType='password'
+                        value={oldPass}
+                        onChangeText={text => setOldPass(text)}
+                        setFocused={() => setError('')}
+                        onSubmitEditing={() => newRef1.current.focus()} />
+                    <Input
+                        style={{ paddingVertical: 30 }}
+                        dark='true'
+                        label='new password'
+                        textContentType='password'
+                        value={newPass1}
+                        onChangeText={text => setNewPass1(text)}
+                        setFocused={() => setError('')}
+                        ref={newRef1}
+                        onSubmitEditing={() => newRef2.current.focus()} />
+                    <Input
+                        style={{ paddingVertical: 30 }}
+                        dark='true'
+                        label='repeat new password'
+                        textContentType='password'
+                        value={newPass2}
+                        onChangeText={text => setNewPass2(text)}
+                        setFocused={() => setError('')}
+                        ref={newRef2}
+                        onSubmitEditing={change} />
+                    <View>
+                        <FaButton
+                            title='change'
+                            onPress={change} />
+                        <FaButton
+                            title='cancel'
+                            onPress={props.close} />
+                    </View>
+                    </ScrollView>
+                    </KeyboardAvoidingView>
             ) : (
-                <>
+                <View>
                     <Text style={[s.message, {fontSize: 50}]}>🎉</Text>
                     <Text style={s.message}>Your password is now changed!</Text>
                     <LogoutBtn
                         title='close' />
-                </>
+                </View>
             )}
         </View>
+        // </ScrollView>
     )
 };
 

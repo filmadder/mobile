@@ -18,8 +18,8 @@ const Date = props => {
 const s = StyleSheet.create({
     date: {
         color: colours.blue4,
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: 16,
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: 13,
         textAlign: 'right'
     }
 })
