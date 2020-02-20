@@ -1,10 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import ProfileList from '../components/profile/ProfileList';
 import NotFriends from '../components/profile/NotFriends';
 import UserCard from '../components/user/UserCard';
 import Loader from '../components/Loader';
+import ViewWrapper from './ViewWrapper';
 
 import { getLoggedUser } from '../auth';
 import ws from '../ws';
@@ -73,7 +74,7 @@ const User = props => {
     }
 
     return (
-        <View>
+        <ViewWrapper>
             {isBefriended || isThemselves ? (
                 <ProfileList
                     type={type}
@@ -85,7 +86,7 @@ const User = props => {
                     user={user}
                     onTypeSelected={onTypeSelected}></ProfileList>
             ) : (
-                <View>
+                <ScrollView>
                     <UserCard
                         longPress={isBefriended && !isThemselves}
                         cancelPress={isThemselves}
@@ -96,9 +97,9 @@ const User = props => {
                         reload={reload}
                         status={friendshipStatus}
                         user={user} />
-                </View>
+                </ScrollView>
             )}
-        </View>
+        </ViewWrapper>
     )
 };
 

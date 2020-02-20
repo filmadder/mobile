@@ -63,7 +63,7 @@ const s = StyleSheet.create({
         color: colours.black,
         marginBottom: 7,
         flexWrap: 'wrap',
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
     director: {
         fontFamily: 'SourceSansPro-Regular',

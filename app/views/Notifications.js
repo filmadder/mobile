@@ -3,6 +3,7 @@ import { View, FlatList, StyleSheet } from 'react-native';
 
 import NotificationItem from '../components/NotificationItem';
 import ViewTitle from '../components/ViewTitle';
+import ViewWrapper from './ViewWrapper';
 import ws from '../ws';
 
 const Notifications = props => {
@@ -32,17 +33,19 @@ const Notifications = props => {
     };
 
     return (
-        <FlatList
-            ListHeaderComponent={<ViewTitle title='Notifications' style={{ paddingTop: 20 }} />}
-            data={updates}
-            renderItem={({ item }) => <NotificationItem
-                    user={item.user}
-                    type={item.type}
-                    created={item.created} />
-            }
-            keyExtractor={item => item.pk.toString()}
-            onEndReached={() => getUpdates()}
-        />
+        <ViewWrapper>
+            <FlatList
+                ListHeaderComponent={<ViewTitle title='Notifications' style={{ paddingTop: 20 }} />}
+                data={updates}
+                renderItem={({ item }) => <NotificationItem
+                        user={item.user}
+                        type={item.type}
+                        created={item.created} />
+                }
+                keyExtractor={item => item.pk.toString()}
+                onEndReached={() => getUpdates()}
+            />
+        </ViewWrapper>
     )
 };
 

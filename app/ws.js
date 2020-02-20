@@ -65,7 +65,7 @@ export const send = payload => {
             ws.send(JSON.stringify(payload));
         })
         .catch(err => {
-            EventRegister.emit('error', 'error')
+            EventRegister.emit('error', 'no connection')
             reject(err);
         });
     });

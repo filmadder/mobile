@@ -32,8 +32,6 @@ const NotificationItem = props => {
         }
     }
 
-    console.log(props.item)
-
     return (
         <View style={[s.container, props.style]}>
             <View style={s.card}>
@@ -55,7 +53,6 @@ const NotificationItem = props => {
 const s = StyleSheet.create({
     container: {
         width: '100%',
-        paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
     },
     card: {
         paddingTop: 40,

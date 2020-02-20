@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
@@ -7,6 +7,7 @@ import Username from '../components/user/Username';
 import ViewWrapper from './ViewWrapper';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import Loader from '../components/Loader';
+import ViewTitle from '../components/ViewTitle';
 
 import { withNavigation } from 'react-navigation';
 import { getLoggedUser } from '../auth';
@@ -33,31 +34,33 @@ const Settings = () => {
     // return the view
     if (user) {
         return (
-            <ViewWrapper
-                title='Settings'>
-                <SettingsSection
-                    title='Avatar'>
-                    <Avatar
-                        style={{ marginRight: 0 }}
-                        name={user.name}
-                        size='large'
-                        user={user} />
-                </SettingsSection>
-                <SettingsSection
-                    title='Username'>
-                    <Username
-                        name={user.name}
-                        size='large' />
-                </SettingsSection>
-                <SettingsSection
-                    title='Password'
-                    btnText='change'>
-                    <Text>🔑🔑🔑🔑🔑🔑</Text>
-                </SettingsSection>
-                <SettingsSection>
-                    <LogoutBtn
-                        title='logout' />
-                </SettingsSection>
+            <ViewWrapper>
+                <ScrollView>
+                    <ViewTitle title='Settings' />
+                    <SettingsSection
+                        title='Avatar'>
+                        <Avatar
+                            style={{ marginRight: 0 }}
+                            name={user.name}
+                            size='large'
+                            user={user} />
+                    </SettingsSection>
+                    <SettingsSection
+                        title='Username'>
+                        <Username
+                            name={user.name}
+                            size='large' />
+                    </SettingsSection>
+                    <SettingsSection
+                        title='Password'
+                        btnText='change'>
+                        <Text>🔑🔑🔑🔑🔑🔑</Text>
+                    </SettingsSection>
+                    <SettingsSection>
+                        <LogoutBtn
+                            title='logout' />
+                    </SettingsSection>
+                </ScrollView>
             </ViewWrapper>
         )
     }

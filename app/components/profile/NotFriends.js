@@ -78,6 +78,7 @@ const s = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: colours.blue3,
         paddingHorizontal: 20,
+        paddingBottom: 30
     },
     title: {
         fontFamily: 'Pacifico-Regular',

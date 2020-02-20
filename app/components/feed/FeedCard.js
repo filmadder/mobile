@@ -63,7 +63,6 @@ const FeedCard = props => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
         marginVertical: 50,
     },
     contents: {

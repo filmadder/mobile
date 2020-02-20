@@ -12,7 +12,7 @@ const Friendship = props => {
             <FeedCardHeader 
                 user={props.userA}
                 navigation={props.navigation}
-                action={' befiended'} />
+                action={' befriended'} />
 
             <UserCard
                 navigation={props.navigation}

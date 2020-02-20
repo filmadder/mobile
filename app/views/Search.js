@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
@@ -58,22 +58,24 @@ const Search = props => {
     */
     return (
         <ViewWrapper>
-            <SearchForm
-                onTypeChange={onTypeChange}
-                navigationType={props.navigation.getParam('search')}
-                style={s.searchForm}
-                onSearch={search}
-                onFocus={() => setSearchDone(false)} />
-            {/* has results */}
-            {(results.length > 0) && (
-                <Results
-                    results={results}
-                    type={type} />
-            )}
-            {/* no results */}
-            {(searchDone && Object.entries(results).length === 0) && (
-                <Text>no results for {type}</Text>
-            )}
+            <ScrollView>
+                <SearchForm
+                    onTypeChange={onTypeChange}
+                    navigationType={props.navigation.getParam('search')}
+                    style={s.searchForm}
+                    onSearch={search}
+                    onFocus={() => setSearchDone(false)} />
+                {/* has results */}
+                {(results.length > 0) && (
+                    <Results
+                        results={results}
+                        type={type} />
+                )}
+                {/* no results */}
+                {(searchDone && Object.entries(results).length === 0) && (
+                    <Text>no results for {type}</Text>
+                )}
+            </ScrollView>
         </ViewWrapper>
     )
 };

@@ -58,6 +58,7 @@ const SearchForm = props => {
 const s = StyleSheet.create({
     formContainer: {
         alignItems: 'center',
+        marginTop: 20,
     },
     searchForm: {
         maxWidth: 450,

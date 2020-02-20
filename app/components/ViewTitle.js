@@ -15,6 +15,7 @@ const s = StyleSheet.create({
         marginVertical: 15,
         marginHorizontal: 30,
         alignItems: 'center',
+        paddingTop: 20
     },
     title: {
         fontFamily: 'Pacifico-Regular',

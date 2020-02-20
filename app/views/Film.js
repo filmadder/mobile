@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Platform, StyleSheet } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
@@ -45,11 +45,11 @@ const Film = props => {
                 })
         })
         .catch(err => (console.warn(err)))
-    }
+    };
 
     const reloadFilm = () => {
         getFilm();
-    }
+    };
 
     // RENDER
     if (Object.entries(film).length === 0) {
@@ -58,8 +58,8 @@ const Film = props => {
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
-            <ViewWrapper
-                contentContainerStyle={s.view}>
+            <ViewWrapper style={s.view}>
+                <ScrollView>
                 <Header
                     filmId={filmId}
                     style={padding}
@@ -107,6 +107,7 @@ const Film = props => {
                     reloadFilm={reloadFilm}
                     filmId={filmId}
                     style={{paddingHorizontal: 20}} />
+                </ScrollView>
             </ViewWrapper>
         </KeyboardAvoidingView>
     )
