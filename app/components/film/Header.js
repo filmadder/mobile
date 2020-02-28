@@ -70,19 +70,26 @@ const Header = props => {
                 <View style={[s.infoContainer, props.style]}>
                     <View style={{ alignItems: 'flex-end' }}>
                         <TouchableOpacity
+                            activeOpacity={0.8}
                             style={s.statusCurrentBtn}
                             onPress={() => setshowStatusOptions(!showStatusOptions)}>
                             <Text style={s.statusCurrent}>{statusText}</Text>
                         </TouchableOpacity>
                         {showStatusOptions && (
                             <View style={s.statusOptionsContainer}>
-                                <TouchableOpacity onPress={() => setNewStatus('f')}>
+                                <TouchableOpacity
+                                    onPress={() => setNewStatus('f')}
+                                    activeOpacity={0.8}>
                                     <Text style={s.statusOption}>watchlist</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => setNewStatus('p')}>
+                                <TouchableOpacity
+                                    onPress={() => setNewStatus('p')}
+                                    activeOpacity={0.8}>
                                     <Text style={s.statusOption}>seen</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => setNewStatus('o')}>
+                                <TouchableOpacity
+                                    onPress={() => setNewStatus('o')}
+                                    activeOpacity={0.8}>
                                     <Text style={s.statusOption}>watching</Text>
                                 </TouchableOpacity>
                             </View>

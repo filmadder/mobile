@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, ScrollView, Platform, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
@@ -57,68 +57,60 @@ const Film = props => {
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
-            <ViewWrapper style={s.view}>
+        <ViewWrapper style={{ paddingHorizontal: 0 }}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
                 <ScrollView>
-                <Header
-                    filmId={filmId}
-                    style={padding}
-                    poster={film.film.poster_url}
-                    title={film.film.title}
-                    type={film.film.omdb_type}
-                    year={film.film.year}
-                    country={film.film.countries}
-                    duration={film.film.runtime}
-                    reloadFilm={reloadFilm}
-                    status={film.status} />
-                <Info
-                    style={padding}
-                    directors={film.film.directors}
-                    writers={film.film.writers}
-                    actors={film.film.actors}
-                    synopsis={film.film.plot} />
-                <Watchers
-                    style={padding}
-                    type={'Seen'}
-                    filmId={filmId}
-                    filmTitle={film.film.title}
-                    reloadFilm={reloadFilm}
-                    loggedUser={loggedUser}
-                    watchers={film.watchers_past} />
-                <Watchers
-                    style={padding}
-                    type={'Currently watching'}
-                    filmId={filmId}
-                    loggedUser={loggedUser}
-                    watchers={film.watchers_present} />
-                <Watchers
-                    style={padding}
-                    type={'Watchlist'}
-                    filmId={filmId}
-                    loggedUser={loggedUser}
-                    watchers={film.watchers_future} />
-                <Thoughts
-                    reloadFilm={reloadFilm}
-                    style={padding}
-                    filmId={filmId}
-                    thoughts={film.comments}
-                    status={film.status} />
-                <ThoughtTextArea
-                    reloadFilm={reloadFilm}
-                    filmId={filmId}
-                    style={{paddingHorizontal: 20}} />
+                    <Header
+                        filmId={filmId}
+                        style={padding}
+                        poster={film.film.poster_url}
+                        title={film.film.title}
+                        type={film.film.omdb_type}
+                        year={film.film.year}
+                        country={film.film.countries}
+                        duration={film.film.runtime}
+                        reloadFilm={reloadFilm}
+                        status={film.status} />
+                    <Info
+                        style={padding}
+                        directors={film.film.directors}
+                        writers={film.film.writers}
+                        actors={film.film.actors}
+                        synopsis={film.film.plot} />
+                    <Watchers
+                        style={padding}
+                        type={'Seen'}
+                        filmId={filmId}
+                        filmTitle={film.film.title}
+                        reloadFilm={reloadFilm}
+                        loggedUser={loggedUser}
+                        watchers={film.watchers_past} />
+                    <Watchers
+                        style={padding}
+                        type={'Currently watching'}
+                        filmId={filmId}
+                        loggedUser={loggedUser}
+                        watchers={film.watchers_present} />
+                    <Watchers
+                        style={padding}
+                        type={'Watchlist'}
+                        filmId={filmId}
+                        loggedUser={loggedUser}
+                        watchers={film.watchers_future} />
+                    <Thoughts
+                        reloadFilm={reloadFilm}
+                        style={padding}
+                        filmId={filmId}
+                        thoughts={film.comments}
+                        status={film.status} />
+                    <ThoughtTextArea
+                        reloadFilm={reloadFilm}
+                        filmId={filmId}
+                        style={{paddingHorizontal: 20}} />
                 </ScrollView>
-            </ViewWrapper>
-        </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
+        </ViewWrapper>
     )
 };
-
-const s = StyleSheet.create({
-    view: {
-        paddingHorizontal: 0,
-        paddingVertical: 0,
-        justifyContent: 'flex-end'
-    }
-});
 
 export default Film;
