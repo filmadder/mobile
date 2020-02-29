@@ -42,6 +42,7 @@ const s = StyleSheet.create({
         fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',
         color: colours.blue4,
         fontSize: 20,
+        textAlign: 'center'
     },
     dot: {
         height: 10,

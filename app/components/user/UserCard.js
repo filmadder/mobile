@@ -50,7 +50,7 @@ const UserCard = props => {
             onLongPress={handleLongPress}>
             <View style={styles.containerInner}>
                 <Avatar
-                    style={{ marginRight: 0 }}
+                    style={styles.avatar}
                     size={props.size}
                     name={props.user.name}
                     avatar={props.user.avatar_url} />
@@ -65,11 +65,14 @@ const UserCard = props => {
 };
 
 const styles = StyleSheet.create({
+    avatar: {
+        marginRight: 0,
+        alignItems: 'center'
+    },
     container: {
         backgroundColor: 'white',
     },
     containerInner: {
-        alignItems: 'center',
         paddingVertical: 30,
         marginHorizontal: 20,
     },
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: colours.black,
         marginTop: 20,
+        textAlign: 'center'
     }
 });
 

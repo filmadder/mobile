@@ -204,7 +204,6 @@ const FaNavigatorDrawer = createDrawerNavigator({
             },
             itemsContainerStyle: {
                 alignItems: 'center',
-                justifyContent: 'center',
                 paddingVertical: 50,
             },
         },

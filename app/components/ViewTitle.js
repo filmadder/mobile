@@ -12,13 +12,12 @@ const ViewTitle = props => {
 
 const s = StyleSheet.create({
     container: {
-        marginVertical: 15,
-        marginHorizontal: 30,
-        alignItems: 'center',
+        margin: 15,
         paddingTop: 20
     },
     title: {
         fontFamily: 'Pacifico-Regular',
+        textAlign: 'center',
         color: colours.blue4,
         fontSize: 22,
         paddingHorizontal: 10,
