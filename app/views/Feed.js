@@ -49,7 +49,7 @@ const Feed = props => {
     }
 
     return (
-        <ViewWrapper style={{ flex: 1 }} >
+        <ViewWrapper style={{ flex: 1 }}>
             {feed.length === 0 ? (
                 <NothingYet
                     buttonTitle='add friends'

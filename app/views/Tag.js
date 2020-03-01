@@ -54,7 +54,7 @@ const s = StyleSheet.create({
     },
     userContainer: {
         paddingVertical: 30,
-        alignItems: 'center'
+        alignItems: 'center',
     },
 })
 

@@ -7,6 +7,7 @@ import ws from '../ws';
 
 const Launch = props => {
     const [hasError, setHasError] = React.useState(false);
+    const [error, setError] = React.useState('');
 
     React.useEffect(() => {
         ws.open()
@@ -14,25 +15,25 @@ const Launch = props => {
                 props.navigation.navigate('Inner');
             })
             .catch(err => {
-                if (err === 'NOTOKEN') {
+                if (err.code === 'NO_AUTH_TOKEN' || err.code === 'SOCKET_ERROR') {
                     props.navigation.navigate('Login');
                 } else {
-                    setHasError(true)
+                    setHasError(true);
+                    setError('Please check your internet connection.')
                 }
             })
     }, [])
 
-
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            {hasError ? (
-                <Error error='error' />
-            ) : (
-                <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={s.container}>
-                    <Image source={require('../../assets/images/logo.png')} style={s.logo}/>
-                    <Text style={s.title}>filmadder</Text>
-                </LinearGradient>
-            )}
+        {hasError ? (
+            <Error error={error} />
+        ) : (
+            <LinearGradient colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']} style={s.container}>
+                <Image source={require('../../assets/images/logo.png')} style={s.logo}/>
+                <Text style={s.title}>filmadder</Text>
+            </LinearGradient>
+        )}
         </View>
     );
 };

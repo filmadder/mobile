@@ -18,6 +18,7 @@ const AuthContainer = React.forwardRef((props, ref) => {
 
 const styles = StyleSheet.create({
     container: {
+        justifyContent: 'center',
         height: '100%',
         width: '100%',
     },

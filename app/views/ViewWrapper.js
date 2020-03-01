@@ -1,7 +1,8 @@
 import React from 'react';
-import { Dimensions, Text, View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import Error from './Error';
 import { EventRegister } from 'react-native-event-listeners';
+import RNRestart from 'react-native-restart';
 
 const ViewWrapper = props => {
     const [hasError, setHasError] = React.useState(false);
@@ -9,8 +10,12 @@ const ViewWrapper = props => {
 
     React.useEffect(() => {
         let listener = EventRegister.addEventListener('error', error => {
-            setHasError(true);
-            setError(error);
+            if (error.code === 'NO_AUTH_TOKEN' || error.code === 'SOCKET_ERROR') {
+                RNRestart.Restart();
+            } else {
+                setHasError(true);
+                setError('Please check your internet connection.');
+            }
         });
 
         return () => EventRegister.removeEventListener(listener);
@@ -21,18 +26,12 @@ const ViewWrapper = props => {
             {hasError ? (
                 <Error error={error} />
             ) : (
-                <View style={[s.container, props.style]}>
+                <View style={props.style}>
                     {props.children}
                 </View>
             )}
         </View>
     )
 };
-
-const s = StyleSheet.create({
-    container: {
-        paddingHorizontal: Dimensions.get('window').width  < 400 ? 15 : 30,
-    }
-});
 
 export default ViewWrapper;

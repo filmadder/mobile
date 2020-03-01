@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { screen } from '../../constants/device';
 
 import AvatarLink from '../user/AvatarLink';
 import Film from './feedItems/Film';
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         marginVertical: 50,
+        paddingHorizontal: screen.width < 400 ? 15 : 30,
     },
     contents: {
         backgroundColor: colours.blue0,

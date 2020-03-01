@@ -16,7 +16,7 @@ export const open = () => {
     return new Promise((resolve, reject) => {
         AsyncStorage.getItem('token').then(token => {
             if (!token) {
-                reject('NOTOKEN');
+                reject({ message: '', code: 'NO_AUTH_TOKEN'})
                 return;
             }
 
@@ -25,7 +25,7 @@ export const open = () => {
             ws.onmessage = event => {
                 const data = JSON.parse(event.data);
                 
-                // when a notification arrices
+                // when a notification arrives
                 if (data['has_unread_updates'] || 
                     data.type === 'new_update') {
                     EventRegister.emit('hasUpdates')
@@ -38,17 +38,19 @@ export const open = () => {
             };
             
             ws.onerror = err => {
-                EventRegister.emit('error', 'no connection')
-                reject(err);
-            }
+                if (err && err.message.includes('403')) {
+                    reject({ message: err, code: 'SOCKET_ERROR'});
+                } else {
+                    reject({ message: err, code: 'NO_CONNECTION_ERROR'});
+                }
+            };
             
             ws.onopen = () => {
                 resolve()
-            }
+            };
             
-        }).catch(err => {
-            EventRegister.emit('error', 'not valid')
-            reject('NOTVALID');
+        }).catch(() => {
+            reject({ message: '', code: 'NO_AUTH_TOKEN'});
         })
     })
 };
@@ -65,7 +67,7 @@ export const send = payload => {
             ws.send(JSON.stringify(payload));
         })
         .catch(err => {
-            EventRegister.emit('error', 'no connection')
+            EventRegister.emit('error', err);
             reject(err);
         });
     });
