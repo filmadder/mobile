@@ -1,40 +1,38 @@
 import React from 'react';
-import { TouchableOpacity, Image, StyleSheet  } from 'react-native';
-import { EventRegister } from 'react-native-event-listeners';
+import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {EventRegister} from 'react-native-event-listeners';
 
 const DrawerBtn = props => {
-    const [hasUpdates, setHasUpdates] = React.useState(false);
-   
-    React.useEffect(() => {
-        let listener = EventRegister.addEventListener('hasUpdates', () => {
-            setHasUpdates(true)
-        })
+  const [hasUpdates, setHasUpdates] = React.useState(false);
 
-        return () => EventRegister.removeEventListener(listener)
-    })
+  React.useEffect(() => {
+    let listener = EventRegister.addEventListener('hasUpdates', () => {
+      setHasUpdates(true);
+    });
 
-    const image = hasUpdates
-        ? require('../../../assets/images/logo-notif.png')
-        : require('../../../assets/images/logo.png') 
+    return () => EventRegister.removeEventListener(listener);
+  });
 
-    const toggleDrawer = () => {
-        props.navigation.toggleDrawer();
-    }
+  const image = hasUpdates
+    ? require('../../../assets/images/logo-notif.png')
+    : require('../../../assets/images/logo.png');
 
-    return (
-        <TouchableOpacity onPress={toggleDrawer}>
-            <Image
-                style={s.menuBtn}
-                source={image} />
-        </TouchableOpacity>
-    )
+  const toggleDrawer = () => {
+    props.navigation.toggleDrawer();
+  };
+
+  return (
+    <TouchableOpacity onPress={toggleDrawer}>
+      <Image style={s.menuBtn} source={image} />
+    </TouchableOpacity>
+  );
 };
 
 const s = StyleSheet.create({
-    menuBtn: {
-        height: 40,
-        width: 40,
-    }
-})
+  menuBtn: {
+    height: 40,
+    width: 40,
+  },
+});
 
 export default DrawerBtn;
