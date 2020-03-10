@@ -54,7 +54,7 @@ const Film = props => {
   }
 
   return (
-    <ViewWrapper style={{paddingHorizontal: 0}}>
+    <ViewWrapper>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : null}>
         <ScrollView>

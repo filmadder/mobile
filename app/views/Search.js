@@ -3,6 +3,7 @@ import {ScrollView, StyleSheet, Text} from 'react-native';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
+import {screen} from '../constants/device';
 import ws from '../ws';
 
 const Search = props => {
@@ -56,7 +57,7 @@ const Search = props => {
     */
   return (
     <ViewWrapper>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{height: '100%'}}>
         <SearchForm
           onTypeChange={onTypeChange}
           navigationType={props.navigation.getParam('search')}
@@ -65,10 +66,18 @@ const Search = props => {
           onFocus={() => setSearchDone(false)}
         />
         {/* has results */}
-        {results.length > 0 && <Results results={results} type={type} />}
+        {results.length > 0 && (
+          <Results
+            results={results}
+            type={type}
+            style={{paddingHorizontal: screen.width < 400 ? 20 : 30}}
+          />
+        )}
         {/* no results */}
         {searchDone && Object.entries(results).length === 0 && (
-          <Text>no results for {type}</Text>
+          <Text style={{paddingHorizontal: screen.width < 400 ? 20 : 30}}>
+            no results for {type}
+          </Text>
         )}
       </ScrollView>
     </ViewWrapper>
@@ -78,6 +87,7 @@ const Search = props => {
 const s = StyleSheet.create({
   searchForm: {
     paddingVertical: 10,
+    paddingHorizontal: screen.width < 400 ? 20 : 30,
   },
 });
 

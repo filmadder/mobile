@@ -2,9 +2,10 @@ import React from 'react';
 import {View, FlatList, Text, StyleSheet} from 'react-native';
 
 import ViewTitle from '../components/ViewTitle';
-import UsernameLink from '../components/user/UsernameLink';
+import UserRow from '../components/user/UserRow';
 import FilmCard from '../components/FilmCard';
 import ViewWrapper from './ViewWrapper';
+import {colours} from '../colours';
 
 const Tag = props => {
   const data = props.navigation.getParam('data');
@@ -12,21 +13,17 @@ const Tag = props => {
   return (
     <ViewWrapper>
       <FlatList
-        ListHeaderComponent={
-          <ViewTitle title={data.tag} style={{paddingTop: 20}} />
-        }
+        ListHeaderComponent={<ViewTitle title={data.tag} style={s.tag} />}
         data={data.users}
         keyExtractor={item => item.pk.toString()}
         renderItem={({item}) => (
           <View style={s.userContainer}>
-            <UsernameLink
+            <UserRow
               style={s.username}
               user={{name: item.name, pk: item.pk}}
               size="large"
             />
-            <View>
-              <Text>{item.films.length}</Text>
-            </View>
+            <Text style={s.total}>{item.films.length} films</Text>
             <FlatList
               style={s.filmsContainer}
               horizontal
@@ -42,8 +39,10 @@ const Tag = props => {
 };
 
 const s = StyleSheet.create({
+  tag: {
+    paddingTop: 20,
+  },
   film: {
-    width: 'auto',
     padding: 30,
   },
   filmsContainer: {
@@ -52,6 +51,12 @@ const s = StyleSheet.create({
   userContainer: {
     paddingVertical: 30,
     alignItems: 'center',
+  },
+  total: {
+    fontSize: 17,
+    fontFamily: 'SourceSansPro-Bold',
+    color: colours.blue5,
+    paddingBottom: 20,
   },
 });
 

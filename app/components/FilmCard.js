@@ -45,7 +45,6 @@ const FilmCard = props => {
 const s = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    width: '100%',
     paddingVertical: 15,
   },
   poster: {
@@ -62,6 +61,7 @@ const s = StyleSheet.create({
     color: colours.black,
     marginBottom: 7,
     flexWrap: 'wrap',
+    maxWidth: 240,
     paddingBottom: 5,
   },
   director: {

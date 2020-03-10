@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
-
+import {FlatList, StyleSheet} from 'react-native';
 import NotificationItem from '../components/NotificationItem';
 import ViewTitle from '../components/ViewTitle';
 import ViewWrapper from './ViewWrapper';
+import {screen} from '../constants/device';
 import ws from '../ws';
 
 const Notifications = props => {
@@ -46,6 +46,9 @@ const Notifications = props => {
             created={item.created}
           />
         )}
+        style={{
+          paddingHorizontal: screen.width < 400 ? 20 : 30,
+        }}
         keyExtractor={item => item.pk.toString()}
         onEndReached={() => getUpdates()}
       />

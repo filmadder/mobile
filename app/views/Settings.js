@@ -8,9 +8,9 @@ import ViewWrapper from './ViewWrapper';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
-
 import {withNavigation} from 'react-navigation';
 import {getLoggedUser} from '../auth';
+import {screen} from '../constants/device';
 
 const Settings = () => {
   const [user, setUser] = React.useState();
@@ -35,7 +35,11 @@ const Settings = () => {
   if (user) {
     return (
       <ViewWrapper>
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            width: '100%',
+            paddingHorizontal: screen.width < 400 ? 20 : 30,
+          }}>
           <ViewTitle title="Settings" />
           <SettingsSection title="Avatar">
             <Avatar
