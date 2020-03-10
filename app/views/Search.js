@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import {View, ScrollView, StyleSheet, Text} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
@@ -22,6 +22,8 @@ const Search = props => {
 
     return () => EventRegister.removeEventListener(listener);
   }, []);
+
+  const resultsRef = React.createRef();
 
   const addFilter = (query, type) => {
     switch (type) {
@@ -85,12 +87,14 @@ const Search = props => {
             onPress={() => {
               search(query, type);
               setHasMoreResults(false);
+              resultsRef.current.scrollTo({x: 0, y: 0, animated: true});
             }}
           />
         )}
         {/* has results */}
         {results.length > 0 && (
           <Results
+            ref={resultsRef}
             results={results}
             type={type}
             style={{paddingHorizontal: screen.width < 400 ? 20 : 30}}

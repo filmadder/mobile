@@ -3,9 +3,9 @@ import {StyleSheet, ScrollView} from 'react-native';
 
 import Result from './Result';
 
-const Results = props => {
+const Results = React.forwardRef((props, ref) => {
   return (
-    <ScrollView style={[s.container, props.style]}>
+    <ScrollView ref={ref} style={[s.container, props.style]}>
       {props.results.map(result => (
         <Result
           key={result.pk ? result.pk.toString() : result}
@@ -15,7 +15,7 @@ const Results = props => {
       ))}
     </ScrollView>
   );
-};
+});
 
 const s = StyleSheet.create({
   container: {
