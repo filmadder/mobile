@@ -1,15 +1,27 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
+import {EventRegister} from 'react-native-event-listeners';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
+import FaSmallButton from '../components/dom/FaSmallButton';
 import {screen} from '../constants/device';
 import ws from '../ws';
 
 const Search = props => {
   const [results, setResults] = React.useState([]);
   const [searchDone, setSearchDone] = React.useState(false);
+  const [hasMoreResults, setHasMoreResults] = React.useState(false);
   const [type, setType] = React.useState();
+  const [query, setQuery] = React.useState('');
+
+  React.useEffect(() => {
+    let listener = EventRegister.addEventListener('moreResults', () => {
+      setHasMoreResults(true);
+    });
+
+    return () => EventRegister.removeEventListener(listener);
+  }, []);
 
   const addFilter = (query, type) => {
     switch (type) {
@@ -32,6 +44,7 @@ const Search = props => {
 
   const search = (query, type) => {
     setType(type);
+    setQuery(query);
 
     if (query.length > 0) {
       // adds the bang according to the serach type
@@ -53,8 +66,8 @@ const Search = props => {
   };
 
   /*
-        RENDER
-    */
+    RENDER
+  */
   return (
     <ViewWrapper>
       <ScrollView contentContainerStyle={{height: '100%'}}>
@@ -65,6 +78,16 @@ const Search = props => {
           onSearch={search}
           onFocus={() => setSearchDone(false)}
         />
+        {hasMoreResults && (
+          <FaSmallButton
+            style={{paddingBottom: 20}}
+            title="more results found"
+            onPress={() => {
+              search(query, type);
+              setHasMoreResults(false);
+            }}
+          />
+        )}
         {/* has results */}
         {results.length > 0 && (
           <Results

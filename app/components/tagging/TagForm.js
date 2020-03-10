@@ -87,7 +87,7 @@ const TagForm = props => {
               value={newTag}
               placeholder="enter tag"
               placeholderTextColor={colours.blue3}
-              onChangeText={text => setNewTag(text)}
+              onChangeText={text => setNewTag(text.toLowerCase())}
               onSubmitEditing={addTag}
             />
             <IconButton style={{padding: 10}} name="plus" onPress={addTag} />

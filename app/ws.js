@@ -31,6 +31,11 @@ export const open = () => {
             EventRegister.emit('hasUpdates');
           }
 
+          // when more results arrive
+          if (data.type === 'more_search_results') {
+            EventRegister.emit('moreResults');
+          }
+
           if (queue.hasOwnProperty(data['id'])) {
             queue[data['id']](data);
             delete queue[data['id']];
