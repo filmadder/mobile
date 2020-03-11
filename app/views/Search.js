@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
@@ -47,6 +47,8 @@ const Search = props => {
   const search = (query, type) => {
     setType(type);
     setQuery(query);
+    setResults([]);
+    setSearchDone(false);
 
     if (query.length > 0) {
       // adds the bang according to the serach type
@@ -67,12 +69,21 @@ const Search = props => {
     }
   };
 
+  const showMoreResults = () => {
+    search(query, type);
+    setHasMoreResults(false);
+
+    if (results.length > 0) {
+      resultsRef.current.scrollTo({x: 0, y: 0, animated: true});
+    }
+  };
+
   /*
     RENDER
   */
   return (
     <ViewWrapper>
-      <ScrollView contentContainerStyle={{height: '100%'}}>
+      <View style={{height: '100%'}}>
         <SearchForm
           onTypeChange={onTypeChange}
           navigationType={props.navigation.getParam('search')}
@@ -84,11 +95,7 @@ const Search = props => {
           <FaSmallButton
             style={{paddingBottom: 20}}
             title="more results found"
-            onPress={() => {
-              search(query, type);
-              setHasMoreResults(false);
-              resultsRef.current.scrollTo({x: 0, y: 0, animated: true});
-            }}
+            onPress={showMoreResults}
           />
         )}
         {/* has results */}
@@ -106,7 +113,7 @@ const Search = props => {
             no results for {type}
           </Text>
         )}
-      </ScrollView>
+      </View>
     </ViewWrapper>
   );
 };
