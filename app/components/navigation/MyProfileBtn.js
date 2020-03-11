@@ -1,8 +1,9 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import Avatar from '../user/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
+import {colours} from '../../colours';
 
 const MyProfileBtn = props => {
   const [user, setUser] = React.useState();
@@ -23,18 +24,34 @@ const MyProfileBtn = props => {
 
   if (user) {
     return (
-      <TouchableOpacity onPress={handlePress}>
+      <TouchableOpacity onPress={handlePress} style={s.button}>
         <Avatar
           size="large"
           name={user.name}
           avatar={user.avatar_url}
-          style={{marignRight: 0, margin: 20}}
+          style={s.avatar}
         />
+        <Text style={s.username}>{user.name}</Text>
       </TouchableOpacity>
     );
   }
 
   return null;
 };
+
+const s = StyleSheet.create({
+  button: {
+    marginBottom: 30,
+  },
+  avatar: {
+    margin: 20,
+  },
+  username: {
+    textAlign: 'center',
+    fontSize: 17,
+    fontFamily: 'SourceSansPro-Bold',
+    color: colours.grey,
+  },
+});
 
 export default MyProfileBtn;

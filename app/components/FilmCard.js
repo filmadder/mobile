@@ -27,7 +27,10 @@ const FilmCard = props => {
   };
 
   return (
-    <TouchableOpacity style={[s.card, props.style]} onPress={handleCardPress}>
+    <TouchableOpacity
+      style={[s.card, props.style]}
+      onPress={handleCardPress}
+      activeOpacity={1}>
       {props.film.poster_url ? poster : placeholderPoster}
       <View style={s.infoContainer}>
         <Text style={[s.title, titleFont]}>{props.film.title}</Text>
