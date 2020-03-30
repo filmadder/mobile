@@ -8,15 +8,14 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-
 import TagItem from '../../components/TagItem';
 import IconButton from '../dom/IconButton';
 import FaButton from '../dom/FaButton';
-
 import ws from '../../ws';
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const TagForm = props => {
+  const {colors} = useTheme();
   const [newTag, setNewTag] = React.useState('');
   const [tags, setTags] = React.useState(props.tags || []);
 
@@ -59,9 +58,9 @@ const TagForm = props => {
   };
 
   return (
-    <Modal style={s.modal} visible={props.visible} animationType="slide">
+    <Modal visible={props.visible} animationType="slide">
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-        <View style={s.card}>
+        <View style={[s.card, {backgroundColor: colors.background}]}>
           {tags && (
             <View style={s.currentTags}>
               {tags.map(tag => (
@@ -76,17 +75,22 @@ const TagForm = props => {
               ))}
               {tags.length === 0 && (
                 <View>
-                  <Text>You haven't added any tags for {props.filmTitle}</Text>
+                  <Text style={{color: colors.text}}>
+                    You haven't added any tags for {props.filmTitle}
+                  </Text>
                 </View>
               )}
             </View>
           )}
           <View style={s.inputForm}>
             <TextInput
-              style={s.input}
+              style={[
+                s.input,
+                {borderColor: colors.accent, color: colors.accent},
+              ]}
               value={newTag}
               placeholder="enter tag"
-              placeholderTextColor={colours.blue3}
+              placeholderTextColor={colors.accent}
               onChangeText={text => setNewTag(text.toLowerCase())}
               onSubmitEditing={addTag}
             />
@@ -107,8 +111,6 @@ const s = StyleSheet.create({
   },
   input: {
     flex: 2,
-    borderColor: colours.blue3,
-    color: colours.blue3,
     borderWidth: 1,
     borderRadius: 5,
     paddingVertical: 10,

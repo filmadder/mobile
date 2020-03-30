@@ -1,8 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-
-import {colours} from '../../colours';
-
 import {withNavigation} from 'react-navigation';
 
 import Username from './Username';
@@ -20,7 +17,6 @@ const UsernameLink = props => {
 const s = StyleSheet.create({
   username: {
     textAlign: 'center',
-    color: colours.black,
     padding: 3,
   },
 });

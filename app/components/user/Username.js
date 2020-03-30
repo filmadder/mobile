@@ -1,8 +1,10 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const Username = props => {
+  const {colors} = useTheme();
+
   let styles = null;
 
   switch (props.size) {
@@ -11,7 +13,6 @@ const Username = props => {
         styles = {
           fontFamily: 'Pacifico-Regular',
           fontSize: 22,
-          color: colours.black,
         };
       }
       break;
@@ -27,17 +28,27 @@ const Username = props => {
       styles = {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: 16,
-        color: colours.black,
       };
   }
 
-  return <Text style={[s.username, styles, props.style]}>{props.name}</Text>;
+  return (
+    <Text
+      style={[
+        s.username,
+        styles,
+        {
+          color: colors.text,
+        },
+        props.style,
+      ]}>
+      {props.name}
+    </Text>
+  );
 };
 
 const s = StyleSheet.create({
   username: {
     textAlign: 'center',
-    color: colours.black,
     padding: 3,
   },
 });

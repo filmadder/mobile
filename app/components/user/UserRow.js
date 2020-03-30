@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
-
 import Avatar from './Avatar';
 import Username from './Username';
 

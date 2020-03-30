@@ -1,13 +1,12 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
-
 import FaButton from '../dom/FaButton';
 import CheckboxField from '../CheckboxField';
-
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 import ws from '../../ws';
 
 const ThoughtTextArea = props => {
+  const {colors} = useTheme();
   const [thought, setThought] = React.useState('');
   const [hasSpoilers, setHasSpoilers] = React.useState(false);
   const [hasError, setHasError] = React.useState(false);
@@ -46,11 +45,21 @@ const ThoughtTextArea = props => {
   return (
     <View style={[s.container, props.style]}>
       {hasError && errorMessage}
-      <View style={s.textareaContainer}>
+      <View
+        style={[
+          s.textareaContainer,
+          {backgroundColor: colors.background, borderColor: colors.accent},
+        ]}>
         <TextInput
-          style={s.textarea}
+          style={[
+            s.textarea,
+            {
+              color: colors.text,
+            },
+          ]}
           value={thought}
           placeholder="share your thoughts"
+          placeholderTextColor={colors.text}
           onChangeText={text => setThought(text)}
           multiline={true}
           onFocus={() => setHasError(false)}
@@ -72,8 +81,6 @@ const s = StyleSheet.create({
     marginVertical: 30,
   },
   textareaContainer: {
-    backgroundColor: 'white',
-    borderColor: colours.blue4,
     borderWidth: 1,
     borderRadius: 10,
     padding: 15,
