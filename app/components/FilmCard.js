@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 import PlaceholderPoster from './PlaceholderPoster';
 import {colours} from '../colours';
 
 const FilmCard = props => {
+  const navigation = useNavigation();
   const handleCardPress = () => {
-    props.navigation.push('Film', {filmId: props.film.pk});
+    navigation.push('Film', {filmId: props.film.pk});
   };
 
   const placeholderPoster = <PlaceholderPoster />;
@@ -81,4 +82,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigation(FilmCard);
+export default FilmCard;

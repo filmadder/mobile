@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
 import SearchForm from '../components/search/SearchForm';
 import Results from '../components/search/Results';
@@ -8,7 +9,8 @@ import FaSmallButton from '../components/dom/FaSmallButton';
 import {screen} from '../constants/device';
 import ws from '../ws';
 
-const Search = props => {
+const Search = () => {
+  const route = useRoute();
   const [results, setResults] = React.useState([]);
   const [searchDone, setSearchDone] = React.useState(false);
   const [hasMoreResults, setHasMoreResults] = React.useState(false);
@@ -86,7 +88,7 @@ const Search = props => {
       <View style={{height: '100%'}}>
         <SearchForm
           onTypeChange={onTypeChange}
-          navigationType={props.navigation.getParam('search')}
+          navigationType={route.params.search}
           style={s.searchForm}
           onSearch={search}
           onFocus={() => setSearchDone(false)}

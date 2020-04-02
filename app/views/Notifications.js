@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {FlatList, StyleSheet} from 'react-native';
 import NotificationItem from '../components/NotificationItem';
 import ViewTitle from '../components/ViewTitle';
@@ -7,11 +8,13 @@ import {screen} from '../constants/device';
 import ws from '../ws';
 
 const Notifications = props => {
+  const navigation = useNavigation();
+  const route = useRoute();
   const [page, setPage] = React.useState(0);
   const [updates, setUpdates] = React.useState([]);
 
   React.useEffect(() => {
-    props.navigation.popToTop();
+    //   navigation.popToTop();
     getUpdates();
   }, [updates]);
 

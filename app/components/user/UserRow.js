@@ -1,14 +1,15 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 
 import Avatar from './Avatar';
 import Username from './Username';
 
 const UserRow = props => {
+  const navigation = useNavigation();
   const goToProfile = () => {
     if (!props.cancelPress) {
-      props.navigation.push('Profile', {user: props.user.pk});
+      navigation.push('Profile', {user: props.user.pk});
     }
   };
 
@@ -32,4 +33,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigation(UserRow);
+export default UserRow;

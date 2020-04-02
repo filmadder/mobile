@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 
 import {colours} from '../colours';
 import ws from '../ws';
 
 const TagItem = props => {
-  const [tagTotal, setTagTotal] = React.useState(props.tagTotal);
+  const navigation = useNavigation();
+  const [tagTotal] = React.useState(props.tagTotal);
 
   let total = (
     <View style={styles.total}>
@@ -21,7 +22,7 @@ const TagItem = props => {
       tag: props.tagName,
     })
       .then(response => {
-        props.navigation.push('Tag', {data: response});
+        navigation.push('Tag', {data: response});
       })
       .catch(err => console.warn(err));
   };
@@ -74,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(TagItem);
+export default TagItem;

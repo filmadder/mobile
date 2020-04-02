@@ -1,13 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
 import UsernameLink from '../user/UsernameLink';
 import {colours} from '../../colours';
 
 const FeedCardHeader = props => {
   return (
     <View style={s.action}>
-      <UsernameLink user={props.user} navigation={props.navigation} />
+      <UsernameLink user={props.user} />
       <Text style={s.actionText}>{props.action}</Text>
     </View>
   );

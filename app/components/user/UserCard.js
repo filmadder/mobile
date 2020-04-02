@@ -3,14 +3,15 @@ import {View, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 
 import Avatar from './Avatar';
 import Username from './Username';
-
+import {useNavigation} from '@react-navigation/native';
 import ws from '../../ws';
 import {colours} from '../../colours';
 
 const UserCard = props => {
+  const navigation = useNavigation();
   const goToProfile = () => {
     if (!props.longPress && !props.cancelPress) {
-      props.navigation.push('Profile', {user: props.user.pk});
+      navigation.push('Profile', {user: props.user.pk});
     }
   };
 

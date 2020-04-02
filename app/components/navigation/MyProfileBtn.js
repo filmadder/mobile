@@ -4,6 +4,7 @@ import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Avatar from '../user/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
 import {colours} from '../../colours';
+import {useNavigation} from '@react-navigation/native';
 
 const MyProfileBtn = props => {
   const [user, setUser] = React.useState();

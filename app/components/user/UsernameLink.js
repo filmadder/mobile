@@ -1,17 +1,17 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-
 import {colours} from '../../colours';
-
-import {withNavigation} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 
 import Username from './Username';
 
 const UsernameLink = props => {
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={props.style}
-      onPress={() => props.navigation.push('Profile', {user: props.user.pk})}>
+      onPress={() => navigation.push('Profile', {user: props.user.pk})}>
       <Username size={props.size} name={props.user.name} />
     </TouchableOpacity>
   );
@@ -25,4 +25,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigation(UsernameLink);
+export default UsernameLink;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Dimensions, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import UserRow from '../components/user/UserRow';
 import Date from '../components/Date';

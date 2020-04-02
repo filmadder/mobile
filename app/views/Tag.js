@@ -1,14 +1,15 @@
 import React from 'react';
 import {View, FlatList, Text, StyleSheet} from 'react-native';
-
+import {useRoute} from '@react-navigation/native';
 import ViewTitle from '../components/ViewTitle';
 import UserRow from '../components/user/UserRow';
 import FilmCard from '../components/FilmCard';
 import ViewWrapper from './ViewWrapper';
 import {colours} from '../colours';
 
-const Tag = props => {
-  const data = props.navigation.getParam('data');
+const Tag = () => {
+  const route = useRoute();
+  const data = route.params.data;
 
   return (
     <ViewWrapper>

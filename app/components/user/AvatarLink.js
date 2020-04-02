@@ -1,15 +1,17 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 
 import Avatar from './Avatar';
 
 const AvatarLink = props => {
+  const navigation = useNavigation();
+
   const handlePress = () => {
     if (props.fromHeader) {
-      props.navigation.navigate('Profile', {user: props.user.pk});
+      navigation.navigate('Profile', {user: props.user.pk});
     } else {
-      props.navigation.push('Profile', {user: props.user.pk});
+      navigation.push('Profile', {user: props.user.pk});
     }
   };
 
@@ -25,4 +27,4 @@ const AvatarLink = props => {
   );
 };
 
-export default withNavigation(AvatarLink);
+export default AvatarLink;

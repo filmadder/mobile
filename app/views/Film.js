@@ -1,6 +1,6 @@
 import React from 'react';
 import {KeyboardAvoidingView, ScrollView, Platform} from 'react-native';
-
+import {useRoute} from '@react-navigation/native';
 import ViewWrapper from './ViewWrapper';
 import Header from '../components/film/Header';
 import Info from '../components/film/Info';
@@ -13,10 +13,11 @@ import {screen} from '../constants/device';
 import {getLoggedUser} from '../auth';
 import ws from '../ws';
 
-const Film = props => {
+const Film = () => {
+  const route = useRoute();
   const [film, setFilm] = React.useState({});
   const [loggedUser, setLoggedUser] = React.useState();
-  const filmId = props.navigation.getParam('filmId');
+  const filmId = route.params.filmId;
   const padding = screen.width < 400 ? {padding: 20} : {padding: 30};
 
   React.useEffect(() => {

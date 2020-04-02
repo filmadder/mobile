@@ -1,16 +1,17 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-
+import {useNavigation, useRoute} from '@react-navigation/native';
 import ProfileList from '../components/profile/ProfileList';
 import NotFriends from '../components/profile/NotFriends';
 import UserCard from '../components/user/UserCard';
 import Loader from '../components/Loader';
 import ViewWrapper from './ViewWrapper';
-
 import {getLoggedUser} from '../auth';
 import ws from '../ws';
 
-const User = props => {
+const Profile = props => {
+  const navigation = useNavigation();
+  const route = useRoute();
   const [type, setType] = React.useState('watchlist');
   const [user, setUser] = React.useState({});
   const [loaded, setLoaded] = React.useState(false);
@@ -35,7 +36,7 @@ const User = props => {
   const getUser = () => {
     ws.send({
       type: 'get_user',
-      user: props.navigation.getParam('user'),
+      user: route.params.user,
       id: null,
     })
       .then(data => {
@@ -101,4 +102,4 @@ const User = props => {
   );
 };
 
-export default User;
+export default Profile;

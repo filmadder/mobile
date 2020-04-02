@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
-
+import {useNavigation, useRoute} from '@react-navigation/native';
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
@@ -8,11 +8,12 @@ import ViewWrapper from './ViewWrapper';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
-import {withNavigation} from 'react-navigation';
 import {getLoggedUser} from '../auth';
 import {screen} from '../constants/device';
 
 const Settings = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
   const [user, setUser] = React.useState();
 
   React.useEffect(() => {
@@ -67,4 +68,4 @@ const Settings = () => {
   return <Loader />;
 };
 
-export default withNavigation(Settings);
+export default Settings;

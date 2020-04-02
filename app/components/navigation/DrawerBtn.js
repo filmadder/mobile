@@ -1,8 +1,10 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
 
-const DrawerBtn = props => {
+const DrawerBtn = () => {
+  const navigation = useNavigation();
   const [hasUpdates, setHasUpdates] = React.useState(false);
 
   React.useEffect(() => {
@@ -18,7 +20,7 @@ const DrawerBtn = props => {
     : require('../../../assets/images/logo.png');
 
   const toggleDrawer = () => {
-    props.navigation.toggleDrawer();
+    navigation.toggleDrawer();
   };
 
   return (
