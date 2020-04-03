@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-
 import Feed from '../../views/Feed';
 import Notifications from '../../views/Notifications';
 import Settings from '../../views/Settings';
@@ -10,7 +9,6 @@ import Search from '../../views/Search';
 import Profile from '../../views/Profile';
 import Film from '../../views/Film';
 import Tag from '../../views/Tag';
-
 import DrawerBtn from './DrawerBtn';
 import MyProfileBtn from './MyProfileBtn';
 import IconButton from '../dom/IconButton';
@@ -85,7 +83,7 @@ const InnerScreens = ({route}) => {
   );
 };
 
-export default function Navigation() {
+export default function InnerNavigation() {
   return (
     <Drawer.Navigator
       initialRouteName="Feed"

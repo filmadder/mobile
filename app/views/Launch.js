@@ -3,31 +3,11 @@ import {Text, View, Image, StyleSheet} from 'react-native';
 import Error from './Error';
 import LinearGradient from 'react-native-linear-gradient';
 
-import ws from '../ws';
-
 const Launch = props => {
-  const [hasError, setHasError] = React.useState(false);
-  const [error, setError] = React.useState('');
-
-  React.useEffect(() => {
-    ws.open()
-      .then(() => {
-        props.navigation.navigate('Inner');
-      })
-      .catch(err => {
-        if (err.code === 'NO_AUTH_TOKEN' || err.code === 'SOCKET_ERROR') {
-          props.navigation.navigate('Login');
-        } else {
-          setHasError(true);
-          setError('Please check your internet connection.');
-        }
-      });
-  }, []);
-
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {hasError ? (
-        <Error error={error} />
+      {props.hasError ? (
+        <Error error={props.error} />
       ) : (
         <LinearGradient
           colors={['#9FBFFD', '#7BA4F4', '#6996EF', '#4C76C8']}

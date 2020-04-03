@@ -16,6 +16,7 @@ const AuthError = props => {
   const animate = () =>
     Animated.spring(aniVal, {
       toValue: 1,
+      useNativeDriver: false,
     }).start();
 
   React.useEffect(() => {

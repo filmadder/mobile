@@ -21,6 +21,7 @@ const ListFilterDropdown = props => {
       toValue: 1,
       duration: 2000,
       easing: Easing.linear,
+      useNativeDriver: true,
     }).start();
   };
 

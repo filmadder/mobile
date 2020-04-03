@@ -9,10 +9,11 @@ import AuthHeader from '../../components/auth/AuthHeader';
 import AuthError from '../../components/AuthError';
 import RedirectLink from '../../components/auth/RedirectLink';
 import Loader from '../../components/Loader';
-
+import {useNavigation} from '@react-navigation/native';
 import {loginUser} from '../../auth';
 
-const Login = props => {
+const Login = () => {
+  const navigation = useNavigation();
   const [hasError, setHasError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -38,7 +39,7 @@ const Login = props => {
       setTimeout(() => {
         loginUser(email, password)
           .then(() => {
-            props.navigation.navigate('Inner');
+            navigation.navigate('Inner');
           })
           .catch(err => {
             setLoading(false);
@@ -86,7 +87,7 @@ const Login = props => {
           </AuthForm>
           <RedirectLink
             text={"Don't have an account?"}
-            onPress={() => props.navigation.navigate('Register')}
+            onPress={() => navigation.navigate('Register')}
           />
         </AuthContainer>
       )}
