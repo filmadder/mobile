@@ -91,15 +91,15 @@ export default function InnerNavigation() {
       drawerContentOptions={{
         activeBackgroundColor: colours.blue1,
         labelStyle: {
-          color: colours.blue3,
-          marginVertical: 10,
+          color: colours.blue4,
+          marginVertical: 5,
           borderRadius: 5,
           fontFamily: 'Pacifico-Regular',
-          textAlign: 'center',
           fontSize: 20,
         },
         itemStyle: {
           alignItems: 'center',
+          width: 'auto',
         },
         contentContainerStyle: {
           marginVertical: 50,
