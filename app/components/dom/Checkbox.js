@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import IconButton from '../dom/IconButton';
-
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const Checkbox = props => {
+  const {colors} = useTheme();
   const [checked, setChecked] = React.useState(props.checked);
 
   React.useEffect(() => {
@@ -20,15 +20,24 @@ const Checkbox = props => {
     <View>
       {checked ? (
         <IconButton
-          style={[s.checkbox, props.style, s.checked]}
+          style={[
+            s.checkbox,
+            props.style,
+            {backgroundColor: colors.accent, borderColor: colors.accent},
+          ]}
           name="check"
-          color="red"
           onPress={() => handleCheckobox()}
         />
       ) : (
         <TouchableOpacity
           onPress={() => handleCheckobox()}
-          style={[s.checkbox, props.style]}></TouchableOpacity>
+          style={[
+            s.checkbox,
+            props.style,
+            {
+              borderColor: colors.accent,
+            },
+          ]}></TouchableOpacity>
       )}
     </View>
   );
@@ -40,11 +49,8 @@ const s = StyleSheet.create({
     width: 30,
     borderRadius: 30,
     borderWidth: 5,
-    borderColor: colours.blue4,
   },
-  checked: {
-    backgroundColor: colours.blue4,
-  },
+  checked: {},
 });
 
 export default Checkbox;

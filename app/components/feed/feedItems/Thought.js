@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
 import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
-
-import {colours} from '../../../colours';
+import {useTheme} from '../../../theme/hooks';
 
 const Thought = props => {
+  const {colors} = useTheme();
+
   return (
     <View>
       <FeedCardHeader
@@ -15,8 +15,8 @@ const Thought = props => {
         action={' shared some thoughts'}
       />
 
-      <View style={styles.comment}>
-        <Text>{props.comment.text}</Text>
+      <View style={[styles.comment, {backgroundColor: colors.background}]}>
+        <Text style={{color: colors.text}}>{props.comment.text}</Text>
       </View>
 
       <FilmCard film={props.film} />
@@ -26,10 +26,8 @@ const Thought = props => {
 
 const styles = StyleSheet.create({
   comment: {
-    backgroundColor: 'white',
     borderRadius: 10,
     padding: 15,
-    color: colours.black,
     fontSize: 17,
     fontFamily: 'SourceSansPro-Regular',
   },

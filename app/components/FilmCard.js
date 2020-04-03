@@ -3,9 +3,11 @@ import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import PlaceholderPoster from './PlaceholderPoster';
 import {colours} from '../colours';
+import {useTheme} from '../theme/hooks';
 
 const FilmCard = props => {
   const navigation = useNavigation();
+  const {colors} = useTheme();
   const handleCardPress = () => {
     navigation.push('Film', {filmId: props.film.pk});
   };
@@ -34,12 +36,16 @@ const FilmCard = props => {
       activeOpacity={1}>
       {props.film.poster_url ? poster : placeholderPoster}
       <View style={s.infoContainer}>
-        <Text style={[s.title, titleFont]}>{props.film.title}</Text>
+        <Text style={[s.title, titleFont, {color: colors.text}]}>
+          {props.film.title}
+        </Text>
         {props.film.directors !== '' && (
-          <Text style={s.director}>{getDirectors()}</Text>
+          <Text style={[s.director, {color: colors.text}]}>
+            {getDirectors()}
+          </Text>
         )}
         {props.film.year !== '' && (
-          <Text style={s.year}>{props.film.year}</Text>
+          <Text style={[s.year, {color: colors.text}]}>{props.film.year}</Text>
         )}
       </View>
     </TouchableOpacity>
@@ -62,7 +68,6 @@ const s = StyleSheet.create({
   },
   title: {
     fontFamily: 'SourceSansPro-Bold',
-    color: colours.black,
     marginBottom: 7,
     flexWrap: 'wrap',
     maxWidth: 240,

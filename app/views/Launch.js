@@ -1,5 +1,7 @@
 import React from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native';
+import {EventRegister} from 'react-native-event-listeners';
+import AsyncStorage from '@react-native-community/async-storage';
 import Error from './Error';
 import LinearGradient from 'react-native-linear-gradient';
 

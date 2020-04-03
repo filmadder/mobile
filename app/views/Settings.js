@@ -6,6 +6,7 @@ import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
 import ViewWrapper from './ViewWrapper';
 import LogoutBtn from '../views/auth/LogoutBtn';
+import AppearanceSetting from '../components/AppearanceSetting';
 import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
 import {getLoggedUser} from '../auth';
@@ -15,6 +16,7 @@ const Settings = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [user, setUser] = React.useState();
+  const [, setReload] = React.useState();
 
   React.useEffect(() => {
     getLoggedUser()
@@ -55,6 +57,13 @@ const Settings = () => {
           </SettingsSection>
           <SettingsSection title="Password" btnText="change">
             <Text>🔑🔑🔑🔑🔑🔑</Text>
+          </SettingsSection>
+          <SettingsSection title="Appearance">
+            <AppearanceSetting
+              reloadView={() => {
+                setReload({});
+              }}
+            />
           </SettingsSection>
           <SettingsSection>
             <LogoutBtn title="logout" />

@@ -8,10 +8,11 @@ import Friendship from './feedItems/Friendship';
 import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
 import Date from '../Date';
-
 import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const FeedCard = props => {
+  const {colors} = useTheme();
   let content = null;
   const type = props.item.type;
 
@@ -58,7 +59,7 @@ const FeedCard = props => {
 
   return (
     <View style={[styles.container, props.style]}>
-      <View style={styles.contents}>
+      <View style={[styles.contents, {backgroundColor: colors.feedCard}]}>
         <AvatarLink
           user={props.item.user || props.item.user_a}
           style={styles.avatar}
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: screen.width < 400 ? 15 : 30,
   },
   contents: {
-    backgroundColor: colours.blue0,
     borderRadius: 10,
     paddingHorizontal: 25,
     paddingTop: 20,

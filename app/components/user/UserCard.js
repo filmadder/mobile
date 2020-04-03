@@ -1,14 +1,15 @@
 import React from 'react';
 import {View, StyleSheet, Alert, TouchableOpacity} from 'react-native';
-
 import Avatar from './Avatar';
 import Username from './Username';
 import {useNavigation} from '@react-navigation/native';
+import {useTheme} from '../../theme/hooks';
 import ws from '../../ws';
-import {colours} from '../../colours';
 
 const UserCard = props => {
   const navigation = useNavigation();
+  const {colors} = useTheme();
+
   const goToProfile = () => {
     if (!props.longPress && !props.cancelPress) {
       navigation.push('Profile', {user: props.user.pk});
@@ -43,7 +44,12 @@ const UserCard = props => {
 
   return (
     <TouchableOpacity
-      style={[styles.container, props.style]}
+      style={[
+        {
+          backgroundColor: colors.background,
+        },
+        props.style,
+      ]}
       onPress={goToProfile}
       onLongPress={handleLongPress}>
       <View style={styles.containerInner}>
@@ -69,9 +75,6 @@ const styles = StyleSheet.create({
     marginRight: 0,
     alignItems: 'center',
   },
-  container: {
-    backgroundColor: 'white',
-  },
   containerInner: {
     paddingVertical: 30,
     marginHorizontal: 20,
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
   username: {
     fontFamily: 'Pacifico-Regular',
     fontSize: 22,
-    color: colours.black,
     marginTop: 20,
     textAlign: 'center',
   },

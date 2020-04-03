@@ -1,10 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
+import {useTheme} from '../theme/hooks';
 import Error from './Error';
 import {EventRegister} from 'react-native-event-listeners';
 import RNRestart from 'react-native-restart';
 
 const ViewWrapper = props => {
+  const {colors} = useTheme();
+
   const [hasError, setHasError] = React.useState(false);
   const [error, setError] = React.useState('');
 
@@ -22,7 +25,11 @@ const ViewWrapper = props => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.background,
+      }}>
       {hasError ? (
         <Error error={error} />
       ) : (

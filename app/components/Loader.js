@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Easing, StyleSheet, Animated} from 'react-native';
+import {useTheme} from '../theme/hooks';
 
 const Loader = () => {
+  const {colors} = useTheme();
   const spinValue = new Animated.Value(0);
 
   const spinLoader = () => {
@@ -23,7 +25,7 @@ const Loader = () => {
   });
 
   return (
-    <View style={s.loaderContainer}>
+    <View style={[s.loaderContainer, {backgroundColor: colors.background}]}>
       <Animated.Image
         source={require('../../assets/images/loader.png')}
         style={{height: 80, width: 80, transform: [{rotate: spin}]}}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 
 import InfoSection from './InfoSection';
 import SynopsisSection from './SynopsisSection';
@@ -17,11 +17,7 @@ const Info = props => {
         <InfoSection title={'Actors'} text={props.actors} />
       )}
       {props.synopsis.length > 0 && (
-        <SynopsisSection
-          // key='synopsis'
-          title={'Synopsis'}
-          text={props.synopsis}
-        />
+        <SynopsisSection title={'Synopsis'} text={props.synopsis} />
       )}
     </View>
   );

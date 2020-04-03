@@ -19,6 +19,7 @@
     "jdenticon": "^2.2.0",
     "react": "16.9.0",
     "react-native": "^0.62.0",
+    "react-native-appearance": "^0.3.3",
     "react-native-event-listeners": "^1.0.7",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^2.0.0",

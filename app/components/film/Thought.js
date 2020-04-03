@@ -1,15 +1,14 @@
 import React from 'react';
 import {View, Alert, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 import Date from '../Date';
-
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const Thought = props => {
+  const {colors} = useTheme();
   const [sameUser, setSameUser] = React.useState(false);
 
   React.useEffect(() => {
@@ -38,14 +37,14 @@ const Thought = props => {
   };
 
   return (
-    <View style={s.container}>
+    <View style={[s.container, {borderColor: colors.accent}]}>
       <AvatarLink style={s.avatar} size="medium" user={props.user} />
-      <View style={s.header}>
+      <View style={[s.header, {borderBottomColor: colors.accent}]}>
         <UsernameLink size="small" user={props.user} />
         <Date style={s.date} created={props.created} />
       </View>
       <View style={s.textContainer}>
-        <Text style={s.text}>{props.text}</Text>
+        <Text style={[s.text, {color: colors.text}]}>{props.text}</Text>
       </View>
       {sameUser && (
         <FaSmallButton
@@ -62,7 +61,6 @@ const s = StyleSheet.create({
   container: {
     paddingTop: 10,
     borderWidth: 1,
-    borderColor: colours.blue3,
     borderRadius: 10,
     marginHorizontal: 10,
     marginVertical: 20,
@@ -77,12 +75,10 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: colours.blue3,
     paddingHorizontal: 15,
   },
   date: {
     fontFamily: 'SourceSansPro-Regular',
-    color: colours.blue3,
     fontSize: 15,
   },
   textContainer: {
@@ -90,7 +86,6 @@ const s = StyleSheet.create({
     paddingHorizontal: 15,
   },
   text: {
-    color: colours.black,
     fontSize: 15,
     lineHeight: 18,
   },

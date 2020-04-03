@@ -1,14 +1,13 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
-
+import {View, Text, StyleSheet} from 'react-native';
 import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 import TagForm from '../../components/tagging/TagForm';
 import IconButton from '../../components/dom/IconButton';
-
-import {colours} from '../../colours';
+import {useTheme} from '../../theme/hooks';
 
 const Watchers = props => {
+  const {colors} = useTheme();
   const [isEditMode, setIsEditMode] = React.useState(false);
 
   const closeModal = () => {
@@ -63,10 +62,14 @@ const Watchers = props => {
 
   return (
     <View style={[s.container, props.style]}>
-      <View style={s.header}>
-        <Text style={s.title}>{props.type}</Text>
+      <View style={[s.header, {borderBottomColor: colors.accent}]}>
+        <Text style={[s.title, {color: colors.accent}]}>{props.type}</Text>
       </View>
-      {watchers.length > 0 ? watchers : <Text>none of your friends</Text>}
+      {watchers.length > 0 ? (
+        watchers
+      ) : (
+        <Text style={{color: colors.text}}>none of your friends</Text>
+      )}
     </View>
   );
 };
@@ -76,11 +79,9 @@ const s = StyleSheet.create({
     paddingBottom: 5,
     fontFamily: 'Pacifico-Regular',
     fontSize: 20,
-    color: colours.blue3,
   },
   header: {
     borderBottomWidth: 1,
-    borderBottomColor: colours.blue3,
     marginBottom: 15,
   },
   userContainer: {

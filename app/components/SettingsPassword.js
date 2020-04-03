@@ -11,8 +11,10 @@ import FaButton from './dom/FaButton';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import ws from '../ws';
 import {colours} from '../colours';
+import {useTheme} from '../theme/hooks';
 
 const SettingsPassword = props => {
+  const {colors} = useTheme();
   const [oldPass, setOldPass] = React.useState('');
   const [newPass1, setNewPass1] = React.useState('');
   const [newPass2, setNewPass2] = React.useState('');
@@ -52,7 +54,9 @@ const SettingsPassword = props => {
   };
 
   const errorComponent =
-    error !== '' ? <Text style={s.message}>{error}</Text> : null;
+    error !== '' ? (
+      <Text style={[s.message, {color: colors.text}]}>{error}</Text>
+    ) : null;
 
   return (
     <View style={{width: '100%'}}>
@@ -102,12 +106,13 @@ const SettingsPassword = props => {
       ) : (
         <View>
           <Text style={[s.message, {fontSize: 50}]}>🎉</Text>
-          <Text style={s.message}>Your password is now changed!</Text>
+          <Text style={[s.message, {color: colors.text}]}>
+            Your password is now changed!
+          </Text>
           <LogoutBtn title="close" />
         </View>
       )}
     </View>
-    // </ScrollView>
   );
 };
 
