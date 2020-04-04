@@ -1,9 +1,9 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const IconButton = props => {
+const IconButton = (props) => {
   const {colors} = useTheme();
   const icon = (
     <Icon

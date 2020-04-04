@@ -5,26 +5,26 @@ import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 import Date from '../Date';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Thought = props => {
+const Thought = (props) => {
   const {colors} = useTheme();
   const [sameUser, setSameUser] = React.useState(false);
 
   React.useEffect(() => {
     AsyncStorage.getItem('user')
-      .then(user => {
+      .then((user) => {
         let thisUser = JSON.parse(user);
         if (thisUser.pk === props.user.pk.toString()) {
           setSameUser(true);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
       });
   }, []);
 
-  const deleteComment = text => {
+  const deleteComment = (text) => {
     Alert.alert(
       'Are you sure you want to delete this thought?',
       text,

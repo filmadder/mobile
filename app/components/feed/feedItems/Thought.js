@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
-import {useTheme} from '../../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Thought = props => {
+const Thought = (props) => {
   const {colors} = useTheme();
 
   return (

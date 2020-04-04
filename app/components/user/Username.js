@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Username = props => {
+const Username = (props) => {
   const {colors} = useTheme();
 
   let styles = null;

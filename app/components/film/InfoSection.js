@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const InfoSection = props => {
+const InfoSection = (props) => {
   const {colors} = useTheme();
 
   return (

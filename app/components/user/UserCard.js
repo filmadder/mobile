@@ -3,10 +3,10 @@ import {View, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import Avatar from './Avatar';
 import Username from './Username';
 import {useNavigation} from '@react-navigation/native';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 import ws from '../../ws';
 
-const UserCard = props => {
+const UserCard = (props) => {
   const navigation = useNavigation();
   const {colors} = useTheme();
 
@@ -35,7 +35,7 @@ const UserCard = props => {
       id: null,
       type: 'drop_friendship',
       user: props.user.pk,
-    }).then(response => {
+    }).then((response) => {
       if (response.type === 'confirm') {
         props.reload();
       }

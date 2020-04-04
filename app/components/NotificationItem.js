@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import UserRow from '../components/user/UserRow';
 import Date from '../components/Date';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const NotificationItem = props => {
+const NotificationItem = (props) => {
   const {colors} = useTheme();
   const [actionText, setActionText] = React.useState();
 

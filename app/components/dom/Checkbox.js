@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import IconButton from '../dom/IconButton';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Checkbox = props => {
+const Checkbox = (props) => {
   const {colors} = useTheme();
   const [checked, setChecked] = React.useState(props.checked);
 

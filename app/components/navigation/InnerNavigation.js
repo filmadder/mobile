@@ -111,12 +111,16 @@ export default function InnerNavigation() {
         initialParams={{initialRoute: 'Profile'}}
         options={({navigation}) => ({
           drawerLabel: () => <MyProfileBtn navigation={navigation} />,
+          unmountOnBlur: true,
         })}
       />
       <Drawer.Screen
         name="Feed"
         component={InnerScreens}
         initialParams={{initialRoute: 'Feed'}}
+        options={{
+          unmountOnBlur: true,
+        }}
       />
       <Drawer.Screen
         name="Notifications"
@@ -126,12 +130,16 @@ export default function InnerNavigation() {
           drawerLabel: () => (
             <LabelBtn label="Notifications" navigation={navigation} />
           ),
+          unmountOnBlur: true,
         })}
       />
       <Drawer.Screen
         name="Settings"
         component={InnerScreens}
         initialParams={{initialRoute: 'Settings'}}
+        options={{
+          unmountOnBlur: true,
+        }}
       />
     </Drawer.Navigator>
   );

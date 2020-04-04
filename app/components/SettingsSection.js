@@ -3,9 +3,9 @@ import {View, StyleSheet, Text} from 'react-native';
 import FaSmallButton from './dom/FaSmallButton';
 import SettingsEditMode from './SettingsEditMode';
 import SettingsPassword from './SettingsPassword';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const SettingsSection = props => {
+const SettingsSection = (props) => {
   const {colors} = useTheme();
   const [editting, setEditting] = React.useState(false);
 

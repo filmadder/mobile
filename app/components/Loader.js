@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Easing, StyleSheet, Animated} from 'react-native';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
 const Loader = () => {
   const {colors} = useTheme();

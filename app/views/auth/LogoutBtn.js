@@ -1,8 +1,6 @@
 import React from 'react';
-
 import AsyncStorage from '@react-native-community/async-storage';
 import RNRestart from 'react-native-restart';
-
 import FaButton from '../../components/dom/FaButton';
 
 import ws from '../../ws';

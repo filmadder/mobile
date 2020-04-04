@@ -4,9 +4,9 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 import TagForm from '../../components/tagging/TagForm';
 import IconButton from '../../components/dom/IconButton';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Watchers = props => {
+const Watchers = (props) => {
   const {colors} = useTheme();
   const [isEditMode, setIsEditMode] = React.useState(false);
 
@@ -15,7 +15,7 @@ const Watchers = props => {
     props.reloadFilm();
   };
 
-  let watchers = props.watchers.map(watcher => {
+  let watchers = props.watchers.map((watcher) => {
     const user = {
       name: watcher.name,
       avatar_url: '/media/' + watcher.avatar_url,

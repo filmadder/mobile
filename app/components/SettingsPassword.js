@@ -11,9 +11,9 @@ import FaButton from './dom/FaButton';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import ws from '../ws';
 import {colours} from '../colours';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const SettingsPassword = props => {
+const SettingsPassword = (props) => {
   const {colors} = useTheme();
   const [oldPass, setOldPass] = React.useState('');
   const [newPass1, setNewPass1] = React.useState('');
@@ -40,14 +40,14 @@ const SettingsPassword = props => {
         old_password: oldPass,
         new_password: newPass1,
       })
-        .then(response => {
+        .then((response) => {
           if (response.type === 'confirm') {
             setSuccess(true);
           } else {
             setError(response.message);
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
         });
     }
@@ -71,7 +71,7 @@ const SettingsPassword = props => {
               label="old password"
               textContentType="password"
               value={oldPass}
-              onChangeText={text => setOldPass(text)}
+              onChangeText={(text) => setOldPass(text)}
               setFocused={() => setError('')}
               onSubmitEditing={() => newRef1.current.focus()}
             />
@@ -81,7 +81,7 @@ const SettingsPassword = props => {
               label="new password"
               textContentType="password"
               value={newPass1}
-              onChangeText={text => setNewPass1(text)}
+              onChangeText={(text) => setNewPass1(text)}
               setFocused={() => setError('')}
               ref={newRef1}
               onSubmitEditing={() => newRef2.current.focus()}
@@ -92,7 +92,7 @@ const SettingsPassword = props => {
               label="repeat new password"
               textContentType="password"
               value={newPass2}
-              onChangeText={text => setNewPass2(text)}
+              onChangeText={(text) => setNewPass2(text)}
               setFocused={() => setError('')}
               ref={newRef2}
               onSubmitEditing={change}

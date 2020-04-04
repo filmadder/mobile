@@ -11,7 +11,7 @@ import {
 import {colours} from '../colours';
 import {profileLists} from '../constants/filters';
 
-const ListFilterDropdown = props => {
+const ListFilterDropdown = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentTab, setCurrentTab] = React.useState('watchlist');
   const aniVal = new Animated.Value(0);
@@ -21,7 +21,7 @@ const ListFilterDropdown = props => {
       toValue: 1,
       duration: 2000,
       easing: Easing.linear,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   };
 
@@ -35,7 +35,7 @@ const ListFilterDropdown = props => {
     outputRange: ['30%', '100%'],
   });
 
-  const closeDropdown = item => {
+  const closeDropdown = (item) => {
     props.onTypeSelected(item);
     setCurrentTab(item);
     setIsOpen(false);
@@ -46,7 +46,7 @@ const ListFilterDropdown = props => {
     setIsOpen(true);
   };
 
-  const Item = props => {
+  const Item = (props) => {
     return (
       <TouchableOpacity onPress={() => closeDropdown(props.item.filter)}>
         <Text style={styles.item}>{props.item.filter}</Text>
@@ -55,7 +55,7 @@ const ListFilterDropdown = props => {
   };
 
   let dropdown = null;
-  let items = profileLists.map(item => <Item key={item.id} item={item} />);
+  let items = profileLists.map((item) => <Item key={item.id} item={item} />);
 
   if (isOpen) {
     dropdown = <View>{items}</View>;

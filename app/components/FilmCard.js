@@ -3,9 +3,9 @@ import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import PlaceholderPoster from './PlaceholderPoster';
 import {colours} from '../colours';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const FilmCard = props => {
+const FilmCard = (props) => {
   const navigation = useNavigation();
   const {colors} = useTheme();
   const handleCardPress = () => {

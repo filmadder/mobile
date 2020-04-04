@@ -13,23 +13,35 @@ const palette = {
 };
 
 const light = {
-  accent: palette.blue4,
-  background: palette.white,
-  buttonPrimaryText: palette.white,
-  buttonPrimaryBg: palette.blue3,
-  buttonSecondaryText: palette.blue4,
-  feedCard: palette.blue0,
-  text: palette.darkGrey,
+  dark: false,
+  colors: {
+    primary: 'black',
+    card: 'rgb(255, 255, 255)',
+    border: 'rgb(199, 199, 204)',
+    accent: palette.blue4,
+    background: palette.white,
+    buttonPrimaryText: palette.white,
+    buttonPrimaryBg: palette.blue3,
+    buttonSecondaryText: palette.blue4,
+    feedCard: palette.blue0,
+    text: palette.darkGrey,
+  },
 };
 
 const dark = {
-  accent: palette.blue3,
-  background: palette.black,
-  buttonPrimaryText: palette.black,
-  buttonPrimaryBg: palette.blue3,
-  buttonSecondaryText: palette.blue3,
-  feedCard: palette.darkGrey,
-  text: palette.white,
+  dark: true,
+  colors: {
+    primary: 'white',
+    card: 'black',
+    border: 'white',
+    accent: palette.blue3,
+    background: palette.black,
+    buttonPrimaryText: palette.black,
+    buttonPrimaryBg: palette.blue3,
+    buttonSecondaryText: palette.blue3,
+    feedCard: palette.darkGrey,
+    text: palette.white,
+  },
 };
 
 export const themedColors = {

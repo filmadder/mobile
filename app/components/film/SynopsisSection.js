@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import IconButton from '../../components/dom/IconButton';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const SynopsisSection = props => {
+const SynopsisSection = (props) => {
   const {colors} = useTheme();
 
   const [showing, setShowing] = React.useState(true);

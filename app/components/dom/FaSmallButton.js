@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const FaSmallButton = props => {
+const FaSmallButton = (props) => {
   const {colors} = useTheme();
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Checkbox from './dom/Checkbox';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const CheckboxField = props => {
+const CheckboxField = (props) => {
   const {colors} = useTheme();
-  const onCheckboxChange = currentState => {
+  const onCheckboxChange = (currentState) => {
     props.onCheckboxChange(currentState);
   };
 

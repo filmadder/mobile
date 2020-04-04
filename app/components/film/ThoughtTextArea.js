@@ -2,10 +2,10 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import FaButton from '../dom/FaButton';
 import CheckboxField from '../CheckboxField';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 import ws from '../../ws';
 
-const ThoughtTextArea = props => {
+const ThoughtTextArea = (props) => {
   const {colors} = useTheme();
   const [thought, setThought] = React.useState('');
   const [hasSpoilers, setHasSpoilers] = React.useState(false);
@@ -20,7 +20,7 @@ const ThoughtTextArea = props => {
       text: thought,
       has_spoilers: hasSpoilers,
     })
-      .then(response => {
+      .then((response) => {
         if (response.type === 'confirm') {
           setThought('');
           setHasSpoilers(false);
@@ -30,7 +30,7 @@ const ThoughtTextArea = props => {
           setError(response.message);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setHasError(true);
         setError(err);
       });
@@ -60,7 +60,7 @@ const ThoughtTextArea = props => {
           value={thought}
           placeholder="share your thoughts"
           placeholderTextColor={colors.text}
-          onChangeText={text => setThought(text)}
+          onChangeText={(text) => setThought(text)}
           multiline={true}
           onFocus={() => setHasError(false)}
           numberOfLines={5}></TextInput>

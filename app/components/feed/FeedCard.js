@@ -9,9 +9,9 @@ import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
 import Date from '../Date';
 import {colours} from '../../colours';
-import {useTheme} from '../../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const FeedCard = props => {
+const FeedCard = (props) => {
   const {colors} = useTheme();
   let content = null;
   const type = props.item.type;

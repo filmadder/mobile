@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {getDate} from '../utils';
-import {useTheme} from '../theme/hooks';
+import {useTheme} from '@react-navigation/native';
 
-const Date = props => {
+const Date = (props) => {
   const {colors} = useTheme();
   const [date, setDate] = React.useState();
 

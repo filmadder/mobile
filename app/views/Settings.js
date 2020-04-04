@@ -1,6 +1,5 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import SettingsSection from '../components/SettingsSection';
 import Avatar from '../components/user/Avatar';
 import Username from '../components/user/Username';
@@ -13,8 +12,6 @@ import {getLoggedUser} from '../auth';
 import {screen} from '../constants/device';
 
 const Settings = () => {
-  const navigation = useNavigation();
-  const route = useRoute();
   const [user, setUser] = React.useState();
   const [, setReload] = React.useState();
 
