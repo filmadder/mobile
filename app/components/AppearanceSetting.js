@@ -1,15 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import RNRestart from 'react-native-restart';
 import Checkbox from '../components/dom/Checkbox';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../theme';
 
-const AppearanceSetting = (props) => {
+const AppearanceSetting = () => {
   const [checked, setChecked] = React.useState(false);
-  let theme = useTheme();
+  let theme = React.useContext(ThemeContext);
 
-  AsyncStorage.getItem('theme').then((theme) => {
+  AsyncStorage.getItem('theme').then(theme => {
     if (theme === 'dark') {
       setChecked(true);
     }
@@ -17,15 +16,18 @@ const AppearanceSetting = (props) => {
 
   return (
     <View style={s.container}>
-      <Text style={[s.text, {color: theme.colors.text}]}>use Dark Mode</Text>
-      <Checkbox
-        onCheckboxChange={(val) => {
-          AsyncStorage.setItem('theme', val ? 'dark' : 'light');
-          RNRestart.Restart();
-          //   props.reloadView();
-        }}
-        checked={checked}
-      />
+      <Text style={[s.text, {color: theme.theme.text}]}>use Dark Mode</Text>
+      <ThemeContext.Consumer>
+        {({toggleTheme}) => (
+          <Checkbox
+            onCheckboxChange={val => {
+              AsyncStorage.setItem('theme', val ? 'dark' : 'light');
+              toggleTheme();
+            }}
+            checked={checked}
+          />
+        )}
+      </ThemeContext.Consumer>
     </View>
   );
 };

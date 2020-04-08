@@ -1,27 +1,22 @@
 import React from 'react';
 import {useColorScheme} from 'react-native-appearance';
 import AsyncStorage from '@react-native-community/async-storage';
-import {themedColors} from './index';
+import {themes} from '../theme';
 
 export const useTheme = () => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState(themes.light);
   const fallbackTheme = useColorScheme();
-  const colors = themedColors[theme];
 
   AsyncStorage.getItem('theme')
-    .then((theme) => {
-      if (theme) {
-        setTheme(theme);
-      } else if (fallbackTheme === 'dark' || fallbackTheme === 'light') {
-        setTheme(fallbackTheme);
+    .then(theme => {
+      console.log(theme);
+      if (theme === 'dark' || fallbackTheme === 'dark') {
+        setTheme(themes.dark);
       }
     })
-    .catch((err) => {
+    .catch(err => {
       throw new Error(err);
     });
 
-  return {
-    colors,
-    theme,
-  };
+  return theme;
 };
