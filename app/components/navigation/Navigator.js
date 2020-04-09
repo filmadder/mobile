@@ -7,12 +7,11 @@ import InnerNavigation from './InnerNavigation';
 import Login from '../../views/auth/Login';
 import Launch from '../../views/Launch';
 import Register from '../../views/auth/Register';
-import {themedColors} from '../../theme/index';
 import ws from '../../ws';
 
 const Stack = createStackNavigator();
 
-export default NN = () => {
+export default (NN = () => {
   const [logged, setLogged] = React.useState('pending');
   const [hasError, setHasError] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -24,7 +23,7 @@ export default NN = () => {
       .then(() => {
         setLogged('logged');
       })
-      .catch((err) => {
+      .catch(err => {
         if (err.code === 'NO_AUTH_TOKEN' || err.code === 'SOCKET_ERROR') {
           setLogged('notlogged');
         } else {
@@ -34,19 +33,19 @@ export default NN = () => {
       });
 
     AsyncStorage.getItem('theme')
-      .then((theme) => {
+      .then(theme => {
         if (theme) {
           setTheme(theme);
         } else if (fallbackTheme === 'dark' || fallbackTheme === 'light') {
           setTheme(fallbackTheme);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   }, []);
 
-  const Navigation = (initialRoute) => {
+  const Navigation = initialRoute => {
     return (
       <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
@@ -83,8 +82,8 @@ export default NN = () => {
   }
 
   return (
-    <NavigationContainer theme={themedColors[theme]}>
+    <NavigationContainer>
       {logged === 'logged' ? Navigation('Inner') : Navigation('Login')}
     </NavigationContainer>
   );
-};
+});

@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import IconButton from '../../components/dom/IconButton';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const SynopsisSection = (props) => {
-  const {colors} = useTheme();
+const SynopsisSection = props => {
+  const theme = React.useContext(ThemeContext);
 
   const [showing, setShowing] = React.useState(true);
   const hideIcon = (
@@ -25,11 +25,13 @@ const SynopsisSection = (props) => {
   return (
     <View style={s.container}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={[s.title, {color: colors.accent}]}>{props.title}</Text>
+        <Text style={[s.title, {color: theme.colors.accent}]}>
+          {props.title}
+        </Text>
         {showing ? hideIcon : showIcon}
       </View>
       {showing && (
-        <Text style={[s.text, {color: colors.text}]}>{props.text}</Text>
+        <Text style={[s.text, {color: theme.colors.text}]}>{props.text}</Text>
       )}
     </View>
   );

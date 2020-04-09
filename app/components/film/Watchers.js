@@ -4,10 +4,10 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 import TagForm from '../../components/tagging/TagForm';
 import IconButton from '../../components/dom/IconButton';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const Watchers = (props) => {
-  const {colors} = useTheme();
+const Watchers = props => {
+  const theme = React.useContext(ThemeContext);
   const [isEditMode, setIsEditMode] = React.useState(false);
 
   const closeModal = () => {
@@ -15,7 +15,7 @@ const Watchers = (props) => {
     props.reloadFilm();
   };
 
-  let watchers = props.watchers.map((watcher) => {
+  let watchers = props.watchers.map(watcher => {
     const user = {
       name: watcher.name,
       avatar_url: '/media/' + watcher.avatar_url,
@@ -62,13 +62,15 @@ const Watchers = (props) => {
 
   return (
     <View style={[s.container, props.style]}>
-      <View style={[s.header, {borderBottomColor: colors.accent}]}>
-        <Text style={[s.title, {color: colors.accent}]}>{props.type}</Text>
+      <View style={[s.header, {borderBottomColor: theme.colors.accent}]}>
+        <Text style={[s.title, {color: theme.colors.accent}]}>
+          {props.type}
+        </Text>
       </View>
       {watchers.length > 0 ? (
         watchers
       ) : (
-        <Text style={{color: colors.text}}>none of your friends</Text>
+        <Text style={{color: theme.colors.text}}>none of your friends</Text>
       )}
     </View>
   );

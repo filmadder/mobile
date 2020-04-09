@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import UserRow from '../components/user/UserRow';
 import Date from '../components/Date';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../theme';
 
-const NotificationItem = (props) => {
-  const {colors} = useTheme();
+const NotificationItem = props => {
+  const theme = React.useContext(ThemeContext);
   const [actionText, setActionText] = React.useState();
 
   React.useEffect(() => {
@@ -31,10 +31,10 @@ const NotificationItem = (props) => {
 
   return (
     <View style={[s.container, props.style]}>
-      <View style={[s.card, {borderBottomColor: colors.accent}]}>
+      <View style={[s.card, {borderBottomColor: theme.colors.accent}]}>
         <View style={s.action}>
           <UserRow user={props.user} size="large" />
-          <Text style={[s.text, {color: colors.text}]}>{actionText}</Text>
+          <Text style={[s.text, {color: theme.colors.text}]}>{actionText}</Text>
         </View>
         {props.children}
         <Date styles={{paddingVertical: 10}} created={props.created} />

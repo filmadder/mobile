@@ -2,19 +2,19 @@ import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Avatar from '../user/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const MyProfileBtn = (props) => {
+const MyProfileBtn = props => {
   const [user, setUser] = React.useState();
-  const {colors} = useTheme();
+  const theme = React.useContext(ThemeContext);
 
   React.useEffect(() => {
     AsyncStorage.getItem('user')
-      .then((user) => {
+      .then(user => {
         let parsedUser = JSON.parse(user);
         setUser(parsedUser);
       })
-      .catch((err) => console.warn(err));
+      .catch(err => console.warn(err));
   }, []);
 
   const handlePress = () => {
@@ -31,7 +31,9 @@ const MyProfileBtn = (props) => {
           avatar={user.avatar_url}
           style={s.avatar}
         />
-        <Text style={[s.username, {color: colors.text}]}>{user.name}</Text>
+        <Text style={[s.username, {color: theme.colors.text}]}>
+          {user.name}
+        </Text>
       </TouchableOpacity>
     );
   }

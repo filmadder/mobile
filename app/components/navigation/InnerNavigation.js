@@ -13,6 +13,7 @@ import DrawerBtn from './DrawerBtn';
 import MyProfileBtn from './MyProfileBtn';
 import IconButton from '../dom/IconButton';
 import LabelBtn from './LabelBtn';
+import {ThemeContext} from '../../theme';
 import {colours} from '../../colours';
 
 const Stack = createStackNavigator();
@@ -84,14 +85,19 @@ const InnerScreens = ({route}) => {
 };
 
 export default function InnerNavigation() {
+  const theme = React.useContext(ThemeContext);
+
   return (
     <Drawer.Navigator
       initialRouteName="Feed"
       drawerType="slide"
+      drawerStyle={{
+        backgroundColor: theme.colors.feedCard,
+      }}
       drawerContentOptions={{
-        activeBackgroundColor: colours.blue1,
+        activeBackgroundColor: theme.colors.background,
         labelStyle: {
-          color: colours.blue4,
+          color: theme.colors.accent,
           marginVertical: 5,
           borderRadius: 5,
           fontFamily: 'Pacifico-Regular',

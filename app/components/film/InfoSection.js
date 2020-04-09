@@ -1,16 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const InfoSection = (props) => {
-  const {colors} = useTheme();
+const InfoSection = props => {
+  const theme = React.useContext(ThemeContext);
 
   return (
     <View style={s.container}>
       <View style={{flexDirection: 'row'}}>
-        <Text style={[s.title, {color: colors.accent}]}>{props.title}</Text>
+        <Text style={[s.title, {color: theme.colors.accent}]}>
+          {props.title}
+        </Text>
       </View>
-      <Text style={[s.text, {color: colors.text}]}>{props.text}</Text>
+      <Text style={[s.text, {color: theme.colors.text}]}>{props.text}</Text>
     </View>
   );
 };

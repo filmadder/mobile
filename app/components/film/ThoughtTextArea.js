@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import FaButton from '../dom/FaButton';
 import CheckboxField from '../CheckboxField';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 import ws from '../../ws';
 
-const ThoughtTextArea = (props) => {
-  const {colors} = useTheme();
+const ThoughtTextArea = props => {
+  const theme = React.useContext(ThemeContext);
   const [thought, setThought] = React.useState('');
   const [hasSpoilers, setHasSpoilers] = React.useState(false);
   const [hasError, setHasError] = React.useState(false);
@@ -20,7 +20,7 @@ const ThoughtTextArea = (props) => {
       text: thought,
       has_spoilers: hasSpoilers,
     })
-      .then((response) => {
+      .then(response => {
         if (response.type === 'confirm') {
           setThought('');
           setHasSpoilers(false);
@@ -30,7 +30,7 @@ const ThoughtTextArea = (props) => {
           setError(response.message);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         setHasError(true);
         setError(err);
       });
@@ -48,22 +48,26 @@ const ThoughtTextArea = (props) => {
       <View
         style={[
           s.textareaContainer,
-          {backgroundColor: colors.background, borderColor: colors.accent},
+          {
+            backgroundColor: theme.colors.background,
+            borderColor: theme.colors.accent,
+          },
         ]}>
         <TextInput
           style={[
             s.textarea,
             {
-              color: colors.text,
+              color: theme.colors.text,
             },
           ]}
           value={thought}
           placeholder="share your thoughts"
-          placeholderTextColor={colors.text}
-          onChangeText={(text) => setThought(text)}
+          placeholderTextColor={theme.colors.text}
+          onChangeText={text => setThought(text)}
           multiline={true}
           onFocus={() => setHasError(false)}
-          numberOfLines={5}></TextInput>
+          numberOfLines={5}
+        />
       </View>
       <CheckboxField
         style={s.checkbox}
@@ -71,7 +75,7 @@ const ThoughtTextArea = (props) => {
         checked={hasSpoilers}
         onCheckboxChange={() => setHasSpoilers(!hasSpoilers)}
       />
-      <FaButton title="post" onPress={postComment}></FaButton>
+      <FaButton title="post" onPress={postComment} />
     </View>
   );
 };

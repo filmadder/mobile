@@ -5,26 +5,26 @@ import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 import Date from '../Date';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const Thought = (props) => {
-  const {colors} = useTheme();
+const Thought = props => {
+  const theme = React.useContext(ThemeContext);
   const [sameUser, setSameUser] = React.useState(false);
 
   React.useEffect(() => {
     AsyncStorage.getItem('user')
-      .then((user) => {
+      .then(user => {
         let thisUser = JSON.parse(user);
         if (thisUser.pk === props.user.pk.toString()) {
           setSameUser(true);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.warn(err);
       });
   }, []);
 
-  const deleteComment = (text) => {
+  const deleteComment = text => {
     Alert.alert(
       'Are you sure you want to delete this thought?',
       text,
@@ -37,14 +37,14 @@ const Thought = (props) => {
   };
 
   return (
-    <View style={[s.container, {borderColor: colors.accent}]}>
+    <View style={[s.container, {borderColor: theme.colors.accent}]}>
       <AvatarLink style={s.avatar} size="medium" user={props.user} />
-      <View style={[s.header, {borderBottomColor: colors.accent}]}>
+      <View style={[s.header, {borderBottomColor: theme.colors.accent}]}>
         <UsernameLink size="small" user={props.user} />
         <Date style={s.date} created={props.created} />
       </View>
       <View style={s.textContainer}>
-        <Text style={[s.text, {color: colors.text}]}>{props.text}</Text>
+        <Text style={[s.text, {color: theme.colors.text}]}>{props.text}</Text>
       </View>
       {sameUser && (
         <FaSmallButton

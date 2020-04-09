@@ -1,15 +1,15 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const IconButton = (props) => {
-  const {colors} = useTheme();
+const IconButton = props => {
+  const theme = React.useContext(ThemeContext);
   const icon = (
     <Icon
       name={props.name}
       size={props.size || 24}
-      color={props.color || colors.accent}
+      color={props.color || theme.colors.accent}
     />
   );
 

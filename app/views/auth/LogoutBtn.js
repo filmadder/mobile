@@ -9,7 +9,10 @@ const LogoutBtn = props => {
   const logout = () => {
     AsyncStorage.removeItem('token')
       .then(() => {
-        AsyncStorage.removeItem('user');
+        return AsyncStorage.removeItem('user');
+      })
+      .then(() => {
+        return AsyncStorage.removeItem('theme');
       })
       .then(() => {
         ws.close();

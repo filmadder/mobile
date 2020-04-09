@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {getDate} from '../utils';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../theme';
 
-const Date = (props) => {
-  const {colors} = useTheme();
+const Date = props => {
+  const theme = React.useContext(ThemeContext);
   const [date, setDate] = React.useState();
 
   React.useEffect(() => {
@@ -17,7 +17,7 @@ const Date = (props) => {
         s.date,
         props.styles,
         {
-          color: colors.accent,
+          color: theme.colors.accent,
         },
       ]}>
       {date}

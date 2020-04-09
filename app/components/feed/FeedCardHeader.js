@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import UsernameLink from '../user/UsernameLink';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const FeedCardHeader = (props) => {
-  const {colors} = useTheme();
+const FeedCardHeader = props => {
+  const theme = React.useContext(ThemeContext);
   return (
     <View style={s.action}>
       <UsernameLink user={props.user} navigation={props.navigation} />
-      <Text style={[s.actionText, {color: colors.text}]}>{props.action}</Text>
+      <Text style={[s.actionText, {color: theme.colors.text}]}>
+        {props.action}
+      </Text>
     </View>
   );
 };

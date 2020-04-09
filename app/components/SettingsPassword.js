@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -10,11 +10,10 @@ import Input from './dom/Input';
 import FaButton from './dom/FaButton';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import ws from '../ws';
-import {colours} from '../colours';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../theme';
 
-const SettingsPassword = (props) => {
-  const {colors} = useTheme();
+const SettingsPassword = props => {
+  const theme = React.useContext(ThemeContext);
   const [oldPass, setOldPass] = React.useState('');
   const [newPass1, setNewPass1] = React.useState('');
   const [newPass2, setNewPass2] = React.useState('');
@@ -40,14 +39,14 @@ const SettingsPassword = (props) => {
         old_password: oldPass,
         new_password: newPass1,
       })
-        .then((response) => {
+        .then(response => {
           if (response.type === 'confirm') {
             setSuccess(true);
           } else {
             setError(response.message);
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.warn(err);
         });
     }
@@ -55,7 +54,7 @@ const SettingsPassword = (props) => {
 
   const errorComponent =
     error !== '' ? (
-      <Text style={[s.message, {color: colors.text}]}>{error}</Text>
+      <Text style={[s.message, {color: theme.colors.text}]}>{error}</Text>
     ) : null;
 
   return (
@@ -71,7 +70,7 @@ const SettingsPassword = (props) => {
               label="old password"
               textContentType="password"
               value={oldPass}
-              onChangeText={(text) => setOldPass(text)}
+              onChangeText={text => setOldPass(text)}
               setFocused={() => setError('')}
               onSubmitEditing={() => newRef1.current.focus()}
             />
@@ -81,7 +80,7 @@ const SettingsPassword = (props) => {
               label="new password"
               textContentType="password"
               value={newPass1}
-              onChangeText={(text) => setNewPass1(text)}
+              onChangeText={text => setNewPass1(text)}
               setFocused={() => setError('')}
               ref={newRef1}
               onSubmitEditing={() => newRef2.current.focus()}
@@ -92,7 +91,7 @@ const SettingsPassword = (props) => {
               label="repeat new password"
               textContentType="password"
               value={newPass2}
-              onChangeText={(text) => setNewPass2(text)}
+              onChangeText={text => setNewPass2(text)}
               setFocused={() => setError('')}
               ref={newRef2}
               onSubmitEditing={change}
@@ -106,7 +105,7 @@ const SettingsPassword = (props) => {
       ) : (
         <View>
           <Text style={[s.message, {fontSize: 50}]}>🎉</Text>
-          <Text style={[s.message, {color: colors.text}]}>
+          <Text style={[s.message, {color: theme.colors.text}]}>
             Your password is now changed!
           </Text>
           <LogoutBtn title="close" />
@@ -122,7 +121,6 @@ const s = StyleSheet.create({
     fontSize: 17,
     padding: 20,
     fontWeight: 'bold',
-    color: colours.black,
   },
 });
 

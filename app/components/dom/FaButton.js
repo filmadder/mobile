@@ -1,19 +1,23 @@
 import React from 'react';
 import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-
 import {colours} from '../../colours';
+import {ThemeContext} from '../../theme';
 
-const FaButton = (props) => {
-  const {colors} = useTheme();
+const FaButton = props => {
+  const theme = React.useContext(ThemeContext);
 
   return (
     <TouchableOpacity
       style={{alignItems: 'center'}}
       activeOpacity={0.6}
       onPress={props.onPress}>
-      <View style={[styles.button, {backgroundColor: colors.buttonPrimaryBg}]}>
-        <Text style={[styles.buttonTitle, {color: colors.buttonPrimaryText}]}>
+      <View
+        style={[
+          styles.button,
+          {backgroundColor: theme.colors.buttonPrimaryBg},
+        ]}>
+        <Text
+          style={[styles.buttonTitle, {color: theme.colors.buttonPrimaryText}]}>
           {props.title}
         </Text>
       </View>

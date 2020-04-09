@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {screen} from '../../constants/device';
-
 import AvatarLink from '../user/AvatarLink';
 import Film from './feedItems/Film';
 import Friendship from './feedItems/Friendship';
@@ -9,10 +8,10 @@ import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
 import Date from '../Date';
 import {colours} from '../../colours';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const FeedCard = (props) => {
-  const {colors} = useTheme();
+const FeedCard = props => {
+  const theme = React.useContext(ThemeContext);
   let content = null;
   const type = props.item.type;
 
@@ -59,7 +58,7 @@ const FeedCard = (props) => {
 
   return (
     <View style={[styles.container, props.style]}>
-      <View style={[styles.contents, {backgroundColor: colors.feedCard}]}>
+      <View style={[styles.contents, {backgroundColor: theme.colors.feedCard}]}>
         <AvatarLink
           user={props.item.user || props.item.user_a}
           style={styles.avatar}

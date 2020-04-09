@@ -16,7 +16,7 @@ const AppearanceSetting = () => {
 
   return (
     <View style={s.container}>
-      <Text style={[s.text, {color: theme.theme.text}]}>use Dark Mode</Text>
+      <Text style={[s.text, {color: theme.colors.text}]}>use Dark Mode</Text>
       <ThemeContext.Consumer>
         {({toggleTheme}) => (
           <Checkbox

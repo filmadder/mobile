@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const FaSmallButton = (props) => {
-  const {colors} = useTheme();
+const FaSmallButton = props => {
+  const theme = React.useContext(ThemeContext);
 
   return (
     <TouchableOpacity
@@ -11,7 +11,7 @@ const FaSmallButton = (props) => {
         {alignItems: 'center'},
         props.style,
         {
-          backgroundColor: colors.background,
+          backgroundColor: theme.colors.background,
         },
       ]}
       activeOpacity={0.8}
@@ -20,15 +20,15 @@ const FaSmallButton = (props) => {
         style={[
           s.button,
           {
-            borderColor: colors.accent,
-            backgroundColor: colors.background,
+            borderColor: theme.colors.accent,
+            backgroundColor: theme.colors.background,
           },
         ]}>
         <Text
           style={[
             s.buttonTitle,
             {
-              color: colors.buttonSecondaryText,
+              color: theme.colors.buttonSecondaryText,
             },
           ]}>
           {props.title}

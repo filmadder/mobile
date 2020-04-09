@@ -2,10 +2,10 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../../theme';
 
-const Thought = (props) => {
-  const {colors} = useTheme();
+const Thought = props => {
+  const theme = React.useContext(ThemeContext);
 
   return (
     <View>
@@ -15,8 +15,9 @@ const Thought = (props) => {
         action={' shared some thoughts'}
       />
 
-      <View style={[styles.comment, {backgroundColor: colors.background}]}>
-        <Text style={{color: colors.text}}>{props.comment.text}</Text>
+      <View
+        style={[styles.comment, {backgroundColor: theme.colors.background}]}>
+        <Text style={{color: theme.colors.text}}>{props.comment.text}</Text>
       </View>
 
       <FilmCard film={props.film} />

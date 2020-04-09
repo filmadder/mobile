@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import IconButton from '../dom/IconButton';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const Checkbox = (props) => {
-  const {colors} = useTheme();
+const Checkbox = props => {
+  const theme = React.useContext(ThemeContext);
   const [checked, setChecked] = React.useState(props.checked);
 
   React.useEffect(() => {
@@ -23,7 +23,10 @@ const Checkbox = (props) => {
           style={[
             s.checkbox,
             props.style,
-            {backgroundColor: colors.accent, borderColor: colors.accent},
+            {
+              backgroundColor: theme.colors.accent,
+              borderColor: theme.colors.accent,
+            },
           ]}
           name="check"
           onPress={() => handleCheckobox()}
@@ -35,9 +38,10 @@ const Checkbox = (props) => {
             s.checkbox,
             props.style,
             {
-              borderColor: colors.accent,
+              borderColor: theme.colors.accent,
             },
-          ]}></TouchableOpacity>
+          ]}
+        />
       )}
     </View>
   );

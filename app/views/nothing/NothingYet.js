@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
 import FaButton from '../../components/dom/FaButton';
+import {ThemeContext} from '../../theme';
 
-const NothingYet = (props) => {
-  const {colors} = useTheme();
+const NothingYet = props => {
+  const theme = React.useContext(ThemeContext);
   return (
-    <View style={[s.container, {backgroundColor: colors.background}]}>
-      <Text style={[s.title, {color: colors.accent}]}>{props.title}</Text>
-      <Text style={[s.text, {color: colors.text}]}>{props.text}</Text>
+    <View style={[s.container, {backgroundColor: theme.colors.background}]}>
+      <Text style={[s.title, {color: theme.colors.accent}]}>{props.title}</Text>
+      <Text style={[s.text, {color: theme.colors.text}]}>{props.text}</Text>
       <FaButton
         style={s.button}
         title={props.buttonTitle}

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const Username = (props) => {
-  const {colors} = useTheme();
+const Username = props => {
+  const theme = React.useContext(ThemeContext);
 
   let styles = null;
 
@@ -37,7 +37,7 @@ const Username = (props) => {
         s.username,
         styles,
         {
-          color: colors.text,
+          color: theme.colors.text,
         },
         props.style,
       ]}>

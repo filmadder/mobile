@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import FaSmallButton from './dom/FaSmallButton';
 import SettingsEditMode from './SettingsEditMode';
 import SettingsPassword from './SettingsPassword';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../theme';
 
-const SettingsSection = (props) => {
-  const {colors} = useTheme();
+const SettingsSection = props => {
+  const theme = React.useContext(ThemeContext);
   const [editting, setEditting] = React.useState(false);
 
   const button = (
@@ -16,13 +16,15 @@ const SettingsSection = (props) => {
   return (
     <View style={s.container}>
       <SettingsEditMode visible={editting} transparent={false}>
-        <View style={[s.modal, {backgroundColor: colors.background}]}>
+        <View style={[s.modal, {backgroundColor: theme.colors.background}]}>
           <SettingsPassword close={() => setEditting(false)} />
         </View>
       </SettingsEditMode>
 
-      <View style={[s.header, {borderTopColor: colors.accent}]}>
-        <Text style={[s.title, {color: colors.accent}]}>{props.title}</Text>
+      <View style={[s.header, {borderTopColor: theme.colors.accent}]}>
+        <Text style={[s.title, {color: theme.colors.accent}]}>
+          {props.title}
+        </Text>
         {props.btnText && button}
       </View>
       <View style={[s.content, props.style]}>{props.children}</View>

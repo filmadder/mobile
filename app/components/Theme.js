@@ -5,7 +5,7 @@ import {ThemeContext, themes} from '../theme';
 
 const Theme = props => {
   const fallbackTheme = useColorScheme();
-  const [theme, setTheme] = React.useState(() => {
+  const [colors, setColors] = React.useState(() => {
     if (fallbackTheme === 'dark' || fallbackTheme === 'light') {
       return themes[fallbackTheme];
     }
@@ -17,7 +17,7 @@ const Theme = props => {
     AsyncStorage.getItem('theme')
       .then(theme => {
         if (theme) {
-          setTheme(themes[theme]);
+          setColors(themes[theme]);
         }
       })
       .catch(err => {
@@ -26,15 +26,15 @@ const Theme = props => {
   });
 
   const toggleTheme = () => {
-    if (theme === themes.light) {
-      setTheme(themes.dark);
+    if (colors === themes.light) {
+      setColors(themes.dark);
     } else {
-      setTheme(themes.light);
+      setColors(themes.light);
     }
   };
 
   return (
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
+    <ThemeContext.Provider value={{colors, toggleTheme}}>
       {props.children}
     </ThemeContext.Provider>
   );

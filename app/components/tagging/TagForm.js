@@ -12,19 +12,22 @@ import TagItem from '../../components/TagItem';
 import IconButton from '../dom/IconButton';
 import FaButton from '../dom/FaButton';
 import ws from '../../ws';
-import {useTheme} from '@react-navigation/native';
+import {ThemeContext} from '../../theme';
 
-const TagForm = (props) => {
-  const {colors} = useTheme();
+const TagForm = props => {
+  const theme = React.useContext(ThemeContext);
   const [newTag, setNewTag] = React.useState('');
   const [tags, setTags] = React.useState(props.tags || []);
 
-  const removeTag = (tag) => {
-    setTags(tags.filter((item) => item !== tag));
+  const removeTag = tag => {
+    setTags(tags.filter(item => item !== tag));
   };
 
   const addTag = () => {
-    const formatedTag = newTag.trim().split(' ').join('-');
+    const formatedTag = newTag
+      .trim()
+      .split(' ')
+      .join('-');
     if (tags.length >= 5) {
       console.warn('you can add up t 5 tags');
     } else if (tags.includes(formatedTag)) {
@@ -44,12 +47,12 @@ const TagForm = (props) => {
       film: props.filmId,
       tags: tags,
     })
-      .then((response) => {
+      .then(response => {
         if (response.type === 'confirm') {
           props.close();
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.warn(err);
       });
   };
@@ -57,10 +60,10 @@ const TagForm = (props) => {
   return (
     <Modal visible={props.visible} animationType="slide">
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : null}>
-        <View style={[s.card, {backgroundColor: colors.background}]}>
+        <View style={[s.card, {backgroundColor: theme.colors.background}]}>
           {tags && (
             <View style={s.currentTags}>
-              {tags.map((tag) => (
+              {tags.map(tag => (
                 <View key={tag} style={s.tagContainer}>
                   <TagItem tagName={tag} style={s.tag} />
                   <IconButton
@@ -72,7 +75,7 @@ const TagForm = (props) => {
               ))}
               {tags.length === 0 && (
                 <View>
-                  <Text style={{color: colors.text}}>
+                  <Text style={{color: theme.colors.text}}>
                     You haven't added any tags for {props.filmTitle}
                   </Text>
                 </View>
@@ -83,12 +86,12 @@ const TagForm = (props) => {
             <TextInput
               style={[
                 s.input,
-                {borderColor: colors.accent, color: colors.accent},
+                {borderColor: theme.colors.accent, color: theme.colors.accent},
               ]}
               value={newTag}
               placeholder="enter tag"
-              placeholderTextColor={colors.accent}
-              onChangeText={(text) => setNewTag(text.toLowerCase())}
+              placeholderTextColor={theme.colors.accent}
+              onChangeText={text => setNewTag(text.toLowerCase())}
               onSubmitEditing={addTag}
             />
             <IconButton style={{padding: 10}} name="plus" onPress={addTag} />
