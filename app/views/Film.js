@@ -78,29 +78,36 @@ const Film = () => {
             actors={film.film.actors}
             synopsis={film.film.plot}
           />
-          <Watchers
-            style={padding}
-            type={'Seen'}
-            filmId={filmId}
-            filmTitle={film.film.title}
-            reloadFilm={reloadFilm}
-            loggedUser={loggedUser}
-            watchers={film.watchers_past}
-          />
-          <Watchers
-            style={padding}
-            type={'Currently watching'}
-            filmId={filmId}
-            loggedUser={loggedUser}
-            watchers={film.watchers_present}
-          />
-          <Watchers
-            style={padding}
-            type={'Watchlist'}
-            filmId={filmId}
-            loggedUser={loggedUser}
-            watchers={film.watchers_future}
-          />
+          {film.watchers_past.length > 0 && (
+            <Watchers
+              style={padding}
+              type={'Seen'}
+              filmId={filmId}
+              filmTitle={film.film.title}
+              reloadFilm={reloadFilm}
+              loggedUser={loggedUser}
+              watchers={film.watchers_past}
+            />
+          )}
+          {film.watchers_present.length > 0 && (
+            <Watchers
+              style={padding}
+              type={'Currently watching'}
+              filmId={filmId}
+              loggedUser={loggedUser}
+              watchers={film.watchers_present}
+            />
+          )}
+          {film.watchers_future.length > 0 && (
+            <Watchers
+              style={padding}
+              type={'Watchlist'}
+              filmId={filmId}
+              loggedUser={loggedUser}
+              watchers={film.watchers_future}
+            />
+          )}
+
           <Thoughts
             reloadFilm={reloadFilm}
             style={padding}

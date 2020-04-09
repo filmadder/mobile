@@ -67,11 +67,7 @@ const Watchers = props => {
           {props.type}
         </Text>
       </View>
-      {watchers.length > 0 ? (
-        watchers
-      ) : (
-        <Text style={{color: theme.colors.text}}>none of your friends</Text>
-      )}
+      {watchers}
     </View>
   );
 };

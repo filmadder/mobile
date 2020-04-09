@@ -27,7 +27,7 @@ const createNavOptions = navigation => ({
       name="search"
       color="white"
       size={25}
-      onPress={() => navigation.navigate('Search', {search: 'film'})}
+      onPress={() => navigation.navigate('Search', {search: 'films'})}
     />
   ),
   headerStyle: {
@@ -44,7 +44,7 @@ const InnerScreens = ({route}) => {
   const initialRoute = route.params.initialRoute;
 
   return (
-    <Stack.Navigator initialRouteName={initialRoute}>
+    <Stack.Navigator initialRouteName={initialRoute} mode="modal">
       <Stack.Screen
         name="Notifications"
         component={Notifications}
