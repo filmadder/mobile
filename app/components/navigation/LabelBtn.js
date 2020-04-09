@@ -22,9 +22,7 @@ const LabelBtn = props => {
 
   return (
     <TouchableOpacity onPress={handlePress} style={s.container}>
-      {hasUpdates && props.label === 'Notifications' && (
-        <View style={s.dot}></View>
-      )}
+      {hasUpdates && props.label === 'Notifications' && <View style={s.dot} />}
       <Text style={s.label}>{props.label}</Text>
     </TouchableOpacity>
   );
@@ -37,7 +35,8 @@ const s = StyleSheet.create({
     flexDirection: 'row',
   },
   label: {
-    fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',
+    fontFamily:
+      Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico-Regular',
     color: colours.blue4,
     fontSize: 20,
     textAlign: 'center',

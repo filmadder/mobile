@@ -100,12 +100,12 @@ export default function InnerNavigation() {
           color: theme.colors.accent,
           marginVertical: 5,
           borderRadius: 5,
-          fontFamily: 'Pacifico-Regular',
           fontSize: 20,
+          fontFamily: 'Pacifico-Regular',
+          paddingHorizontal: 10,
         },
         itemStyle: {
           alignItems: 'center',
-          width: 'auto',
         },
         contentContainerStyle: {
           marginVertical: 50,

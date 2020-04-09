@@ -7,11 +7,10 @@ const FaButton = props => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <TouchableOpacity
-      style={{alignItems: 'center'}}
-      activeOpacity={0.6}
-      onPress={props.onPress}>
-      <View
+    <View style={{alignItems: 'center'}}>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={props.onPress}
         style={[
           styles.button,
           {backgroundColor: theme.colors.buttonPrimaryBg},
@@ -20,8 +19,8 @@ const FaButton = props => {
           style={[styles.buttonTitle, {color: theme.colors.buttonPrimaryText}]}>
           {props.title}
         </Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -39,11 +38,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOpacity: 0.3,
     margin: 10,
+    minWidth: 90,
   },
   buttonTitle: {
+    textAlign: 'center',
     fontSize: 22,
-    fontFamily:
-      Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico-Regular',
+    fontFamily: 'Pacifico-Regular',
   },
 });
 

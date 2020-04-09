@@ -44,7 +44,8 @@ const SearchForm = props => {
             placeholder="type here"
             value={query}
             onSubmitEditing={search}
-            onChangeText={text => setQuery(text)}></TextInput>
+            onChangeText={text => setQuery(text)}
+          />
           <TouchableOpacity style={s.buttonContainer} onPress={search}>
             <Text style={s.button}>search</Text>
           </TouchableOpacity>

@@ -3,7 +3,7 @@ import {Text, View, Image, StyleSheet} from 'react-native';
 import Error from './Error';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Launch = (props) => {
+const Launch = props => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {props.hasError ? (

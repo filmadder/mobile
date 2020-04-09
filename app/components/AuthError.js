@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
   },
   oops: {
     textAlign: 'center',
-    fontFamily: Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico',
+    fontFamily:
+      Platform.OS === 'android' ? 'Pacifico-Regular' : 'Pacifico-Regular',
     paddingVertical: 20,
     color: colours.blue4,
     fontSize: 24,
