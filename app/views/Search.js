@@ -7,12 +7,14 @@ import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
 import FaSmallButton from '../components/dom/FaSmallButton';
 import {screen} from '../constants/device';
+import {ThemeContext} from '../theme';
 import ws from '../ws';
 
 const Search = () => {
   const route = useRoute();
+  const theme = React.useContext(ThemeContext);
   const [results, setResults] = React.useState([]);
-  const [searchDone, setSearchDone] = React.useState(false);
+  const [searchDone, setSearchDone] = React.useState('notset');
   const [hasMoreResults, setHasMoreResults] = React.useState(false);
   const [type, setType] = React.useState();
   const [query, setQuery] = React.useState('');
@@ -42,7 +44,7 @@ const Search = () => {
 
   const onTypeChange = type => {
     setType(type);
-    setSearchDone(false);
+    setSearchDone('notset');
     setResults([]);
   };
 
@@ -50,7 +52,7 @@ const Search = () => {
     setType(type);
     setQuery(query);
     setResults([]);
-    setSearchDone(false);
+    setSearchDone('searching');
 
     if (query.length > 0) {
       // adds the bang according to the serach type
@@ -63,7 +65,7 @@ const Search = () => {
       })
         .then(data => {
           setResults(data.films || data.users);
-          setSearchDone(true);
+          setSearchDone('searched');
         })
         .catch(err => {
           console.warn(err);
@@ -110,9 +112,22 @@ const Search = () => {
           />
         )}
         {/* no results */}
-        {searchDone && Object.entries(results).length === 0 && (
-          <Text style={{paddingHorizontal: screen.width < 400 ? 20 : 30}}>
+        {searchDone === 'searched' && results.length === 0 && (
+          <Text
+            style={{
+              paddingHorizontal: screen.width < 400 ? 20 : 30,
+              color: theme.colors.text,
+            }}>
             no results for {type}
+          </Text>
+        )}
+        {searchDone === 'searching' && (
+          <Text
+            style={{
+              paddingHorizontal: screen.width < 400 ? 20 : 30,
+              color: theme.colors.text,
+            }}>
+            searching...
           </Text>
         )}
       </View>
