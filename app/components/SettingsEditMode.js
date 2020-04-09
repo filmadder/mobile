@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Modal, Text, StyleSheet} from 'react-native';
+import {Modal, StyleSheet} from 'react-native';
 
 const SettingsEditMode = props => {
   return (

@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOpacity: 0.3,
     margin: 10,
-    minWidth: 90,
+    width: 160,
+    minWidth: 160,
   },
   buttonTitle: {
     textAlign: 'center',
