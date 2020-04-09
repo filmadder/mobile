@@ -1,22 +1,22 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
 import FaButton from '../dom/FaButton';
-import {colours} from '../../colours';
 import ws from '../../ws';
+import {ThemeContext} from '../../theme';
 
 const NotFriends = props => {
   let content = null;
+  const theme = React.useContext(ThemeContext);
 
   switch (props.status) {
     // unknown status
     case 'u':
       content = (
         <View>
-          <Text style={s.title}>
+          <Text style={[s.title, {color: theme.colors.accent}]}>
             You and {props.user.name} are not friends yet
           </Text>
-          <Text style={s.text}>
+          <Text style={[s.text, {color: theme.colors.text}]}>
             You will be able to see {props.user.name}'s lists once you become
             friends
           </Text>
@@ -31,8 +31,10 @@ const NotFriends = props => {
     case 'v':
       content = (
         <View>
-          <Text style={s.title}>Friendship Request send</Text>
-          <Text style={s.text}>
+          <Text style={[s.title, {color: theme.colors.accent}]}>
+            Friendship Request send
+          </Text>
+          <Text style={[s.text, {color: theme.colors.text}]}>
             You have asked {props.user.name} to become your frined
           </Text>
           <FaButton
@@ -46,8 +48,10 @@ const NotFriends = props => {
     case 'r':
       content = (
         <View>
-          <Text style={s.title}>{props.user.name} wants to befriend you</Text>
-          <Text style={s.text}>
+          <Text style={[s.title, {color: theme.colors.accent}]}>
+            {props.user.name} wants to befriend you
+          </Text>
+          <Text Text style={[s.text, {color: theme.colors.text}]}>
             Once you become friends, {props.user.name} will be able to see your
             film and other lists
           </Text>
@@ -80,19 +84,21 @@ const NotFriends = props => {
       .catch(err => console.warn(err));
   };
 
-  return <View style={s.container}>{content}</View>;
+  return (
+    <View style={[s.container, {borderTopColor: theme.colors.accent}]}>
+      {content}
+    </View>
+  );
 };
 
 const s = StyleSheet.create({
   container: {
     borderTopWidth: 1,
-    borderTopColor: colours.blue3,
     paddingHorizontal: 20,
     paddingBottom: 30,
   },
   title: {
-    fontFamily: 'Pacifico-Regular',
-    color: colours.blue4,
+    fontFamily: 'SourceSansPro-Bold',
     fontSize: 20,
     paddingTop: 40,
     textAlign: 'center',
