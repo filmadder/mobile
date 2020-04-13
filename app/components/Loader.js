@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Easing, StyleSheet, Animated} from 'react-native';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const Loader = () => {
   const theme = React.useContext(ThemeContext);

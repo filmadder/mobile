@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import Error from './Error';
 import {EventRegister} from 'react-native-event-listeners';
 import RNRestart from 'react-native-restart';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const ViewWrapper = props => {
   const theme = React.useContext(ThemeContext);

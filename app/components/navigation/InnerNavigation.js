@@ -13,7 +13,7 @@ import DrawerBtn from './DrawerBtn';
 import MyProfileBtn from './MyProfileBtn';
 import IconButton from '../dom/IconButton';
 import LabelBtn from './LabelBtn';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 import {colours} from '../../colours';
 
 const Stack = createStackNavigator();

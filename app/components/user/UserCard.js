@@ -3,7 +3,7 @@ import {View, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import Avatar from './Avatar';
 import Username from './Username';
 import {useNavigation} from '@react-navigation/native';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 import ws from '../../ws';
 
 const UserCard = props => {

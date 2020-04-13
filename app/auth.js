@@ -62,13 +62,3 @@ export const registerUser = (email, name, password1, password2) => {
       }
     });
 };
-
-export const getLoggedUser = () => {
-  return AsyncStorage.getItem('user')
-    .then(user => {
-      return JSON.parse(user);
-    })
-    .catch(err => {
-      console.warn(err);
-    });
-};

@@ -7,7 +7,7 @@ import Results from '../components/search/Results';
 import ViewWrapper from './ViewWrapper';
 import FaSmallButton from '../components/dom/FaSmallButton';
 import {screen} from '../constants/device';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 import ws from '../ws';
 
 const Search = () => {

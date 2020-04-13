@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import PlaceholderPoster from './PlaceholderPoster';
 import {colours} from '../colours';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const FilmCard = props => {
   const navigation = useNavigation();

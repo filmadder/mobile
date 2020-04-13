@@ -8,7 +8,7 @@ import Thought from './feedItems/Thought';
 import Tag from './feedItems/Tag';
 import Date from '../Date';
 import {colours} from '../../colours';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const FeedCard = props => {
   const theme = React.useContext(ThemeContext);

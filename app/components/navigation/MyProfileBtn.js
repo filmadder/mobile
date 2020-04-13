@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Avatar from '../user/Avatar';
 import AsyncStorage from '@react-native-community/async-storage';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const MyProfileBtn = props => {
   const [user, setUser] = React.useState();

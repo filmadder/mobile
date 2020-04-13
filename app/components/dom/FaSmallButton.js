@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const FaSmallButton = props => {
   const theme = React.useContext(ThemeContext);

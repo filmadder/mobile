@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const IconButton = props => {
   const theme = React.useContext(ThemeContext);

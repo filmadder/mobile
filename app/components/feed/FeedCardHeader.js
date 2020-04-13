@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import UsernameLink from '../user/UsernameLink';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const FeedCardHeader = props => {
   const theme = React.useContext(ThemeContext);

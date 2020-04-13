@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FilmCard from '../../FilmCard';
 import FeedCardHeader from '../FeedCardHeader';
-import {ThemeContext} from '../../../theme';
+import {ThemeContext} from '../../../context/theme';
 
 const Thought = props => {
   const theme = React.useContext(ThemeContext);

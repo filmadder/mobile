@@ -5,7 +5,7 @@ import AvatarLink from '../../components/user/AvatarLink';
 import UsernameLink from '../../components/user/UsernameLink';
 import FaSmallButton from '../../components/dom/FaSmallButton';
 import Date from '../Date';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const Thought = props => {
   const theme = React.useContext(ThemeContext);

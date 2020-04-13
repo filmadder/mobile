@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-
-import {colours} from '../../colours';
 import JdentIcon from './JdentIcon';
+import {useUser} from '../../context/user';
 
 const Avatar = props => {
   let size = null;
   let marginRight = null;
   const name = props.name || 'default';
+  const thisUser = useUser();
 
   switch (props.size) {
     case 'large':

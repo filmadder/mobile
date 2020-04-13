@@ -1,9 +1,10 @@
 import React from 'react';
+import {StatusBar, Platform} from 'react-native';
 import {useColorScheme} from 'react-native-appearance';
 import AsyncStorage from '@react-native-community/async-storage';
-import {ThemeContext, themes} from '../theme';
+import {ThemeContext, themes} from '../context/theme';
 
-const Theme = props => {
+const ThemeProvider = props => {
   const fallbackTheme = useColorScheme();
   const [colors, setColors] = React.useState(() => {
     if (fallbackTheme === 'dark' || fallbackTheme === 'light') {
@@ -35,9 +36,10 @@ const Theme = props => {
 
   return (
     <ThemeContext.Provider value={{colors, toggleTheme}}>
+      <StatusBar barStyle="light-content" />
       {props.children}
     </ThemeContext.Provider>
   );
 };
 
-export default Theme;
+export default ThemeProvider;

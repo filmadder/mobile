@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FaButton from '../../components/dom/FaButton';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const NothingYet = props => {
   const theme = React.useContext(ThemeContext);

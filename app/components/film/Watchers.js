@@ -4,10 +4,12 @@ import UserRow from '../user/UserRow';
 import TagItem from '../../components/TagItem';
 import TagForm from '../../components/tagging/TagForm';
 import IconButton from '../../components/dom/IconButton';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
+import {useUser} from '../../context/user';
 
 const Watchers = props => {
   const theme = React.useContext(ThemeContext);
+  const thisUser = useUser();
   const [isEditMode, setIsEditMode] = React.useState(false);
 
   const closeModal = () => {
@@ -28,15 +30,15 @@ const Watchers = props => {
         return <TagItem key={tag + index} style={{margin: 5}} tagName={tag} />;
       });
 
-    const manageTagsBtn = props.loggedUser &&
-      props.loggedUser.pk === user.pk.toString() &&
+    const manageTagsBtn = thisUser &&
+      thisUser.pk === user.pk.toString() &&
       props.type === 'Seen' && (
         <IconButton name="tags" onPress={() => setIsEditMode(true)} />
       );
 
     return (
       <View style={s.userContainer} key={user.pk}>
-        {props.loggedUser && props.loggedUser.pk === user.pk.toString() && (
+        {thisUser && thisUser.pk === user.pk.toString() && (
           <TagForm
             filmId={props.filmId}
             filmTitle={props.filmTitle}

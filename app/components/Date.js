@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {getDate} from '../utils';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const Date = props => {
   const theme = React.useContext(ThemeContext);

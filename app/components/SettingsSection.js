@@ -3,7 +3,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import FaSmallButton from './dom/FaSmallButton';
 import SettingsEditMode from './SettingsEditMode';
 import SettingsPassword from './SettingsPassword';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const SettingsSection = props => {
   const theme = React.useContext(ThemeContext);

@@ -10,13 +10,11 @@ import ThoughtTextArea from '../components/film/ThoughtTextArea';
 import Loader from '../components/Loader';
 
 import {screen} from '../constants/device';
-import {getLoggedUser} from '../auth';
 import ws from '../ws';
 
 const Film = () => {
   const route = useRoute();
   const [film, setFilm] = React.useState({});
-  const [loggedUser, setLoggedUser] = React.useState();
   const filmId = route.params.filmId;
   const padding = screen.width < 400 ? {padding: 20} : {padding: 30};
 
@@ -32,15 +30,6 @@ const Film = () => {
     })
       .then(data => {
         setFilm(data);
-      })
-      .then(() => {
-        getLoggedUser()
-          .then(user => {
-            setLoggedUser(user);
-          })
-          .catch(err => {
-            console.warn(err);
-          });
       })
       .catch(err => console.warn(err));
   };
@@ -85,7 +74,6 @@ const Film = () => {
               filmId={filmId}
               filmTitle={film.film.title}
               reloadFilm={reloadFilm}
-              loggedUser={loggedUser}
               watchers={film.watchers_past}
             />
           )}
@@ -94,7 +82,6 @@ const Film = () => {
               style={padding}
               type={'Currently watching'}
               filmId={filmId}
-              loggedUser={loggedUser}
               watchers={film.watchers_present}
             />
           )}
@@ -103,7 +90,6 @@ const Film = () => {
               style={padding}
               type={'Watchlist'}
               filmId={filmId}
-              loggedUser={loggedUser}
               watchers={film.watchers_future}
             />
           )}

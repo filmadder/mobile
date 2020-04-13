@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import IconButton from '../../components/dom/IconButton';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const SynopsisSection = props => {
   const theme = React.useContext(ThemeContext);

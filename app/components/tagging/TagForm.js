@@ -12,7 +12,7 @@ import TagItem from '../../components/TagItem';
 import IconButton from '../dom/IconButton';
 import FaButton from '../dom/FaButton';
 import ws from '../../ws';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const TagForm = props => {
   const theme = React.useContext(ThemeContext);

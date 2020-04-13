@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const Username = props => {
   const theme = React.useContext(ThemeContext);

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Checkbox from '../components/dom/Checkbox';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const AppearanceSetting = () => {
   const [checked, setChecked] = React.useState(false);

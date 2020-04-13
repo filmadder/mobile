@@ -10,7 +10,7 @@ import Input from './dom/Input';
 import FaButton from './dom/FaButton';
 import LogoutBtn from '../views/auth/LogoutBtn';
 import ws from '../ws';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const SettingsPassword = props => {
   const theme = React.useContext(ThemeContext);

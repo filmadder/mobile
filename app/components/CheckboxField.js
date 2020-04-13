@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Checkbox from './dom/Checkbox';
-import {ThemeContext} from '../theme';
+import {ThemeContext} from '../context/theme';
 
 const CheckboxField = props => {
   const theme = React.useContext(ThemeContext);

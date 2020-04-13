@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import FaButton from '../dom/FaButton';
 import CheckboxField from '../CheckboxField';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 import ws from '../../ws';
 
 const ThoughtTextArea = props => {

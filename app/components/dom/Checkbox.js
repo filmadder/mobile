@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import IconButton from '../dom/IconButton';
-import {ThemeContext} from '../../theme';
+import {ThemeContext} from '../../context/theme';
 
 const Checkbox = props => {
   const theme = React.useContext(ThemeContext);
