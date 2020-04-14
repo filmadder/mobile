@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import ProfileList from '../components/profile/ProfileList';
 import NotFriends from '../components/profile/NotFriends';
@@ -10,7 +10,7 @@ import {useWS} from '../ws';
 import {useUser} from '../context/user';
 
 const Profile = () => {
-  const thisUser = useUser();
+  const {user: thisUser} = useUser();
   const route = useRoute();
   const [data, reload] = useWS('get_user', {user: route.params.user});
   const [type, setType] = React.useState('watchlist');

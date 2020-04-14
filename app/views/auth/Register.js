@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-
 import Input from '../../components/dom/Input';
 import FaButton from '../../components/dom/FaButton';
 import AuthContainer from '../../components/auth/AuthContainer';
@@ -9,10 +8,12 @@ import AuthError from '../../components/AuthError';
 import AuthHeader from '../../components/auth/AuthHeader';
 import RedirectLink from '../../components/auth/RedirectLink';
 import Loader from '../../components/Loader';
+import {UserContext} from '../../context/user';
 
 import {registerUser} from '../../auth';
 
 const Register = props => {
+  const {setNewUser} = React.useContext(UserContext);
   const [hasError, setHasError] = React.useState(false);
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -43,6 +44,9 @@ const Register = props => {
     setLoading(true);
     setTimeout(() => {
       registerUser(email, name, password1, password2)
+        .then(user => {
+          setNewUser(user);
+        })
         .then(() => {
           props.navigation.navigate('Inner');
         })

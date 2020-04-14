@@ -9,7 +9,7 @@ import {useUser} from '../../context/user';
 
 const Watchers = props => {
   const theme = React.useContext(ThemeContext);
-  const thisUser = useUser();
+  const {user: thisUser} = useUser();
   const [isEditMode, setIsEditMode] = React.useState(false);
 
   const closeModal = () => {

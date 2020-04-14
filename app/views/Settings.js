@@ -12,7 +12,7 @@ import {screen} from '../constants/device';
 import {useUser} from '../context/user';
 
 const Settings = () => {
-  const thisUser = useUser();
+  const {user: thisUser} = useUser();
   const [, setReload] = React.useState();
 
   const onCheckboxChange = currentState => {};

@@ -11,8 +11,10 @@ import RedirectLink from '../../components/auth/RedirectLink';
 import Loader from '../../components/Loader';
 import {useNavigation} from '@react-navigation/native';
 import {loginUser} from '../../auth';
+import {UserContext} from '../../context/user';
 
 const Login = () => {
+  const {setNewUser} = React.useContext(UserContext);
   const navigation = useNavigation();
   const [hasError, setHasError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -38,6 +40,9 @@ const Login = () => {
       setLoading(true);
       setTimeout(() => {
         loginUser(email, password)
+          .then(user => {
+            setNewUser(user);
+          })
           .then(() => {
             navigation.navigate('Inner');
           })

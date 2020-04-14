@@ -25,7 +25,7 @@ export const loginUser = (email, password) => {
             avatar_url: data[1]['user']['avatar_url'],
           }),
         );
-        return data[1].token;
+        return data[1].user;
       } else {
         throw new Error(data[1].error);
       }
@@ -56,7 +56,7 @@ export const registerUser = (email, name, password1, password2) => {
             avatar_url: data[1]['user']['avatar_url'],
           }),
         );
-        return data[1].token;
+        return data[1].user;
       } else {
         throw new Error(data[1].error);
       }

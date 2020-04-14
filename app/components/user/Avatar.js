@@ -7,7 +7,7 @@ const Avatar = props => {
   let size = null;
   let marginRight = null;
   const name = props.name || 'default';
-  const thisUser = useUser();
+  const {user: thisUser} = useUser();
 
   switch (props.size) {
     case 'large':

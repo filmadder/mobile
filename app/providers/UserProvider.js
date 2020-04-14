@@ -15,8 +15,14 @@ const UserProvider = props => {
       });
   }, []);
 
+  const setNewUser = user => {
+    setUser(user);
+  };
+
   return (
-    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+    <UserContext.Provider value={{user, setNewUser}}>
+      {props.children}
+    </UserContext.Provider>
   );
 };
 
