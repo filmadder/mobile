@@ -1,20 +1,20 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import ProfileList from '../components/profile/ProfileList';
 import NotFriends from '../components/profile/NotFriends';
 import UserCard from '../components/user/UserCard';
 import Loader from '../components/Loader';
 import ViewWrapper from './ViewWrapper';
-import ws from '../ws';
+import {useWS} from '../ws';
 import {useUser} from '../context/user';
 
 const Profile = () => {
   const thisUser = useUser();
   const route = useRoute();
+  const [data, reload] = useWS('get_user', {user: route.params.user});
   const [type, setType] = React.useState('watchlist');
   const [user, setUser] = React.useState({});
-  const [loaded, setLoaded] = React.useState(false);
   const [isThemselves, setIsThemselves] = React.useState();
   const [list, setList] = React.useState();
   const [friendshipStatus, setFriendshipStatus] = React.useState();
@@ -25,43 +25,26 @@ const Profile = () => {
   };
 
   React.useEffect(() => {
-    console.log(thisUser);
-    getUser();
-  }, []);
+    if (data) {
+      setUser(data.user);
+      setFriendshipStatus(data.friendship_status);
+      setIsThemselves(data.user.pk.toString() === thisUser.pk);
+      if (data.friendship_status === 'f') {
+        setIsBefriended(true);
+      } else {
+        setIsBefriended(false);
+      }
+      setList({
+        friends: data.friends,
+        tags: data.tags,
+        watchlist: data.films_future,
+        seen: data.films_past,
+        watching: data.films_present,
+      });
+    }
+  }, [data]);
 
-  const reload = () => {
-    setIsBefriended(false);
-    getUser();
-  };
-
-  const getUser = () => {
-    ws.send({
-      type: 'get_user',
-      user: route.params.user,
-      id: null,
-    })
-      .then(data => {
-        setLoaded(true);
-        setUser(data.user);
-        setFriendshipStatus(data.friendship_status);
-        setIsThemselves(data.user.pk.toString() === thisUser.pk);
-
-        if (data.friendship_status === 'f') {
-          setIsBefriended(true);
-        }
-
-        setList({
-          friends: data.friends,
-          tags: data.tags,
-          watchlist: data.films_future,
-          seen: data.films_past,
-          watching: data.films_present,
-        });
-      })
-      .catch(err => console.warn(err));
-  };
-
-  if (!loaded) {
+  if (data === null) {
     return <Loader />;
   }
 
@@ -72,10 +55,10 @@ const Profile = () => {
           type={type}
           list={list}
           reload={reload}
-          loaded={loaded}
+          loaded={true}
           isThemselves={isThemselves}
           isBefriended={isBefriended}
-          user={user}
+          user={data.user}
           onTypeSelected={onTypeSelected}
         />
       ) : (

@@ -90,7 +90,7 @@ export default function InnerNavigation() {
   return (
     <Drawer.Navigator
       initialRouteName="Feed"
-      drawerType="slide"
+      drawerType="modal"
       drawerStyle={{
         backgroundColor: theme.colors.feedCard,
       }}
@@ -118,6 +118,8 @@ export default function InnerNavigation() {
         options={({navigation}) => ({
           drawerLabel: () => <MyProfileBtn navigation={navigation} />,
           unmountOnBlur: true,
+          gestureEnabled: false,
+          swipeEnabled: 'false',
         })}
       />
       <Drawer.Screen

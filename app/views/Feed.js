@@ -5,16 +5,13 @@ import NothingYet from './nothing/NothingYet';
 import Loader from '../components/Loader';
 import ViewTitle from '../components/ViewTitle';
 import ViewWrapper from './ViewWrapper';
-import ws from '../ws';
+import {useWS} from '../ws';
 
 const Feed = props => {
-  const [feed, setFeed] = React.useState([]);
-  const [loaded, setLoaded] = React.useState(false);
   const [page, setPage] = React.useState(0);
-
-  React.useEffect(() => {
-    getFeed();
-  }, []);
+  const [data, reload] = useWS('get_feed', {per_page: 20, page});
+  const [loading, setLoading] = React.useState(true);
+  const [feed, setFeed] = React.useState([]);
 
   const handleSearchPress = () => {
     props.navigation.navigate('Search', {search: 'users'});
@@ -22,27 +19,20 @@ const Feed = props => {
 
   const getFeed = () => {
     setPage(page + 1);
-
-    ws.send({
-      type: 'get_feed',
-      per_page: 20,
-      page: page,
-      id: null,
-    })
-      .then(data => {
-        setLoaded(true);
-        setFeed(feed.concat(data.items));
-      })
-      .catch(err => {
-        setLoaded(true);
-      });
+    reload({per_page: 20, page: page + 1});
   };
 
+  React.useEffect(() => {
+    if (data) {
+      setFeed(feed.concat(data.items));
+      setLoading(false);
+    }
+  }, [data]);
+
   /*
-         RENDER
-    */
-  // show the loading screen before fetch is finished
-  if (!loaded) {
+    RENDER
+  */
+  if (loading) {
     return <Loader />;
   }
 
@@ -60,7 +50,7 @@ const Feed = props => {
           ListHeaderComponent={<ViewTitle title="Feed" />}
           data={feed}
           renderItem={({item}) => <FeedCard item={item} />}
-          keyExtractor={item => item.pk.toString()}
+          keyExtractor={item => item.created}
           onEndReached={getFeed}
         />
       )}

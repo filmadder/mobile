@@ -8,38 +8,17 @@ import Watchers from '../components/film/Watchers';
 import Thoughts from '../components/film/Thoughts';
 import ThoughtTextArea from '../components/film/ThoughtTextArea';
 import Loader from '../components/Loader';
-
 import {screen} from '../constants/device';
-import ws from '../ws';
+import {useWS} from '../ws';
 
 const Film = () => {
   const route = useRoute();
-  const [film, setFilm] = React.useState({});
   const filmId = route.params.filmId;
+  const [film, getFilm] = useWS('get_film', {film: filmId});
   const padding = screen.width < 400 ? {padding: 20} : {padding: 30};
 
-  React.useEffect(() => {
-    getFilm();
-  }, []);
-
-  const getFilm = () => {
-    ws.send({
-      type: 'get_film',
-      film: filmId,
-      id: null,
-    })
-      .then(data => {
-        setFilm(data);
-      })
-      .catch(err => console.warn(err));
-  };
-
-  const reloadFilm = () => {
-    getFilm();
-  };
-
   // RENDER
-  if (Object.entries(film).length === 0) {
+  if (film === null) {
     return <Loader />;
   }
 
@@ -57,7 +36,7 @@ const Film = () => {
             year={film.film.year}
             country={film.film.countries}
             duration={film.film.runtime}
-            reloadFilm={reloadFilm}
+            reloadFilm={getFilm}
             status={film.status}
           />
           <Info
@@ -73,7 +52,7 @@ const Film = () => {
               type={'Seen'}
               filmId={filmId}
               filmTitle={film.film.title}
-              reloadFilm={reloadFilm}
+              reloadFilm={getFilm}
               watchers={film.watchers_past}
             />
           )}
@@ -95,14 +74,14 @@ const Film = () => {
           )}
 
           <Thoughts
-            reloadFilm={reloadFilm}
+            reloadFilm={getFilm}
             style={padding}
             filmId={filmId}
             thoughts={film.comments}
             status={film.status}
           />
           <ThoughtTextArea
-            reloadFilm={reloadFilm}
+            reloadFilm={getFilm}
             filmId={filmId}
             style={{paddingHorizontal: 20}}
           />

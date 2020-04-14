@@ -1,39 +1,33 @@
 import React from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {FlatList, StyleSheet} from 'react-native';
 import NotificationItem from '../components/NotificationItem';
 import ViewTitle from '../components/ViewTitle';
 import ViewWrapper from './ViewWrapper';
+import Loader from '../components/Loader';
 import {screen} from '../constants/device';
-import ws from '../ws';
+import {useWS} from '../ws';
 
 const Notifications = props => {
-  const navigation = useNavigation();
-  const route = useRoute();
   const [page, setPage] = React.useState(0);
+  const [data, reload] = useWS('get_updates', {per_page: 10, page});
   const [updates, setUpdates] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    //   navigation.popToTop();
-    getUpdates();
-  }, [updates]);
+    if (data) {
+      setUpdates(updates.concat(data.items));
+      setLoading(false);
+    }
+  }, [data]);
 
   const getUpdates = () => {
     setPage(page + 1);
-
-    ws.send({
-      type: 'get_updates',
-      per_page: 10,
-      page: page,
-      id: null,
-    })
-      .then(data => {
-        if (data.items.length > 0) {
-          setUpdates(updates.concat(data.items));
-        }
-      })
-      .catch(err => console.log(err));
+    reload({per_page: 10, page: page + 1});
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <ViewWrapper>
@@ -52,8 +46,8 @@ const Notifications = props => {
         style={{
           paddingHorizontal: screen.width < 400 ? 20 : 30,
         }}
-        keyExtractor={item => item.pk.toString()}
-        onEndReached={() => getUpdates()}
+        keyExtractor={item => item.pk.toString() + item.created}
+        onEndReached={getUpdates}
       />
     </ViewWrapper>
   );

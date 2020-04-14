@@ -1,3 +1,4 @@
+import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import {wsUrl} from './settings';
 import {EventRegister} from 'react-native-event-listeners';
@@ -88,4 +89,30 @@ export default {
   open,
   close,
   send,
+};
+
+export const useWS = (type, payload) => {
+  const [response, setResponse] = React.useState(null);
+  const [frame, setFrame] = React.useState({...{type, id: null}, ...payload});
+
+  const reload = payload => {
+    setFrame({
+      ...frame,
+      ...payload,
+    });
+  };
+
+  const getResponse = () => {
+    send(frame)
+      .then(response => {
+        setResponse(response);
+      })
+      .catch(err => console.warn(err));
+  };
+
+  React.useEffect(() => {
+    getResponse();
+  }, [frame]);
+
+  return [response, reload];
 };
