@@ -14,12 +14,11 @@ import MyProfileBtn from './MyProfileBtn';
 import IconButton from '../dom/IconButton';
 import LabelBtn from './LabelBtn';
 import {ThemeContext} from '../../context/theme';
-import {colours} from '../../colours';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const createNavOptions = navigation => ({
+const createNavOptions = (navigation, theme) => ({
   title: 'filmadder',
   headerLeft: () => <DrawerBtn />,
   headerRight: () => (
@@ -31,7 +30,7 @@ const createNavOptions = navigation => ({
     />
   ),
   headerStyle: {
-    backgroundColor: colours.blue3,
+    backgroundColor: theme.colors.accent,
   },
   headerTintColor: '#fff',
   headerTitleStyle: {
@@ -42,43 +41,44 @@ const createNavOptions = navigation => ({
 
 const InnerScreens = ({route}) => {
   const initialRoute = route.params.initialRoute;
+  const theme = route.params.theme;
 
   return (
     <Stack.Navigator initialRouteName={initialRoute}>
       <Stack.Screen
         name="Notifications"
         component={Notifications}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Film"
         component={Film}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Search"
         component={Search}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Tag"
         component={Tag}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Feed"
         component={Feed}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
       <Stack.Screen
         name="Settings"
         component={Settings}
-        options={({navigation}) => createNavOptions(navigation)}
+        options={({navigation}) => createNavOptions(navigation, theme)}
       />
     </Stack.Navigator>
   );
@@ -114,7 +114,7 @@ export default function InnerNavigation() {
       <Drawer.Screen
         name="Me"
         component={InnerScreens}
-        initialParams={{initialRoute: 'Profile'}}
+        initialParams={{initialRoute: 'Profile', theme}}
         options={({navigation}) => ({
           drawerLabel: () => <MyProfileBtn navigation={navigation} />,
           unmountOnBlur: true,
@@ -125,7 +125,7 @@ export default function InnerNavigation() {
       <Drawer.Screen
         name="Feed"
         component={InnerScreens}
-        initialParams={{initialRoute: 'Feed'}}
+        initialParams={{initialRoute: 'Feed', theme}}
         options={{
           unmountOnBlur: true,
         }}
@@ -133,7 +133,7 @@ export default function InnerNavigation() {
       <Drawer.Screen
         name="Notifications"
         component={InnerScreens}
-        initialParams={{initialRoute: 'Notifications'}}
+        initialParams={{initialRoute: 'Notifications', theme}}
         options={({navigation}) => ({
           drawerLabel: () => (
             <LabelBtn label="Notifications" navigation={navigation} />
@@ -144,7 +144,7 @@ export default function InnerNavigation() {
       <Drawer.Screen
         name="Settings"
         component={InnerScreens}
-        initialParams={{initialRoute: 'Settings'}}
+        initialParams={{initialRoute: 'Settings', theme}}
         options={{
           unmountOnBlur: true,
         }}

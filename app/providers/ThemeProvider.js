@@ -36,7 +36,7 @@ const ThemeProvider = props => {
 
   return (
     <ThemeContext.Provider value={{colors, toggleTheme}}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor={colors.accent} />
       {props.children}
     </ThemeContext.Provider>
   );
