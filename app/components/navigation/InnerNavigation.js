@@ -44,7 +44,7 @@ const InnerScreens = ({route}) => {
   const initialRoute = route.params.initialRoute;
 
   return (
-    <Stack.Navigator initialRouteName={initialRoute} mode="modal">
+    <Stack.Navigator initialRouteName={initialRoute}>
       <Stack.Screen
         name="Notifications"
         component={Notifications}
